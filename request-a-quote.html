@@ -29,8 +29,19 @@
           <label>Interested program <select name="Program"><option>Wholesale mixed dice</option><option>Custom RPG dice</option><option>Private label packaging</option><option>Sample kit</option><option>Dragon dice series</option><option>Class dice series</option><option>Elemental dice series</option></select></label>
           <label>Estimated quantity <input name="Estimated quantity" placeholder="Example: 300 sets, 1,000 sets, mixed SKU order"></label>
           <label>Message <textarea name="Message" placeholder="Themes, materials, packaging, target price, delivery country, timeline"></textarea></label>
-          <button class="button" type="submit">Prepare Email Inquiry</button>
-          <p class="note">This static form opens an email draft to lzyderun@gmail.com. For direct server-side submissions later, connect this page to Cloudflare Workers, Basin, Formspree, or your CRM.</p>
+          <button class="button" type="submit">Prepare Inquiry</button>
+          <p class="note">This static form prepares your inquiry and gives you email, WhatsApp, and copy options. No account login is required.</p>
+          <div class="inquiry-result" data-inquiry-result hidden>
+            <h3>Your inquiry is ready</h3>
+            <p>Choose one option below. If your email app does not open, use WhatsApp or copy the inquiry text.</p>
+            <div class="inquiry-actions">
+              <a class="button" data-email-link href="mailto:lzyderun@gmail.com">Send Email</a>
+              <a class="button secondary" data-whatsapp-link href="https://wa.me/8613922851014">Send WhatsApp</a>
+              <button class="button secondary" type="button" data-copy-inquiry>Copy Inquiry</button>
+            </div>
+            <textarea class="inquiry-preview" data-inquiry-preview readonly></textarea>
+            <p class="note" data-copy-status></p>
+          </div>
         </form>
       </div>
       <div>
