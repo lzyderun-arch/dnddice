@@ -38,8 +38,9 @@ Replace these with real factory and product photos when available. Keep the same
 2. Brand name is set to `DND Custom Dice`.
 3. Contact email is set to `lzyderun@gmail.com`.
 4. WhatsApp is set to `+86 13922851014`.
-5. Replace placeholder AI images with your own product, packaging, and factory photography when available.
-6. Add real company details, shipping terms, MOQ ranges, and lead times once confirmed.
+5. GA4 measurement ID is set to `G-JB9554D4TW`.
+6. Replace placeholder AI images with your own product, packaging, and factory photography when available.
+7. Add real company details, shipping terms, MOQ ranges, and lead times once confirmed.
 
 ## Deploy to Cloudflare Pages
 
