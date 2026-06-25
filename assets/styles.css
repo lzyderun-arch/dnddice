@@ -706,6 +706,47 @@ h3 {
   font-size: 0.92rem;
 }
 
+.catalog-downloads {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.catalog-download-card {
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(214, 163, 77, 0.12), transparent 48%),
+    var(--panel);
+  padding: 24px;
+}
+
+.catalog-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.catalog-meta span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 10px;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.download-note {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(214, 163, 77, 0.08);
+  padding: 18px;
+  color: var(--ink-soft);
+}
+
 @media (max-width: 900px) {
   .nav-toggle {
     display: inline-flex;
@@ -738,6 +779,7 @@ h3 {
   .trust-row,
   .grid.three,
   .grid.four,
+  .catalog-downloads,
   .image-grid,
   .image-strip,
   .stat-row,

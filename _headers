@@ -5,3 +5,8 @@
 
 /assets/*
   Cache-Control: public, max-age=0, must-revalidate
+
+/catalogs/*
+  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  Cache-Control: public, max-age=86400
+  X-Robots-Tag: noindex
