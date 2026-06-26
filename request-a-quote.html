@@ -7,7 +7,7 @@
   <meta name="description" content="Request a wholesale quote for custom RPG dice, bulk polyhedral dice, dragon dice, class dice, elemental dice, sample kits, MOQ planning, and private label packaging.">
   <meta name="keywords" content="request dice quote, wholesale RPG dice quote, custom polyhedral dice quote, private label dice supplier">
   <link rel="canonical" href="https://dndcustomdice.com/request-a-quote">
-  <link rel="stylesheet" href="assets/styles.css?v=20260625-2">
+  <link rel="stylesheet" href="assets/styles.css?v=20260626-catalog-conversion">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JB9554D4TW"></script>
   <script>
@@ -30,16 +30,23 @@
     </section>
     <section class="section split">
       <div class="card">
+        <div class="quote-context" data-quote-context hidden>
+          <strong>Catalog inquiry selected</strong>
+          <p data-quote-context-text></p>
+        </div>
         <form class="form" action="https://formsubmit.co/Info@dndcustomdice.com" method="POST" data-formsubmit-form>
           <input type="hidden" name="_subject" value="New wholesale RPG dice quote request">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_next" value="https://dndcustomdice.com/thank-you">
+          <input type="hidden" name="Catalog source" data-prefill="catalog">
+          <input type="hidden" name="Series requested" data-prefill="series">
+          <input type="hidden" name="SKU requested" data-prefill="sku">
           <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
           <label>Company name <input name="Company" required></label>
           <label>Email <input type="email" name="email" required></label>
           <label>Buyer type <select name="Buyer type"><option>Game store / retailer</option><option>Dice brand</option><option>Distributor</option><option>Kickstarter creator</option><option>Subscription box</option><option>Event vendor</option></select></label>
-          <label>Interested program <select name="Program"><option>Wholesale mixed dice</option><option>Custom RPG dice</option><option>Private label packaging</option><option>Sample kit</option><option>Dragon dice series</option><option>Class dice series</option><option>Elemental dice series</option></select></label>
+          <label>Interested program <select name="Program"><option>Wholesale mixed dice</option><option>Resin dice catalog</option><option>Metal dice catalog</option><option>Hollow dice catalog</option><option>Exotic dice catalog</option><option>Custom RPG dice</option><option>Private label packaging</option><option>Sample kit</option><option>Dragon dice series</option><option>Class dice series</option><option>Elemental dice series</option></select></label>
           <label>Estimated quantity / MOQ target <input name="Estimated quantity and MOQ target" placeholder="Example: sample kit first, 300 sets, 1,000 sets, mixed SKU order"></label>
           <label>Sample kit need <select name="Sample kit need"><option>Yes, send sample kit options first</option><option>No, quote bulk production directly</option><option>Not sure, recommend based on my project</option></select></label>
           <label>Delivery country <input name="Delivery country" placeholder="Example: United States, Germany, United Kingdom"></label>
@@ -81,6 +88,6 @@
     <div><strong>Buyers</strong><div class="footer-links"><a href="/game-store-dice-supplier">Game Store Dice Supplier</a><a href="/kickstarter-dice-manufacturer">Kickstarter Dice Manufacturer</a><a href="/custom-dice-packaging-supplier">Packaging Supplier</a><a href="/quality-manufacturing">Quality</a><a href="/faq">FAQ</a><a href="/request-a-quote">Request Quote</a></div></div>
     <p class="disclaimer">DND-inspired and 5e-compatible are used descriptively for tabletop RPG compatibility. This website is not affiliated with, endorsed by, or sponsored by any official game publisher.</p>
   </div>
-</footer><script src="assets/main.js?v=20260623-2"></script>
+</footer><script src="assets/main.js?v=20260626-catalog-conversion"></script>
 </body>
 </html>

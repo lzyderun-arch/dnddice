@@ -10,9 +10,23 @@ if (toggle && links) {
 
 const formsubmitForm = document.querySelector("[data-formsubmit-form]");
 const GA_CALLBACK_TIMEOUT = 700;
+const catalogLabels = {
+  "resin-dice-wholesale-catalog": "Resin Dice Catalog",
+  "metal-dice-wholesale-catalog": "Metal Dice Catalog",
+  "hollow-dice-wholesale-catalog": "Hollow Dice Catalog",
+  "exotic-dice-wholesale-catalog": "Exotic Dice Catalog",
+};
 
 function pagePath() {
   return window.location.pathname || "/";
+}
+
+function currentParams() {
+  return new URLSearchParams(window.location.search);
+}
+
+function catalogLabel(value) {
+  return catalogLabels[value] || value || "";
 }
 
 function linkText(link) {
@@ -76,10 +90,14 @@ document.addEventListener("click", (event) => {
   }
 
   if (isQuoteLink(link)) {
+    const linkUrl = new URL(link.href);
     trackEvent("quote_click", {
       link_text: linkText(link),
       link_url: link.href,
       click_type: "request_quote",
+      catalog: link.dataset.catalog || catalogLabel(linkUrl.searchParams.get("catalog")),
+      series: link.dataset.series || linkUrl.searchParams.get("series") || "",
+      sku: link.dataset.sku || linkUrl.searchParams.get("sku") || "",
     });
     return;
   }
@@ -101,6 +119,94 @@ document.addEventListener("click", (event) => {
     });
   }
 });
+
+function setFieldValue(selector, value) {
+  const field = formsubmitForm ? formsubmitForm.querySelector(selector) : null;
+
+  if (field && value) {
+    field.value = value;
+  }
+}
+
+function prefillQuoteForm() {
+  if (!formsubmitForm) {
+    return;
+  }
+
+  const params = currentParams();
+  const catalog = params.get("catalog") || "";
+  const series = params.get("series") || "";
+  const sku = params.get("sku") || "";
+  const source = params.get("source") || "";
+  const catalogName = catalogLabel(catalog);
+
+  if (!catalog && !series && !sku && !source) {
+    return;
+  }
+
+  setFieldValue("[data-prefill='catalog']", catalogName || catalog);
+  setFieldValue("[data-prefill='series']", series);
+  setFieldValue("[data-prefill='sku']", sku);
+
+  const program = formsubmitForm.querySelector("[name='Program']");
+  const programByCatalog = {
+    "Resin Dice Catalog": "Resin dice catalog",
+    "Metal Dice Catalog": "Metal dice catalog",
+    "Hollow Dice Catalog": "Hollow dice catalog",
+    "Exotic Dice Catalog": "Exotic dice catalog",
+  };
+
+  if (program && programByCatalog[catalogName]) {
+    program.value = programByCatalog[catalogName];
+  }
+
+  const message = formsubmitForm.querySelector("[name='Message']");
+  if (message && !message.value) {
+    const lines = [];
+
+    if (catalogName) {
+      lines.push(`Catalog: ${catalogName}`);
+    }
+
+    if (series) {
+      lines.push(`Series: ${series}`);
+    }
+
+    if (sku) {
+      lines.push(`SKU: ${sku}`);
+    }
+
+    lines.push("");
+    lines.push("Please quote MOQ, sample kit options, packaging choices, production lead time, and shipping assumptions for this inquiry.");
+    message.value = lines.join("\n");
+  }
+
+  const context = document.querySelector("[data-quote-context]");
+  const contextText = document.querySelector("[data-quote-context-text]");
+
+  if (context && contextText) {
+    const parts = [];
+
+    if (catalogName) {
+      parts.push(catalogName);
+    }
+
+    if (series) {
+      parts.push(series);
+    }
+
+    if (sku) {
+      parts.push(`SKU ${sku}`);
+    }
+
+    contextText.textContent = parts.length
+      ? `This form is prefilled from: ${parts.join(" / ")}. Add quantity, packaging, delivery country, and launch date before submitting.`
+      : "This form is prefilled from a catalog inquiry. Add SKU list, quantity, packaging, delivery country, and launch date before submitting.";
+    context.hidden = false;
+  }
+}
+
+prefillQuoteForm();
 
 if (formsubmitForm) {
   let formSubmitTracked = false;

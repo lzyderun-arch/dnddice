@@ -127,6 +127,12 @@ p {
   color: var(--ink);
 }
 
+.button.small {
+  width: fit-content;
+  padding: 9px 12px;
+  font-size: 0.86rem;
+}
+
 .button.ghost {
   border-color: var(--gold);
   background: transparent;
@@ -796,6 +802,38 @@ h3 {
   padding: 5px 8px;
   color: var(--ink-soft);
   font-size: 0.82rem;
+}
+
+.catalog-quote-link {
+  margin-top: 2px;
+}
+
+.quote-conversion .split {
+  align-items: stretch;
+}
+
+.quote-mini-panel,
+.quote-context {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(214, 163, 77, 0.14), transparent 45%),
+    var(--panel);
+  padding: 24px;
+}
+
+.quote-context {
+  margin-bottom: 20px;
+}
+
+.quote-context[hidden] {
+  display: none;
+}
+
+.quote-context strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--gold);
 }
 
 .text-link {
