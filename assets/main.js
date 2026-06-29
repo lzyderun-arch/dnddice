@@ -138,9 +138,10 @@ function prefillQuoteForm() {
   const series = params.get("series") || "";
   const sku = params.get("sku") || "";
   const source = params.get("source") || "";
+  const programParam = params.get("program") || "";
   const catalogName = catalogLabel(catalog);
 
-  if (!catalog && !series && !sku && !source) {
+  if (!catalog && !series && !sku && !source && !programParam) {
     return;
   }
 
@@ -155,9 +156,17 @@ function prefillQuoteForm() {
     "Hollow Dice Catalog": "Hollow dice catalog",
     "Exotic Dice Catalog": "Exotic dice catalog",
   };
+  const programByParam = {
+    "sample-kit": "Sample kit",
+    "wholesale-dice": "Wholesale mixed dice",
+    "private-label": "Private label packaging",
+    "custom-rpg-dice": "Custom RPG dice",
+  };
 
   if (program && programByCatalog[catalogName]) {
     program.value = programByCatalog[catalogName];
+  } else if (program && programByParam[programParam]) {
+    program.value = programByParam[programParam];
   }
 
   const message = formsubmitForm.querySelector("[name='Message']");
@@ -174,6 +183,10 @@ function prefillQuoteForm() {
 
     if (sku) {
       lines.push(`SKU: ${sku}`);
+    }
+
+    if (programParam && programByParam[programParam]) {
+      lines.push(`Program: ${programByParam[programParam]}`);
     }
 
     lines.push("");

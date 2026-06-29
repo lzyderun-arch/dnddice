@@ -10,3 +10,11 @@
   Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
   Cache-Control: public, max-age=0, must-revalidate
   X-Robots-Tag: noindex
+
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=0, must-revalidate
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=0, must-revalidate
