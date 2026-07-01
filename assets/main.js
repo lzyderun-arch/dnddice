@@ -159,6 +159,10 @@ function prefillQuoteForm() {
   const programByParam = {
     "sample-kit": "Sample kit",
     "wholesale-dice": "Wholesale mixed dice",
+    "resin-dice": "Wholesale resin dice",
+    "sharp-edge": "Sharp edge resin dice",
+    "liquid-core": "Liquid core dice",
+    "metal-dice": "Metal dice wholesale",
     "private-label": "Private label packaging",
     "custom-rpg-dice": "Custom RPG dice",
   };
