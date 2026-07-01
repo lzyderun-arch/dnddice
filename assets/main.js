@@ -157,6 +157,7 @@ function prefillQuoteForm() {
     "Exotic Dice Catalog": "Exotic dice catalog",
   };
   const programByParam = {
+    "sample-catalog-request": "Sample kit / catalog request",
     "sample-kit": "Sample kit",
     "wholesale-dice": "Wholesale mixed dice",
     "resin-dice": "Wholesale resin dice",
