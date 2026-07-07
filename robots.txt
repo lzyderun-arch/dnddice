@@ -29,3 +29,4 @@ User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://dndcustomdice.com/sitemap.xml
+Sitemap: https://dndcustomdice.com/image-sitemap.xml
