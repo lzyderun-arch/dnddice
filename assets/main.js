@@ -61,6 +61,7 @@ function trackEvent(eventName, params = {}, callback) {
   window.gtag("event", eventName, {
     page_path: pagePath(),
     page_title: document.title,
+    transport_type: "beacon",
     ...params,
     event_callback: done,
     event_timeout: GA_CALLBACK_TIMEOUT,
@@ -259,3 +260,41 @@ if (pagePath().replace(/\/$/, "") === "/thank-you") {
     lead_type: "wholesale_quote",
   });
 }
+
+function trackChatClick(action) {
+  trackEvent("chat_click", {
+    chat_provider: "tawk_to",
+    chat_action: action,
+    click_type: "live_chat",
+  });
+}
+
+function initTawkTo() {
+  if (window.__dndCustomDiceTawkLoaded) {
+    return;
+  }
+
+  window.__dndCustomDiceTawkLoaded = true;
+  window.Tawk_API = window.Tawk_API || {};
+  window.Tawk_LoadStart = new Date();
+
+  const previousOnChatMaximized = window.Tawk_API.onChatMaximized;
+  window.Tawk_API.onChatMaximized = function () {
+    if (typeof previousOnChatMaximized === "function") {
+      previousOnChatMaximized.apply(this, arguments);
+    }
+
+    trackChatClick("widget_maximized");
+  };
+
+  const script = document.createElement("script");
+  const firstScript = document.getElementsByTagName("script")[0];
+
+  script.async = true;
+  script.src = "https://embed.tawk.to/6a4e5db1719f3a1d470d356d/1jt11rvik";
+  script.charset = "UTF-8";
+  script.setAttribute("crossorigin", "*");
+  firstScript.parentNode.insertBefore(script, firstScript);
+}
+
+initTawkTo();
