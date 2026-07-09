@@ -1327,4 +1327,10 @@
       <image:loc>https://dndcustomdice.com/assets/wholesale-sample-kit.png</image:loc>
       <image:title>Wholesale polyhedral dice sample kit for comparing types of DND dice</image:title>
     </image:image>
+  </url>  <url>
+    <loc>https://dndcustomdice.com/dice-roller</loc>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/wholesale-sample-kit.png</image:loc>
+      <image:title>Wholesale polyhedral dice sample kit for DND dice roller users</image:title>
+    </image:image>
   </url></urlset>

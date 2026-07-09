@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Online DND Dice Roller | Roll D20, D100 and Polyhedral Dice</title>
+  <meta name="description" content="Free online DND dice roller for d20, d12, d10, d100, d8, d6, and d4 polyhedral dice. Roll ability checks, advantage, disadvantage, damage dice, and 5e dice sets.">
+  <meta name="keywords" content="online dnd dice roller, dnd dice roller, d20 roller, d100 dice roller, polyhedral dice roller, roll dnd dice online, 5e dice roller">
+  <link rel="canonical" href="https://dndcustomdice.com/dice-roller">
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt">
+  <link rel="stylesheet" href="assets/styles.css?v=20260629-geo">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JB9554D4TW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JB9554D4TW');
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://dndcustomdice.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Dice Roller",
+          "item": "https://dndcustomdice.com/dice-roller"
+        }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Online DND Dice Roller",
+      "url": "https://dndcustomdice.com/dice-roller",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Any",
+      "description": "A free browser-based DND dice roller for d20, d12, d10, d100, d8, d6, and d4 polyhedral dice.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "DND Custom Dice",
+        "url": "https://dndcustomdice.com/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What dice can this online DND dice roller roll?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The roller supports d4, d6, d8, d10, d12, d20, and d100 polyhedral dice. It also includes quick rolls for d20 ability checks, advantage, disadvantage, and 4d6 drop lowest."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I add modifiers to a DND dice roll?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Enter a positive or negative modifier before rolling. The roller shows the dice subtotal, modifier, and final total."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this dice roller a replacement for physical dice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is useful for quick online rolls, teaching dice types, and checking 5e mechanics. For retail, events, campaigns, or product launches, physical polyhedral dice sets and sample kits are still recommended."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    .roller-hero {
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 80% 10%, rgba(214, 163, 77, 0.18), transparent 30%),
+        linear-gradient(135deg, #090807 0%, #14100d 52%, #080807 100%);
+    }
+
+    .roller-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.75fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .roller-panel,
+    .roller-result-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(214, 163, 77, 0.1), transparent 42%),
+        var(--panel);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .roller-title-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .roller-title-row h1 {
+      max-width: 680px;
+      font-size: clamp(2rem, 4.2vw, 4rem);
+    }
+
+    .roller-badge {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(214, 163, 77, 0.1);
+      padding: 7px 10px;
+      color: var(--gold);
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .dice-buttons,
+    .quick-rolls,
+    .roller-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .die-button,
+    .quick-button,
+    .roller-ghost-button {
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #0a0908;
+      color: var(--ink);
+      padding: 0 14px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .die-button {
+      min-width: 66px;
+      border-color: rgba(214, 163, 77, 0.45);
+      background: rgba(214, 163, 77, 0.11);
+      color: var(--gold);
+    }
+
+    .die-button:hover,
+    .quick-button:hover,
+    .roller-ghost-button:hover {
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .roller-field-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 170px;
+      gap: 14px;
+      margin: 22px 0;
+    }
+
+    .roller-field {
+      display: grid;
+      gap: 7px;
+      color: var(--ink-soft);
+      font-weight: 800;
+    }
+
+    .roller-field input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #080808;
+      padding: 12px 13px;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    .dice-tray {
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 84px;
+      gap: 10px;
+      border: 1px dashed rgba(214, 163, 77, 0.35);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.18);
+      padding: 14px;
+    }
+
+    .die-token {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0 10px;
+      color: var(--ink);
+      font-weight: 850;
+    }
+
+    .die-token button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+    }
+
+    .result-total {
+      display: grid;
+      place-items: center;
+      min-height: 190px;
+      border: 1px solid rgba(214, 163, 77, 0.42);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at center, rgba(214, 163, 77, 0.2), transparent 55%),
+        #090807;
+      text-align: center;
+    }
+
+    .result-total strong {
+      display: block;
+      color: var(--gold);
+      font-size: clamp(4.2rem, 10vw, 7rem);
+      line-height: 0.95;
+    }
+
+    .result-total span {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .roll-breakdown,
+    .roll-history {
+      margin-top: 16px;
+      color: var(--ink-soft);
+    }
+
+    .roll-breakdown code {
+      display: block;
+      overflow-wrap: anywhere;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #080808;
+      padding: 12px;
+      color: var(--ink);
+      font: 0.95rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .history-list {
+      display: grid;
+      gap: 8px;
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .history-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid rgba(214, 163, 77, 0.14);
+      padding-bottom: 8px;
+    }
+
+    .roller-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .roller-layout,
+      .roller-field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .roller-title-row {
+        display: grid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header"><nav class="nav"><a class="brand" href="/"><span class="brand-mark">D20</span><span>DND Custom Dice</span></a><button class="nav-toggle" type="button">Menu</button><div class="nav-links"><a href="wholesale-dice">Wholesale</a><a href="wholesale-dice-catalog">Catalog</a><a href="custom-rpg-dice">Custom Dice</a><a href="fantasy-rpg-dice-themes">Themes</a><a href="sample-kits">Sample Kits</a><a href="quality-manufacturing">Quality</a><a href="blog/">Blog</a><a class="nav-contact" href="https://wa.me/8613922851014">WhatsApp</a><a class="button" href="request-a-quote">Request Quote</a></div></nav></header>
+  <main>
+    <section class="roller-hero">
+      <div class="section">
+        <div class="breadcrumbs"><a href="/">Home</a> / Dice Roller</div>
+        <div class="roller-title-row">
+          <div>
+            <div class="eyebrow">Online DND Dice Roller</div>
+            <h1>Roll d20, d100, and full polyhedral dice sets online.</h1>
+            <p class="lead">Use this free 5e-compatible dice roller for ability checks, advantage, disadvantage, damage rolls, percentile dice, and quick RPG table sessions.</p>
+          </div>
+          <span class="roller-badge">D4 D6 D8 D10 D12 D20 D100</span>
+        </div>
+
+        <div class="roller-layout">
+          <section class="roller-panel" aria-labelledby="roller-builder-heading">
+            <h2 id="roller-builder-heading">Build your roll.</h2>
+            <p class="note">Add dice, set a modifier, then roll. Remove any die from the tray before rolling again.</p>
+
+            <div class="dice-buttons" style="margin-top: 18px;" aria-label="Add dice buttons">
+              <button class="die-button" type="button" data-add-die="4">D4</button>
+              <button class="die-button" type="button" data-add-die="6">D6</button>
+              <button class="die-button" type="button" data-add-die="8">D8</button>
+              <button class="die-button" type="button" data-add-die="10">D10</button>
+              <button class="die-button" type="button" data-add-die="12">D12</button>
+              <button class="die-button" type="button" data-add-die="20">D20</button>
+              <button class="die-button" type="button" data-add-die="100">D100</button>
+            </div>
+
+            <div class="roller-field-row">
+              <label class="roller-field">Roll label
+                <input id="roll-label" type="text" value="DND dice roll" maxlength="80">
+              </label>
+              <label class="roller-field">Modifier
+                <input id="roll-modifier" type="number" value="0" step="1">
+              </label>
+            </div>
+
+            <div class="dice-tray" id="dice-tray" aria-live="polite"></div>
+
+            <div class="roller-actions" style="margin-top: 18px;">
+              <button class="button" type="button" id="roll-button">Roll Dice</button>
+              <button class="button secondary" type="button" id="reroll-button">Reroll</button>
+              <button class="roller-ghost-button" type="button" id="clear-button">Clear</button>
+            </div>
+
+            <h3 style="margin-top: 24px;">Quick rolls</h3>
+            <div class="quick-rolls" style="margin-top: 12px;">
+              <button class="quick-button" type="button" data-quick-roll="d20">D20 check</button>
+              <button class="quick-button" type="button" data-quick-roll="advantage">Advantage</button>
+              <button class="quick-button" type="button" data-quick-roll="disadvantage">Disadvantage</button>
+              <button class="quick-button" type="button" data-quick-roll="percentile">Percentile D100</button>
+              <button class="quick-button" type="button" data-quick-roll="damage">2D6 damage</button>
+              <button class="quick-button" type="button" data-quick-roll="stats">4D6 drop lowest</button>
+            </div>
+
+            <p class="roller-note">This browser tool uses client-side random rolls. It does not submit roll history or personal data.</p>
+          </section>
+
+          <aside class="roller-result-panel" aria-labelledby="roller-result-heading">
+            <h2 id="roller-result-heading">Result</h2>
+            <div class="result-total" style="margin-top: 18px;">
+              <div><strong id="roll-total">20</strong><span id="roll-summary">Ready: 1d20</span></div>
+            </div>
+            <div class="roll-breakdown">
+              <code id="roll-breakdown">Add more dice or press Roll Dice.</code>
+            </div>
+            <div class="roll-history">
+              <h3>Roll history</h3>
+              <ul class="history-list" id="history-list"><li><span>No rolls yet.</span><strong>-</strong></li></ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section split">
+      <div>
+        <div class="eyebrow">Dice types</div>
+        <h2>What can you roll with this DND dice roller?</h2>
+      </div>
+      <div>
+        <p>This online polyhedral dice roller supports the standard 5e dice set: d20, d12, d10, percentile d10 or d100, d8, d6, and d4. Use the d20 for ability checks, saving throws, and attacks, then add damage dice such as d4, d6, d8, d10, or d12 as needed.</p>
+        <p>For physical table play, retail displays, or campaign launches, use this tool to teach dice types, then compare real resin, metal, liquid core, and custom polyhedral dice samples before bulk ordering.</p>
+        <div class="hero-actions"><a class="button" href="types-of-dnd-dice">Read Dice Type Guide</a><a class="button secondary" href="free-wholesale-dice-sample-kit-catalog-request?source=dice-roller">Request Sample Kit</a></div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="section">
+        <div class="eyebrow">Physical dice sourcing</div>
+        <h2>Need real dice sets for stores, events, or custom projects?</h2>
+        <div class="grid three" style="margin-top: 28px;">
+          <a class="card" href="wholesale-dice-catalog"><h3>Wholesale Dice Catalogs</h3><p>Download catalog files and review resin, metal, hollow, and specialty dice options for B2B orders.</p></a>
+          <a class="card" href="custom-rpg-dice"><h3>Custom DND Dice Sets</h3><p>Plan custom polyhedral dice, custom d20 faces, private label packaging, and sample approval.</p></a>
+          <a class="card" href="bulk-polyhedral-dice"><h3>Bulk Polyhedral Dice</h3><p>Build mixed dice assortments for game stores, distributors, events, and subscription boxes.</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <figure class="media-card"><img src="assets/wholesale-sample-kit.png" alt="Wholesale polyhedral dice sample kit for buyers comparing online dice roller results with real dice sets"><figcaption class="media-caption">Online dice rollers are useful for play and teaching. Physical sample kits help buyers compare weight, finish, number readability, packaging, and retail presentation before bulk orders.</figcaption></figure>
+    </section>
+
+    <section class="section faq">
+      <div class="eyebrow">Dice roller FAQ</div>
+      <h2>Common questions about rolling DND dice online.</h2>
+      <details open><summary>What dice can this online DND dice roller roll?</summary><p>The roller supports d4, d6, d8, d10, d12, d20, and d100 polyhedral dice. It also includes quick rolls for d20 ability checks, advantage, disadvantage, and 4d6 drop lowest.</p></details>
+      <details><summary>Can I add modifiers to a DND dice roll?</summary><p>Yes. Enter a positive or negative modifier before rolling. The roller shows the dice subtotal, modifier, and final total.</p></details>
+      <details><summary>How do advantage and disadvantage work?</summary><p>Advantage rolls two d20 dice and uses the higher result. Disadvantage rolls two d20 dice and uses the lower result. The modifier is added after choosing the d20 result.</p></details>
+      <details><summary>Is this dice roller a replacement for physical dice?</summary><p>It is useful for quick online rolls, teaching dice types, and checking 5e mechanics. For retail, events, campaigns, or product launches, physical polyhedral dice sets and sample kits are still recommended.</p></details>
+    </section>
+  </main>
+  <footer class="site-footer">
+  <div class="section compact footer-grid">
+    <div>
+      <a class="brand" href="/"><span class="brand-mark">D20</span><span>DND Custom Dice</span></a>
+      <p style="margin-top: 14px;">Wholesale 5e-compatible fantasy RPG dice, custom polyhedral dice, real product samples, and private label packaging for B2B buyers worldwide.</p>
+      <div class="contact-line">
+        <a href="mailto:Info@dndcustomdice.com">Email: Info@dndcustomdice.com</a>
+        <a href="https://wa.me/8613922851014">WhatsApp: +86 13922851014</a>
+      </div>
+    </div>
+    <div><strong>Programs</strong><div class="footer-links"><a href="/free-wholesale-dice-sample-kit-catalog-request">Free Catalog & Sample Kit Request</a><a href="/wholesale-dice">Wholesale Dice</a><a href="/wholesale-dice-catalog">Wholesale Catalog</a><a href="/wholesale-resin-dice">Wholesale Resin Dice</a><a href="/sharp-edge-resin-dice-wholesale">Sharp Edge Resin Dice</a><a href="/liquid-core-dice-manufacturer">Liquid Core Manufacturer</a><a href="/metal-dice-wholesale">Metal Dice Wholesale</a><a href="/resin-dice-wholesale-catalog">Resin Dice Catalog</a><a href="/metal-dice-wholesale-catalog">Metal Dice Catalog</a><a href="/hollow-dice-wholesale-catalog">Hollow Dice Catalog</a><a href="/exotic-dice-wholesale-catalog">Exotic Dice Catalog</a><a href="/bulk-polyhedral-dice">Bulk Polyhedral Dice</a><a href="/types-of-dnd-dice">Types of DND Dice</a><a href="/dice-roller">Dice Roller</a><a href="/sample-kits">Sample Kits</a></div></div>
+    <div><strong>Themes</strong><div class="footer-links"><a href="/dragon-dice-wholesale">Dragon Dice</a><a href="/character-class-dice">Class Dice</a><a href="/elemental-dice-sets">Elemental Dice</a><a href="/dungeon-relic-dice">Dungeon Relic Dice</a><a href="/wholesale-d20-dice">Wholesale D20 Dice</a></div></div>
+    <div><strong>Buyers</strong><div class="footer-links"><a href="/game-store-dice-supplier">Game Store Dice Supplier</a><a href="/kickstarter-dice-manufacturer">Kickstarter Dice Manufacturer</a><a href="/custom-dice-packaging-supplier">Packaging Supplier</a><a href="/wholesale-dice-moq">Wholesale MOQ Guide</a><a href="/custom-dice-sample-kit">Sample Kit Guide</a><a href="/custom-dice-packaging-options">Packaging Options</a><a href="/how-to-order-custom-rpg-dice">How to Order</a><a href="/rpg-dice-manufacturer-faq">Manufacturer FAQ</a><a href="/bulk-rpg-dice-for-game-stores">Game Store Bulk Guide</a><a href="/quality-manufacturing">Quality</a><a href="/faq">FAQ</a><a href="/request-a-quote">Request Quote</a></div></div>
+    <p class="disclaimer">DND-inspired and 5e-compatible are used descriptively for tabletop RPG compatibility. This website is not affiliated with, endorsed by, or sponsored by any official game publisher.</p>
+  </div>
+</footer><script src="assets/main.js?v=20260708-chat"></script>
+<script>
+  const diceState = {
+    dice: [20],
+    lastRoll: null,
+    history: [],
+  };
+
+  const tray = document.querySelector("#dice-tray");
+  const modifierInput = document.querySelector("#roll-modifier");
+  const labelInput = document.querySelector("#roll-label");
+  const totalEl = document.querySelector("#roll-total");
+  const summaryEl = document.querySelector("#roll-summary");
+  const breakdownEl = document.querySelector("#roll-breakdown");
+  const historyEl = document.querySelector("#history-list");
+
+  function randomDie(sides) {
+    if (window.crypto && window.crypto.getRandomValues) {
+      const values = new Uint32Array(1);
+      window.crypto.getRandomValues(values);
+      return (values[0] % sides) + 1;
+    }
+
+    return Math.floor(Math.random() * sides) + 1;
+  }
+
+  function formatModifier(value) {
+    if (!value) {
+      return "";
+    }
+
+    return value > 0 ? ` + ${value}` : ` - ${Math.abs(value)}`;
+  }
+
+  function diceExpression(dice) {
+    const counts = dice.reduce((acc, sides) => {
+      acc[sides] = (acc[sides] || 0) + 1;
+      return acc;
+    }, {});
+
+    return Object.entries(counts)
+      .sort((a, b) => Number(a[0]) - Number(b[0]))
+      .map(([sides, count]) => `${count}d${sides}`)
+      .join(" + ");
+  }
+
+  function trackDiceRoll(mode, total, expression) {
+    if (typeof window.gtag !== "function") {
+      return;
+    }
+
+    window.gtag("event", "dice_roll", {
+      roll_mode: mode,
+      roll_total: total,
+      roll_expression: expression,
+      page_path: window.location.pathname || "/dice-roller",
+      transport_type: "beacon",
+    });
+  }
+
+  function renderTray() {
+    tray.innerHTML = "";
+
+    if (!diceState.dice.length) {
+      const empty = document.createElement("span");
+      empty.className = "note";
+      empty.textContent = "No dice selected. Add D4, D6, D8, D10, D12, D20, or D100.";
+      tray.appendChild(empty);
+      summaryEl.textContent = "Ready: no dice selected";
+      return;
+    }
+
+    diceState.dice.forEach((sides, index) => {
+      const token = document.createElement("span");
+      token.className = "die-token";
+      token.innerHTML = `<span>D${sides}</span><button type="button" aria-label="Remove D${sides}">x</button>`;
+      token.querySelector("button").addEventListener("click", () => {
+        diceState.dice.splice(index, 1);
+        renderTray();
+      });
+      tray.appendChild(token);
+    });
+
+    summaryEl.textContent = `Ready: ${diceExpression(diceState.dice)}${formatModifier(Number(modifierInput.value || 0))}`;
+  }
+
+  function addHistory(entry) {
+    diceState.history.unshift(entry);
+    diceState.history = diceState.history.slice(0, 8);
+    historyEl.innerHTML = "";
+
+    diceState.history.forEach((item) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<span>${item.label}</span><strong>${item.total}</strong>`;
+      historyEl.appendChild(li);
+    });
+  }
+
+  function showRoll(total, summary, breakdown, historyLabel, mode, expression) {
+    totalEl.textContent = String(total);
+    summaryEl.textContent = summary;
+    breakdownEl.textContent = breakdown;
+    addHistory({ label: historyLabel, total });
+    diceState.lastRoll = { mode, expression };
+    trackDiceRoll(mode, total, expression);
+  }
+
+  function rollSelectedDice(mode = "custom") {
+    if (!diceState.dice.length) {
+      breakdownEl.textContent = "Add at least one die before rolling.";
+      return;
+    }
+
+    const modifier = Number(modifierInput.value || 0);
+    const rolls = diceState.dice.map((sides) => ({ sides, value: randomDie(sides) }));
+    const subtotal = rolls.reduce((sum, roll) => sum + roll.value, 0);
+    const total = subtotal + modifier;
+    const expression = `${diceExpression(diceState.dice)}${formatModifier(modifier)}`;
+    const rollText = rolls.map((roll) => `D${roll.sides}: ${roll.value}`).join(", ");
+    const label = labelInput.value.trim() || "DND dice roll";
+
+    showRoll(
+      total,
+      `${expression} = ${total}`,
+      `${rollText}. Subtotal ${subtotal}${formatModifier(modifier)} = ${total}.`,
+      `${label}: ${expression}`,
+      mode,
+      expression
+    );
+  }
+
+  function quickRoll(type) {
+    const modifier = Number(modifierInput.value || 0);
+
+    if (type === "d20") {
+      diceState.dice = [20];
+      renderTray();
+      rollSelectedDice("d20_check");
+      return;
+    }
+
+    if (type === "percentile") {
+      diceState.dice = [100];
+      renderTray();
+      rollSelectedDice("percentile");
+      return;
+    }
+
+    if (type === "damage") {
+      diceState.dice = [6, 6];
+      renderTray();
+      rollSelectedDice("damage_2d6");
+      return;
+    }
+
+    if (type === "advantage" || type === "disadvantage") {
+      diceState.dice = [20, 20];
+      renderTray();
+      const rolls = [randomDie(20), randomDie(20)];
+      const chosen = type === "advantage" ? Math.max(...rolls) : Math.min(...rolls);
+      const total = chosen + modifier;
+      const expression = `${type === "advantage" ? "2d20kh1" : "2d20kl1"}${formatModifier(modifier)}`;
+      showRoll(
+        total,
+        `${type === "advantage" ? "Advantage" : "Disadvantage"} = ${total}`,
+        `D20 rolls: ${rolls.join(", ")}. Use ${chosen}${formatModifier(modifier)} = ${total}.`,
+        `${type === "advantage" ? "Advantage" : "Disadvantage"}: ${expression}`,
+        type,
+        expression
+      );
+      return;
+    }
+
+    if (type === "stats") {
+      diceState.dice = [6, 6, 6, 6];
+      renderTray();
+      const rolls = [randomDie(6), randomDie(6), randomDie(6), randomDie(6)];
+      const sorted = [...rolls].sort((a, b) => b - a);
+      const kept = sorted.slice(0, 3);
+      const dropped = sorted[3];
+      const subtotal = kept.reduce((sum, value) => sum + value, 0);
+      const total = subtotal + modifier;
+      const expression = `4d6 drop lowest${formatModifier(modifier)}`;
+      showRoll(
+        total,
+        `4D6 drop lowest = ${total}`,
+        `D6 rolls: ${rolls.join(", ")}. Keep ${kept.join(", ")}, drop ${dropped}. Subtotal ${subtotal}${formatModifier(modifier)} = ${total}.`,
+        `Stats: ${expression}`,
+        "4d6_drop_lowest",
+        expression
+      );
+    }
+  }
+
+  document.querySelectorAll("[data-add-die]").forEach((button) => {
+    button.addEventListener("click", () => {
+      diceState.dice.push(Number(button.dataset.addDie));
+      renderTray();
+    });
+  });
+
+  document.querySelectorAll("[data-quick-roll]").forEach((button) => {
+    button.addEventListener("click", () => quickRoll(button.dataset.quickRoll));
+  });
+
+  document.querySelector("#roll-button").addEventListener("click", () => rollSelectedDice("custom"));
+  document.querySelector("#reroll-button").addEventListener("click", () => {
+    if (diceState.lastRoll && ["advantage", "disadvantage", "4d6_drop_lowest"].includes(diceState.lastRoll.mode)) {
+      quickRoll(diceState.lastRoll.mode === "4d6_drop_lowest" ? "stats" : diceState.lastRoll.mode);
+      return;
+    }
+
+    rollSelectedDice("reroll");
+  });
+  document.querySelector("#clear-button").addEventListener("click", () => {
+    diceState.dice = [];
+    diceState.lastRoll = null;
+    totalEl.textContent = "0";
+    breakdownEl.textContent = "Add dice to the tray, then press Roll Dice.";
+    renderTray();
+  });
+  modifierInput.addEventListener("input", renderTray);
+
+  renderTray();
+</script>
+</body>
+</html>
