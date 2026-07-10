@@ -91,220 +91,292 @@
   <style>
     .roller-hero {
       border-bottom: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 80% 10%, rgba(214, 163, 77, 0.18), transparent 30%),
-        linear-gradient(135deg, #090807 0%, #14100d 52%, #080807 100%);
+      background: #080808;
     }
 
-    .roller-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.75fr);
-      gap: 24px;
-      align-items: start;
+    .roller-hero > .section {
+      padding-top: 32px;
     }
 
-    .roller-panel,
-    .roller-result-panel {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg, rgba(214, 163, 77, 0.1), transparent 42%),
-        var(--panel);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .roller-title-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: flex-start;
+    .roller-intro {
+      max-width: 830px;
       margin-bottom: 20px;
     }
 
-    .roller-title-row h1 {
-      max-width: 680px;
-      font-size: clamp(2rem, 4.2vw, 4rem);
+    .roller-intro h1 {
+      font-size: clamp(2.15rem, 4vw, 3.55rem);
     }
 
-    .roller-badge {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(214, 163, 77, 0.1);
-      padding: 7px 10px;
-      color: var(--gold);
-      font-size: 0.82rem;
-      font-weight: 800;
-      white-space: nowrap;
+    .roller-intro .lead {
+      max-width: 880px;
+      font-size: 1.02rem;
     }
 
-    .dice-buttons,
-    .quick-rolls,
-    .roller-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .dice-roller-app {
+      overflow: hidden;
+      max-width: 1040px;
+      margin: 0 auto;
+      border-radius: 4px;
+      background: #fff;
+      box-shadow: 0 18px 55px rgba(0, 0, 0, 0.48);
+      color: #111827;
     }
 
-    .die-button,
-    .quick-button,
-    .roller-ghost-button {
-      min-height: 42px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #0a0908;
-      color: var(--ink);
-      padding: 0 14px;
-      font: inherit;
-      font-weight: 800;
-      cursor: pointer;
+    .dice-stage {
+      position: relative;
+      min-height: 390px;
+      overflow: hidden;
+      background: #dfe6f5;
+      isolation: isolate;
     }
 
-    .die-button {
-      min-width: 66px;
-      border-color: rgba(214, 163, 77, 0.45);
-      background: rgba(214, 163, 77, 0.11);
-      color: var(--gold);
+    .dice-stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.5), transparent 34%);
     }
 
-    .die-button:hover,
-    .quick-button:hover,
-    .roller-ghost-button:hover {
-      border-color: var(--gold);
-      transform: translateY(-1px);
+    .dice-field {
+      position: absolute;
+      inset: 20px 26px 70px;
     }
 
-    .roller-field-row {
+    .stage-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #667085;
+      font-weight: 700;
+    }
+
+    .rolled-die {
+      --die-size: 66px;
+      position: absolute;
+      top: var(--top, 50%);
+      left: var(--left, 50%);
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 170px;
-      gap: 14px;
-      margin: 22px 0;
-    }
-
-    .roller-field {
-      display: grid;
-      gap: 7px;
-      color: var(--ink-soft);
-      font-weight: 800;
-    }
-
-    .roller-field input {
-      width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #080808;
-      padding: 12px 13px;
-      color: var(--ink);
-      font: inherit;
-    }
-
-    .dice-tray {
-      display: flex;
-      flex-wrap: wrap;
-      min-height: 84px;
-      gap: 10px;
-      border: 1px dashed rgba(214, 163, 77, 0.35);
-      border-radius: 8px;
-      background: rgba(0, 0, 0, 0.18);
-      padding: 14px;
-    }
-
-    .die-token {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 40px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 0 10px;
-      color: var(--ink);
-      font-weight: 850;
-    }
-
-    .die-token button {
-      border: 0;
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      font: inherit;
-      font-weight: 900;
-    }
-
-    .result-total {
-      display: grid;
+      width: var(--die-size);
+      height: var(--die-size);
       place-items: center;
-      min-height: 190px;
-      border: 1px solid rgba(214, 163, 77, 0.42);
-      border-radius: 8px;
-      background:
-        radial-gradient(circle at center, rgba(214, 163, 77, 0.2), transparent 55%),
-        #090807;
+      transform: translate(-50%, -50%) rotate(var(--rotation, 0deg));
+      filter: drop-shadow(0 7px 5px rgba(31, 41, 55, 0.28));
+      color: #fff;
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 1;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+      transition: top 420ms cubic-bezier(.2,.85,.25,1), left 420ms cubic-bezier(.2,.85,.25,1), transform 420ms ease;
+      will-change: transform, top, left;
+    }
+
+    .rolled-die::after,
+    .dice-shape::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      clip-path: inherit;
+      pointer-events: none;
+    }
+
+    .rolled-die span,
+    .dice-shape span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .die-d4 { background: linear-gradient(145deg, #36c76b, #14833d); clip-path: polygon(50% 3%, 98% 94%, 2% 94%); }
+    .die-d6 { background: linear-gradient(145deg, #30ddeb, #08a9c1); border: 1px solid #087e91; }
+    .die-d8 { background: linear-gradient(145deg, #a34df5, #6421c5); clip-path: polygon(50% 0, 91% 24%, 91% 76%, 50% 100%, 9% 76%, 9% 24%); }
+    .die-d10 { background: linear-gradient(145deg, #f34a9d, #d5186e); clip-path: polygon(50% 0, 100% 38%, 82% 88%, 50% 100%, 18% 88%, 0 38%); }
+    .die-d12 { background: linear-gradient(145deg, #f24b3c, #c7241a); clip-path: polygon(50% 0, 79% 8%, 97% 32%, 97% 68%, 79% 92%, 50% 100%, 21% 92%, 3% 68%, 3% 32%, 21% 8%); }
+    .die-d20 { background: linear-gradient(145deg, #ff8a00, #e85b00); clip-path: polygon(50% 0, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%); }
+    .die-d100 { background: linear-gradient(145deg, #20252b, #000); border-radius: 50%; }
+
+    .rolled-die.rolling {
+      animation: dice-tumble 760ms cubic-bezier(.2,.75,.24,1) both;
+    }
+
+    @keyframes dice-tumble {
+      0% { transform: translate(-50%, -50%) rotate(0deg) scale(.85); }
+      22% { transform: translate(calc(-50% - 22px), calc(-50% - 54px)) rotate(155deg) scale(1.08); }
+      48% { transform: translate(calc(-50% + 27px), calc(-50% - 12px)) rotate(335deg) scale(.96); }
+      72% { transform: translate(calc(-50% - 10px), calc(-50% - 30px)) rotate(525deg) scale(1.03); }
+      100% { transform: translate(-50%, -50%) rotate(var(--rotation, 720deg)) scale(1); }
+    }
+
+    .total-points {
+      position: absolute;
+      right: 30px;
+      bottom: 28px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 1.05rem;
+    }
+
+    .total-points strong {
+      font-size: 3.25rem;
+      line-height: .9;
+    }
+
+    .roller-controls {
+      padding: 30px 22px 28px;
       text-align: center;
     }
 
-    .result-total strong {
-      display: block;
-      color: var(--gold);
-      font-size: clamp(4.2rem, 10vw, 7rem);
-      line-height: 0.95;
-    }
-
-    .result-total span {
-      color: var(--muted);
-      font-weight: 800;
-    }
-
-    .roll-breakdown,
-    .roll-history {
-      margin-top: 16px;
-      color: var(--ink-soft);
-    }
-
-    .roll-breakdown code {
-      display: block;
-      overflow-wrap: anywhere;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #080808;
-      padding: 12px;
-      color: var(--ink);
-      font: 0.95rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-
-    .history-list {
-      display: grid;
-      gap: 8px;
-      margin: 10px 0 0;
-      padding: 0;
-      list-style: none;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .history-list li {
+    .dice-selector {
       display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      border-bottom: 1px solid rgba(214, 163, 77, 0.14);
-      padding-bottom: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
     }
 
-    .roller-note {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 0.92rem;
+    .dice-select,
+    .modifier-toggle,
+    .sound-toggle {
+      position: relative;
+      display: grid;
+      width: 50px;
+      height: 50px;
+      border: 0;
+      place-items: center;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      font: inherit;
     }
 
-    @media (max-width: 900px) {
-      .roller-layout,
-      .roller-field-row {
-        grid-template-columns: 1fr;
-      }
+    .dice-select:hover,
+    .dice-select:focus-visible,
+    .modifier-toggle:hover,
+    .sound-toggle:hover {
+      transform: translateY(-2px);
+    }
 
-      .roller-title-row {
-        display: grid;
-      }
+    .dice-shape {
+      position: relative;
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      color: #fff;
+      font-size: .92rem;
+      font-weight: 900;
+      line-height: 1;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, .35);
+      filter: drop-shadow(0 3px 2px rgba(15, 23, 42, .18));
+    }
+
+    .dice-count {
+      position: absolute;
+      top: -3px;
+      right: -4px;
+      z-index: 3;
+      display: none;
+      min-width: 22px;
+      height: 22px;
+      border: 2px solid #fff;
+      border-radius: 999px;
+      place-items: center;
+      background: #ff4d4f;
+      color: #fff;
+      font-size: .73rem;
+      font-weight: 900;
+    }
+
+    .dice-select.has-dice .dice-count { display: grid; }
+
+    .modifier-toggle,
+    .sound-toggle {
+      width: 42px;
+      height: 42px;
+      margin: 4px;
+      border-radius: 8px;
+      background: #6862d8;
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 900;
+      box-shadow: 0 3px 5px rgba(15, 23, 42, .18);
+    }
+
+    .sound-toggle {
+      background: #525b6b;
+      font-size: 1rem;
+    }
+
+    .modifier-control {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+      color: #475467;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .modifier-control.is-visible { display: flex; }
+
+    .modifier-control input {
+      width: 80px;
+      border: 1px solid #cfd5df;
+      border-radius: 5px;
+      padding: 8px 9px;
+      font: inherit;
+      text-align: center;
+    }
+
+    .roller-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .roller-action {
+      min-height: 44px;
+      border: 0;
+      border-radius: 5px;
+      background: #1976d2;
+      padding: 0 25px;
+      color: #fff;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(25, 118, 210, .24);
+    }
+
+    .roller-action:hover { background: #0f67bd; }
+    .roller-action:disabled { cursor: wait; opacity: .7; }
+
+    .roll-note {
+      min-height: 22px;
+      margin: 15px 0 0;
+      color: #667085;
+      font-size: .86rem;
+    }
+
+    @media (max-width: 680px) {
+      .roller-hero > .section { padding-top: 24px; }
+      .roller-intro .lead { display: none; }
+      .dice-stage { min-height: 330px; }
+      .dice-field { inset: 16px 12px 75px; }
+      .rolled-die { --die-size: 54px; font-size: 1.05rem; }
+      .total-points { right: 18px; bottom: 22px; }
+      .total-points strong { font-size: 2.5rem; }
+      .dice-selector { gap: 7px; }
+      .dice-select { width: 42px; height: 44px; }
+      .dice-shape { width: 37px; height: 37px; font-size: .82rem; }
+      .roller-actions { gap: 9px; }
+      .roller-action { padding: 0 17px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rolled-die.rolling { animation-duration: 1ms; }
     }
   </style>
 </head>
@@ -314,74 +386,42 @@
     <section class="roller-hero">
       <div class="section">
         <div class="breadcrumbs"><a href="/">Home</a> / Dice Roller</div>
-        <div class="roller-title-row">
-          <div>
-            <div class="eyebrow">Online DND Dice Roller</div>
-            <h1>Roll d20, d100, and full polyhedral dice sets online.</h1>
-            <p class="lead">Use this free 5e-compatible dice roller for ability checks, advantage, disadvantage, damage rolls, percentile dice, and quick RPG table sessions.</p>
+        <div class="roller-intro">
+          <div class="eyebrow">Online DND Dice Roller</div>
+          <h1>Roll DND dice online.</h1>
+          <p class="lead">Select d4, d6, d8, d10, d12, d20, or d100 dice, then watch and hear them roll. Add the same die more than once for damage rolls and mixed polyhedral checks.</p>
+        </div>
+
+        <section class="dice-roller-app" aria-label="Interactive DND dice roller">
+          <div class="dice-stage" id="dice-stage" aria-live="polite">
+            <div class="dice-field" id="dice-field"></div>
+            <div class="total-points"><span>Total Points</span><strong id="roll-total">2</strong></div>
           </div>
-          <span class="roller-badge">D4 D6 D8 D10 D12 D20 D100</span>
-        </div>
 
-        <div class="roller-layout">
-          <section class="roller-panel" aria-labelledby="roller-builder-heading">
-            <h2 id="roller-builder-heading">Build your roll.</h2>
-            <p class="note">Add dice, set a modifier, then roll. Remove any die from the tray before rolling again.</p>
-
-            <div class="dice-buttons" style="margin-top: 18px;" aria-label="Add dice buttons">
-              <button class="die-button" type="button" data-add-die="4">D4</button>
-              <button class="die-button" type="button" data-add-die="6">D6</button>
-              <button class="die-button" type="button" data-add-die="8">D8</button>
-              <button class="die-button" type="button" data-add-die="10">D10</button>
-              <button class="die-button" type="button" data-add-die="12">D12</button>
-              <button class="die-button" type="button" data-add-die="20">D20</button>
-              <button class="die-button" type="button" data-add-die="100">D100</button>
+          <div class="roller-controls">
+            <div class="dice-selector" aria-label="Select dice to roll">
+              <button class="dice-select" type="button" data-die="4" aria-label="Add a D4"><span class="dice-shape die-d4"><span>4</span></span><span class="dice-count">0</span></button>
+              <button class="dice-select" type="button" data-die="6" aria-label="Add a D6"><span class="dice-shape die-d6"><span>6</span></span><span class="dice-count">1</span></button>
+              <button class="dice-select" type="button" data-die="8" aria-label="Add a D8"><span class="dice-shape die-d8"><span>8</span></span><span class="dice-count">0</span></button>
+              <button class="dice-select" type="button" data-die="10" aria-label="Add a D10"><span class="dice-shape die-d10"><span>10</span></span><span class="dice-count">0</span></button>
+              <button class="dice-select" type="button" data-die="12" aria-label="Add a D12"><span class="dice-shape die-d12"><span>12</span></span><span class="dice-count">0</span></button>
+              <button class="dice-select" type="button" data-die="20" aria-label="Add a D20"><span class="dice-shape die-d20"><span>20</span></span><span class="dice-count">0</span></button>
+              <button class="dice-select" type="button" data-die="100" aria-label="Add a D100"><span class="dice-shape die-d100"><span>100</span></span><span class="dice-count">0</span></button>
+              <button class="modifier-toggle" id="modifier-toggle" type="button" aria-expanded="false" aria-controls="modifier-control" title="Add a modifier">&plusmn;</button>
+              <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="true" title="Turn rolling sound off">SFX</button>
             </div>
 
-            <div class="roller-field-row">
-              <label class="roller-field">Roll label
-                <input id="roll-label" type="text" value="DND dice roll" maxlength="80">
-              </label>
-              <label class="roller-field">Modifier
-                <input id="roll-modifier" type="number" value="0" step="1">
-              </label>
-            </div>
+            <label class="modifier-control" id="modifier-control">Roll modifier
+              <input id="roll-modifier" type="number" value="0" step="1" inputmode="numeric">
+            </label>
 
-            <div class="dice-tray" id="dice-tray" aria-live="polite"></div>
-
-            <div class="roller-actions" style="margin-top: 18px;">
-              <button class="button" type="button" id="roll-button">Roll Dice</button>
-              <button class="button secondary" type="button" id="reroll-button">Reroll</button>
-              <button class="roller-ghost-button" type="button" id="clear-button">Clear</button>
+            <div class="roller-actions">
+              <button class="roller-action" type="button" id="roll-button">Roll DND Dice</button>
+              <button class="roller-action" type="button" id="delete-button">Delete</button>
             </div>
-
-            <h3 style="margin-top: 24px;">Quick rolls</h3>
-            <div class="quick-rolls" style="margin-top: 12px;">
-              <button class="quick-button" type="button" data-quick-roll="d20">D20 check</button>
-              <button class="quick-button" type="button" data-quick-roll="advantage">Advantage</button>
-              <button class="quick-button" type="button" data-quick-roll="disadvantage">Disadvantage</button>
-              <button class="quick-button" type="button" data-quick-roll="percentile">Percentile D100</button>
-              <button class="quick-button" type="button" data-quick-roll="damage">2D6 damage</button>
-              <button class="quick-button" type="button" data-quick-roll="stats">4D6 drop lowest</button>
-            </div>
-
-            <p class="roller-note">This browser tool uses client-side random rolls. It does not submit roll history or personal data.</p>
-          </section>
-
-          <aside class="roller-result-panel" aria-labelledby="roller-result-heading">
-            <h2 id="roller-result-heading">Result</h2>
-            <div class="result-total" style="margin-top: 18px;">
-              <div><strong id="roll-total">20</strong><span id="roll-summary">Ready: 1d20</span></div>
-            </div>
-            <div class="roll-breakdown">
-              <code id="roll-breakdown">Add more dice or press Roll Dice.</code>
-            </div>
-            <div class="roll-history">
-              <h3>Roll history</h3>
-              <ul class="history-list" id="history-list"><li><span>No rolls yet.</span><strong>-</strong></li></ul>
-            </div>
-          </aside>
-        </div>
+            <p class="roll-note" id="roll-note">Selected: 1D6. Click a die to add more.</p>
+          </div>
+        </section>
       </div>
     </section>
 
@@ -422,7 +462,7 @@
       <details><summary>Is this dice roller a replacement for physical dice?</summary><p>It is useful for quick online rolls, teaching dice types, and checking 5e mechanics. For retail, events, campaigns, or product launches, physical polyhedral dice sets and sample kits are still recommended.</p></details>
     </section>
   </main>
-  <footer class="site-footer">
+<footer class="site-footer">
   <div class="section compact footer-grid">
     <div>
       <a class="brand" href="/"><span class="brand-mark">D20</span><span>DND Custom Dice</span></a>
@@ -439,228 +479,252 @@
   </div>
 </footer><script src="assets/main.js?v=20260708-chat"></script>
 <script>
-  const diceState = {
-    dice: [20],
-    lastRoll: null,
-    history: [],
-  };
+  (() => {
+    const diceTypes = [4, 6, 8, 10, 12, 20, 100];
+    const state = {
+      counts: { 4: 0, 6: 1, 8: 0, 10: 0, 12: 0, 20: 0, 100: 0 },
+      selectedType: 6,
+      soundEnabled: true,
+      rolling: false,
+      results: [{ sides: 6, value: 2 }],
+    };
 
-  const tray = document.querySelector("#dice-tray");
-  const modifierInput = document.querySelector("#roll-modifier");
-  const labelInput = document.querySelector("#roll-label");
-  const totalEl = document.querySelector("#roll-total");
-  const summaryEl = document.querySelector("#roll-summary");
-  const breakdownEl = document.querySelector("#roll-breakdown");
-  const historyEl = document.querySelector("#history-list");
+    const field = document.querySelector("#dice-field");
+    const total = document.querySelector("#roll-total");
+    const note = document.querySelector("#roll-note");
+    const rollButton = document.querySelector("#roll-button");
+    const deleteButton = document.querySelector("#delete-button");
+    const modifierInput = document.querySelector("#roll-modifier");
+    const modifierToggle = document.querySelector("#modifier-toggle");
+    const modifierControl = document.querySelector("#modifier-control");
+    const soundToggle = document.querySelector("#sound-toggle");
 
-  function randomDie(sides) {
-    if (window.crypto && window.crypto.getRandomValues) {
-      const values = new Uint32Array(1);
-      window.crypto.getRandomValues(values);
-      return (values[0] % sides) + 1;
+    function randomDie(sides) {
+      if (window.crypto && window.crypto.getRandomValues) {
+        const values = new Uint32Array(1);
+        window.crypto.getRandomValues(values);
+        return (values[0] % sides) + 1;
+      }
+      return Math.floor(Math.random() * sides) + 1;
     }
 
-    return Math.floor(Math.random() * sides) + 1;
-  }
-
-  function formatModifier(value) {
-    if (!value) {
-      return "";
+    function selectedDice() {
+      return diceTypes.flatMap((sides) => Array(state.counts[sides]).fill(sides));
     }
 
-    return value > 0 ? ` + ${value}` : ` - ${Math.abs(value)}`;
-  }
-
-  function diceExpression(dice) {
-    const counts = dice.reduce((acc, sides) => {
-      acc[sides] = (acc[sides] || 0) + 1;
-      return acc;
-    }, {});
-
-    return Object.entries(counts)
-      .sort((a, b) => Number(a[0]) - Number(b[0]))
-      .map(([sides, count]) => `${count}d${sides}`)
-      .join(" + ");
-  }
-
-  function trackDiceRoll(mode, total, expression) {
-    if (typeof window.gtag !== "function") {
-      return;
+    function shapeClass(sides) {
+      return `die-d${sides}`;
     }
 
-    window.gtag("event", "dice_roll", {
-      roll_mode: mode,
-      roll_total: total,
-      roll_expression: expression,
-      page_path: window.location.pathname || "/dice-roller",
-      transport_type: "beacon",
-    });
-  }
-
-  function renderTray() {
-    tray.innerHTML = "";
-
-    if (!diceState.dice.length) {
-      const empty = document.createElement("span");
-      empty.className = "note";
-      empty.textContent = "No dice selected. Add D4, D6, D8, D10, D12, D20, or D100.";
-      tray.appendChild(empty);
-      summaryEl.textContent = "Ready: no dice selected";
-      return;
+    function positionFor(index, count) {
+      if (count === 1) return { left: 50, top: 50, rotation: -2 };
+      const columns = Math.min(4, Math.ceil(Math.sqrt(count)));
+      const rows = Math.ceil(count / columns);
+      const column = index % columns;
+      const row = Math.floor(index / columns);
+      const left = columns === 1 ? 50 : 22 + column * (56 / (columns - 1));
+      const top = rows === 1 ? 50 : 27 + row * (48 / Math.max(1, rows - 1));
+      return {
+        left: left + ((index % 2) ? 2 : -2),
+        top: top + ((index % 3) - 1) * 2,
+        rotation: ((index * 31) % 34) - 17,
+      };
     }
 
-    diceState.dice.forEach((sides, index) => {
-      const token = document.createElement("span");
-      token.className = "die-token";
-      token.innerHTML = `<span>D${sides}</span><button type="button" aria-label="Remove D${sides}">x</button>`;
-      token.querySelector("button").addEventListener("click", () => {
-        diceState.dice.splice(index, 1);
-        renderTray();
+    function updateSelectors() {
+      document.querySelectorAll("[data-die]").forEach((button) => {
+        const sides = Number(button.dataset.die);
+        const count = state.counts[sides];
+        button.classList.toggle("has-dice", count > 0);
+        button.classList.toggle("is-selected", sides === state.selectedType);
+        button.querySelector(".dice-count").textContent = String(count);
+        button.setAttribute("aria-label", `Add a D${sides}. ${count} selected.`);
       });
-      tray.appendChild(token);
+
+      const expression = diceTypes
+        .filter((sides) => state.counts[sides] > 0)
+        .map((sides) => `${state.counts[sides]}D${sides}`)
+        .join(" + ");
+      const modifier = Number(modifierInput.value || 0);
+      const modifierText = modifier ? ` ${modifier > 0 ? "+" : "-"} ${Math.abs(modifier)}` : "";
+      note.textContent = expression ? `Selected: ${expression}${modifierText}. Click a die to add more.` : "Select at least one die to roll.";
+    }
+
+    function renderDice(results, rolling = false) {
+      field.innerHTML = "";
+      if (!results.length) {
+        const empty = document.createElement("p");
+        empty.className = "stage-message";
+        empty.textContent = "Select a die below";
+        field.appendChild(empty);
+        return;
+      }
+
+      results.slice(0, 16).forEach((result, index) => {
+        const position = positionFor(index, Math.min(results.length, 16));
+        const die = document.createElement("div");
+        die.className = `rolled-die ${shapeClass(result.sides)}${rolling ? " rolling" : ""}`;
+        die.style.setProperty("--left", `${position.left}%`);
+        die.style.setProperty("--top", `${position.top}%`);
+        die.style.setProperty("--rotation", `${position.rotation + (rolling ? 720 : 0)}deg`);
+        die.setAttribute("aria-label", `D${result.sides} rolled ${result.value}`);
+        die.innerHTML = `<span>${result.value}</span>`;
+        field.appendChild(die);
+      });
+
+      if (results.length > 16) {
+        const extra = document.createElement("p");
+        extra.className = "stage-message";
+        extra.style.top = "88%";
+        extra.textContent = `+ ${results.length - 16} more dice`;
+        field.appendChild(extra);
+      }
+    }
+
+    function playDiceSound() {
+      if (!state.soundEnabled) return;
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+
+      const context = new AudioContextClass();
+      const now = context.currentTime;
+      const duration = 0.82;
+      const buffer = context.createBuffer(1, context.sampleRate * duration, context.sampleRate);
+      const data = buffer.getChannelData(0);
+
+      for (let i = 0; i < data.length; i += 1) {
+        const time = i / context.sampleRate;
+        const decay = Math.pow(1 - time / duration, 2.7);
+        const rattle = Math.sin(time * 1550) * 0.16 + (Math.random() * 2 - 1) * 0.68;
+        data[i] = rattle * decay;
+      }
+
+      const source = context.createBufferSource();
+      const filter = context.createBiquadFilter();
+      const gain = context.createGain();
+      source.buffer = buffer;
+      filter.type = "bandpass";
+      filter.frequency.setValueAtTime(1050, now);
+      filter.Q.value = 0.7;
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.32, now + 0.018);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+      source.connect(filter).connect(gain).connect(context.destination);
+      source.start(now);
+
+      [0.1, 0.24, 0.4, 0.57, 0.72].forEach((offset, index) => {
+        const oscillator = context.createOscillator();
+        const clickGain = context.createGain();
+        oscillator.type = "triangle";
+        oscillator.frequency.setValueAtTime(170 + index * 27, now + offset);
+        clickGain.gain.setValueAtTime(0.12 - index * 0.012, now + offset);
+        clickGain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.055);
+        oscillator.connect(clickGain).connect(context.destination);
+        oscillator.start(now + offset);
+        oscillator.stop(now + offset + 0.06);
+      });
+
+      window.setTimeout(() => context.close(), 1100);
+    }
+
+    function trackRoll(dice, rollTotal) {
+      if (typeof window.gtag !== "function") return;
+      window.gtag("event", "dice_roll", {
+        roll_mode: "animated_roller",
+        roll_total: rollTotal,
+        roll_expression: dice.map((sides) => `D${sides}`).join("+"),
+        dice_count: dice.length,
+        page_path: window.location.pathname || "/dice-roller",
+        transport_type: "beacon",
+      });
+    }
+
+    function rollDice() {
+      const dice = selectedDice();
+      if (!dice.length || state.rolling) {
+        if (!dice.length) note.textContent = "Select at least one die before rolling.";
+        return;
+      }
+
+      state.rolling = true;
+      rollButton.disabled = true;
+      deleteButton.disabled = true;
+      playDiceSound();
+
+      const finalResults = dice.map((sides) => ({ sides, value: randomDie(sides) }));
+      const preview = dice.map((sides) => ({ sides, value: randomDie(sides) }));
+      renderDice(preview, true);
+      note.textContent = "Rolling...";
+
+      const numberShuffle = window.setInterval(() => {
+        field.querySelectorAll(".rolled-die").forEach((die, index) => {
+          const value = randomDie(dice[index]);
+          die.querySelector("span").textContent = String(value);
+        });
+      }, 70);
+
+      window.setTimeout(() => {
+        window.clearInterval(numberShuffle);
+        state.results = finalResults;
+        renderDice(finalResults);
+        const modifier = Number(modifierInput.value || 0);
+        const rollTotal = finalResults.reduce((sum, result) => sum + result.value, 0) + modifier;
+        total.textContent = String(rollTotal);
+        const resultText = finalResults.map((result) => `D${result.sides}: ${result.value}`).join(", ");
+        note.textContent = `${resultText}${modifier ? `, modifier ${modifier > 0 ? "+" : ""}${modifier}` : ""}.`;
+        state.rolling = false;
+        rollButton.disabled = false;
+        deleteButton.disabled = false;
+        trackRoll(dice, rollTotal);
+      }, 820);
+    }
+
+    document.querySelectorAll("[data-die]").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (state.rolling) return;
+        const sides = Number(button.dataset.die);
+        state.selectedType = sides;
+        state.counts[sides] = Math.min(20, state.counts[sides] + 1);
+        updateSelectors();
+      });
     });
 
-    summaryEl.textContent = `Ready: ${diceExpression(diceState.dice)}${formatModifier(Number(modifierInput.value || 0))}`;
-  }
-
-  function addHistory(entry) {
-    diceState.history.unshift(entry);
-    diceState.history = diceState.history.slice(0, 8);
-    historyEl.innerHTML = "";
-
-    diceState.history.forEach((item) => {
-      const li = document.createElement("li");
-      li.innerHTML = `<span>${item.label}</span><strong>${item.total}</strong>`;
-      historyEl.appendChild(li);
+    deleteButton.addEventListener("click", () => {
+      if (state.rolling) return;
+      if (state.counts[state.selectedType] > 0) {
+        state.counts[state.selectedType] -= 1;
+      } else {
+        const fallback = [...diceTypes].reverse().find((sides) => state.counts[sides] > 0);
+        if (fallback) {
+          state.selectedType = fallback;
+          state.counts[fallback] -= 1;
+        }
+      }
+      const dice = selectedDice();
+      state.results = dice.map((sides) => ({ sides, value: 1 }));
+      renderDice(state.results);
+      total.textContent = String(dice.length + Number(modifierInput.value || 0));
+      updateSelectors();
     });
-  }
 
-  function showRoll(total, summary, breakdown, historyLabel, mode, expression) {
-    totalEl.textContent = String(total);
-    summaryEl.textContent = summary;
-    breakdownEl.textContent = breakdown;
-    addHistory({ label: historyLabel, total });
-    diceState.lastRoll = { mode, expression };
-    trackDiceRoll(mode, total, expression);
-  }
-
-  function rollSelectedDice(mode = "custom") {
-    if (!diceState.dice.length) {
-      breakdownEl.textContent = "Add at least one die before rolling.";
-      return;
-    }
-
-    const modifier = Number(modifierInput.value || 0);
-    const rolls = diceState.dice.map((sides) => ({ sides, value: randomDie(sides) }));
-    const subtotal = rolls.reduce((sum, roll) => sum + roll.value, 0);
-    const total = subtotal + modifier;
-    const expression = `${diceExpression(diceState.dice)}${formatModifier(modifier)}`;
-    const rollText = rolls.map((roll) => `D${roll.sides}: ${roll.value}`).join(", ");
-    const label = labelInput.value.trim() || "DND dice roll";
-
-    showRoll(
-      total,
-      `${expression} = ${total}`,
-      `${rollText}. Subtotal ${subtotal}${formatModifier(modifier)} = ${total}.`,
-      `${label}: ${expression}`,
-      mode,
-      expression
-    );
-  }
-
-  function quickRoll(type) {
-    const modifier = Number(modifierInput.value || 0);
-
-    if (type === "d20") {
-      diceState.dice = [20];
-      renderTray();
-      rollSelectedDice("d20_check");
-      return;
-    }
-
-    if (type === "percentile") {
-      diceState.dice = [100];
-      renderTray();
-      rollSelectedDice("percentile");
-      return;
-    }
-
-    if (type === "damage") {
-      diceState.dice = [6, 6];
-      renderTray();
-      rollSelectedDice("damage_2d6");
-      return;
-    }
-
-    if (type === "advantage" || type === "disadvantage") {
-      diceState.dice = [20, 20];
-      renderTray();
-      const rolls = [randomDie(20), randomDie(20)];
-      const chosen = type === "advantage" ? Math.max(...rolls) : Math.min(...rolls);
-      const total = chosen + modifier;
-      const expression = `${type === "advantage" ? "2d20kh1" : "2d20kl1"}${formatModifier(modifier)}`;
-      showRoll(
-        total,
-        `${type === "advantage" ? "Advantage" : "Disadvantage"} = ${total}`,
-        `D20 rolls: ${rolls.join(", ")}. Use ${chosen}${formatModifier(modifier)} = ${total}.`,
-        `${type === "advantage" ? "Advantage" : "Disadvantage"}: ${expression}`,
-        type,
-        expression
-      );
-      return;
-    }
-
-    if (type === "stats") {
-      diceState.dice = [6, 6, 6, 6];
-      renderTray();
-      const rolls = [randomDie(6), randomDie(6), randomDie(6), randomDie(6)];
-      const sorted = [...rolls].sort((a, b) => b - a);
-      const kept = sorted.slice(0, 3);
-      const dropped = sorted[3];
-      const subtotal = kept.reduce((sum, value) => sum + value, 0);
-      const total = subtotal + modifier;
-      const expression = `4d6 drop lowest${formatModifier(modifier)}`;
-      showRoll(
-        total,
-        `4D6 drop lowest = ${total}`,
-        `D6 rolls: ${rolls.join(", ")}. Keep ${kept.join(", ")}, drop ${dropped}. Subtotal ${subtotal}${formatModifier(modifier)} = ${total}.`,
-        `Stats: ${expression}`,
-        "4d6_drop_lowest",
-        expression
-      );
-    }
-  }
-
-  document.querySelectorAll("[data-add-die]").forEach((button) => {
-    button.addEventListener("click", () => {
-      diceState.dice.push(Number(button.dataset.addDie));
-      renderTray();
+    modifierToggle.addEventListener("click", () => {
+      const visible = modifierControl.classList.toggle("is-visible");
+      modifierToggle.setAttribute("aria-expanded", String(visible));
+      if (visible) modifierInput.focus();
     });
-  });
 
-  document.querySelectorAll("[data-quick-roll]").forEach((button) => {
-    button.addEventListener("click", () => quickRoll(button.dataset.quickRoll));
-  });
+    modifierInput.addEventListener("input", updateSelectors);
+    soundToggle.addEventListener("click", () => {
+      state.soundEnabled = !state.soundEnabled;
+      soundToggle.setAttribute("aria-pressed", String(state.soundEnabled));
+      soundToggle.textContent = state.soundEnabled ? "SFX" : "Off";
+      soundToggle.title = state.soundEnabled ? "Turn rolling sound off" : "Turn rolling sound on";
+    });
+    rollButton.addEventListener("click", rollDice);
 
-  document.querySelector("#roll-button").addEventListener("click", () => rollSelectedDice("custom"));
-  document.querySelector("#reroll-button").addEventListener("click", () => {
-    if (diceState.lastRoll && ["advantage", "disadvantage", "4d6_drop_lowest"].includes(diceState.lastRoll.mode)) {
-      quickRoll(diceState.lastRoll.mode === "4d6_drop_lowest" ? "stats" : diceState.lastRoll.mode);
-      return;
-    }
-
-    rollSelectedDice("reroll");
-  });
-  document.querySelector("#clear-button").addEventListener("click", () => {
-    diceState.dice = [];
-    diceState.lastRoll = null;
-    totalEl.textContent = "0";
-    breakdownEl.textContent = "Add dice to the tray, then press Roll Dice.";
-    renderTray();
-  });
-  modifierInput.addEventListener("input", renderTray);
-
-  renderTray();
+    updateSelectors();
+    renderDice(state.results);
+  })();
 </script>
 </body>
 </html>
