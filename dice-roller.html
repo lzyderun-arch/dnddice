@@ -64,7 +64,7 @@
           "name": "What dice can this online DND dice roller roll?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The roller supports d4, d6, d8, d10, d12, d20, and d100 polyhedral dice. It also includes quick rolls for d20 ability checks, advantage, disadvantage, and 4d6 drop lowest."
+            "text": "The roller supports d4, d6, d8, d10, d12, d20, and d100 polyhedral dice. Clicking a die adds it to the rolling area and immediately rolls its first result."
           }
         },
         {
@@ -162,24 +162,44 @@
       height: var(--die-size);
       place-items: center;
       transform: translate(-50%, -50%) rotate(var(--rotation, 0deg));
-      filter: drop-shadow(0 7px 5px rgba(31, 41, 55, 0.28));
+      filter: drop-shadow(0 10px 5px rgba(31, 41, 55, 0.34)) drop-shadow(0 2px 1px rgba(255, 255, 255, 0.28));
       color: #fff;
       font-size: 1.35rem;
       font-weight: 900;
       line-height: 1;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+      text-shadow: 0 2px 2px rgba(0, 0, 0, 0.68), 0 -1px 1px rgba(255, 255, 255, 0.3);
       transition: top 420ms cubic-bezier(.2,.85,.25,1), left 420ms cubic-bezier(.2,.85,.25,1), transform 420ms ease;
+      transform-style: preserve-3d;
       will-change: transform, top, left;
     }
 
+    .rolled-die::before,
+    .dice-shape::before,
     .rolled-die::after,
     .dice-shape::after {
       content: "";
       position: absolute;
-      inset: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.32);
+      inset: 0;
       clip-path: inherit;
       pointer-events: none;
+    }
+
+    .rolled-die::before,
+    .dice-shape::before {
+      background:
+        radial-gradient(circle at 27% 18%, rgba(255, 255, 255, .72), transparent 18%),
+        linear-gradient(135deg, rgba(255, 255, 255, .42), transparent 36%, rgba(0, 0, 0, .28) 79%, rgba(0, 0, 0, .5));
+      mix-blend-mode: soft-light;
+    }
+
+    .rolled-die::after,
+    .dice-shape::after {
+      inset: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      background:
+        linear-gradient(28deg, transparent 48%, rgba(255, 255, 255, .32) 49%, transparent 51%),
+        linear-gradient(152deg, transparent 48%, rgba(0, 0, 0, .24) 49%, transparent 51%);
+      box-shadow: inset 3px 4px 7px rgba(255, 255, 255, .15), inset -5px -6px 9px rgba(0, 0, 0, .25);
     }
 
     .rolled-die span,
@@ -188,24 +208,25 @@
       z-index: 1;
     }
 
-    .die-d4 { background: linear-gradient(145deg, #36c76b, #14833d); clip-path: polygon(50% 3%, 98% 94%, 2% 94%); }
-    .die-d6 { background: linear-gradient(145deg, #30ddeb, #08a9c1); border: 1px solid #087e91; }
-    .die-d8 { background: linear-gradient(145deg, #a34df5, #6421c5); clip-path: polygon(50% 0, 91% 24%, 91% 76%, 50% 100%, 9% 76%, 9% 24%); }
-    .die-d10 { background: linear-gradient(145deg, #f34a9d, #d5186e); clip-path: polygon(50% 0, 100% 38%, 82% 88%, 50% 100%, 18% 88%, 0 38%); }
-    .die-d12 { background: linear-gradient(145deg, #f24b3c, #c7241a); clip-path: polygon(50% 0, 79% 8%, 97% 32%, 97% 68%, 79% 92%, 50% 100%, 21% 92%, 3% 68%, 3% 32%, 21% 8%); }
-    .die-d20 { background: linear-gradient(145deg, #ff8a00, #e85b00); clip-path: polygon(50% 0, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%); }
-    .die-d100 { background: linear-gradient(145deg, #20252b, #000); border-radius: 50%; }
+    .die-d4 { background: conic-gradient(from 30deg at 50% 66%, #0d6d34 0 33%, #4be07b 0 66%, #149148 0); clip-path: polygon(50% 3%, 98% 94%, 2% 94%); }
+    .die-d6 { background: linear-gradient(145deg, #52f4ff 0%, #18c8d8 42%, #087e96 100%); border: 1px solid #087184; border-radius: 3px; box-shadow: inset 8px 8px 14px rgba(255, 255, 255, .25), inset -9px -10px 14px rgba(0, 52, 74, .3); }
+    .die-d8 { background: conic-gradient(from 0deg, #7930d5 0 12.5%, #bc6cff 0 25%, #6b20c3 0 37.5%, #9f4ce9 0 50%, #5420aa 0 62.5%, #a94ff1 0 75%, #6e23c8 0 87.5%, #c276ff 0); clip-path: polygon(50% 0, 91% 24%, 91% 76%, 50% 100%, 9% 76%, 9% 24%); }
+    .die-d10 { background: conic-gradient(from 18deg, #af1259 0 10%, #fa5ca9 0 20%, #c8196b 0 30%, #f04c9b 0 40%, #a90f55 0 50%, #e9368a 0 60%, #b61361 0 70%, #ff70b6 0 80%, #c5186a 0 90%, #e63f91 0); clip-path: polygon(50% 0, 100% 38%, 82% 88%, 50% 100%, 18% 88%, 0 38%); }
+    .die-d12 { background: conic-gradient(from 0deg, #a81812 0 8.3%, #f35c4e 0 16.6%, #bd2119 0 25%, #ed4b3d 0 33.3%, #981510 0 41.6%, #e94135 0 50%, #b61c16 0 58.3%, #fa6758 0 66.6%, #a91813 0 75%, #df392f 0 83.3%, #8f130f 0 91.6%, #e84a3d 0); clip-path: polygon(50% 0, 79% 8%, 97% 32%, 97% 68%, 79% 92%, 50% 100%, 21% 92%, 3% 68%, 3% 32%, 21% 8%); }
+    .die-d20 { background: conic-gradient(from 0deg, #b84a00 0 8%, #ff9e20 0 16%, #d65a00 0 24%, #ff8210 0 32%, #ad3e00 0 40%, #f56a00 0 48%, #c94d00 0 56%, #ff9d1e 0 64%, #b94300 0 72%, #ee6200 0 80%, #a93d00 0 88%, #ff8911 0); clip-path: polygon(50% 0, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%); }
+    .die-d100 { background: radial-gradient(circle at 30% 24%, #5f6874 0 4%, #1d2229 30%, #020304 72%, #000 100%); border: 1px solid #000; border-radius: 50%; box-shadow: inset 7px 8px 13px rgba(255, 255, 255, .12), inset -8px -9px 15px rgba(0, 0, 0, .7); }
 
     .rolled-die.rolling {
       animation: dice-tumble 760ms cubic-bezier(.2,.75,.24,1) both;
     }
 
     @keyframes dice-tumble {
-      0% { transform: translate(-50%, -50%) rotate(0deg) scale(.85); }
-      22% { transform: translate(calc(-50% - 22px), calc(-50% - 54px)) rotate(155deg) scale(1.08); }
-      48% { transform: translate(calc(-50% + 27px), calc(-50% - 12px)) rotate(335deg) scale(.96); }
-      72% { transform: translate(calc(-50% - 10px), calc(-50% - 30px)) rotate(525deg) scale(1.03); }
-      100% { transform: translate(-50%, -50%) rotate(var(--rotation, 720deg)) scale(1); }
+      0% { transform: translate(-50%, -50%) rotate(0deg) scale(.56); filter: drop-shadow(0 28px 8px rgba(31, 41, 55, .18)); }
+      18% { transform: translate(calc(-50% - 24px), calc(-50% - 74px)) rotate(145deg) scale(1.12); }
+      42% { transform: translate(calc(-50% + 32px), calc(-50% - 18px)) rotate(330deg) scale(.94); }
+      66% { transform: translate(calc(-50% - 16px), calc(-50% - 43px)) rotate(510deg) scale(1.06); }
+      83% { transform: translate(calc(-50% + 8px), calc(-50% - 8px)) rotate(650deg) scale(.98); }
+      100% { transform: translate(-50%, -50%) rotate(var(--rotation, 720deg)) scale(1); filter: drop-shadow(0 10px 5px rgba(31, 41, 55, .34)) drop-shadow(0 2px 1px rgba(255, 255, 255, .28)); }
     }
 
     .total-points {
@@ -268,7 +289,9 @@
       font-weight: 900;
       line-height: 1;
       text-shadow: 0 1px 2px rgba(0, 0, 0, .35);
-      filter: drop-shadow(0 3px 2px rgba(15, 23, 42, .18));
+      filter: drop-shadow(0 5px 2px rgba(15, 23, 42, .28));
+      text-shadow: 0 2px 2px rgba(0, 0, 0, .58), 0 -1px 1px rgba(255, 255, 255, .25);
+      transform-style: preserve-3d;
     }
 
     .dice-count {
@@ -395,13 +418,13 @@
         <section class="dice-roller-app" aria-label="Interactive DND dice roller">
           <div class="dice-stage" id="dice-stage" aria-live="polite">
             <div class="dice-field" id="dice-field"></div>
-            <div class="total-points"><span>Total Points</span><strong id="roll-total">2</strong></div>
+            <div class="total-points"><span>Total Points</span><strong id="roll-total">0</strong></div>
           </div>
 
           <div class="roller-controls">
             <div class="dice-selector" aria-label="Select dice to roll">
               <button class="dice-select" type="button" data-die="4" aria-label="Add a D4"><span class="dice-shape die-d4"><span>4</span></span><span class="dice-count">0</span></button>
-              <button class="dice-select" type="button" data-die="6" aria-label="Add a D6"><span class="dice-shape die-d6"><span>6</span></span><span class="dice-count">1</span></button>
+              <button class="dice-select" type="button" data-die="6" aria-label="Add a D6"><span class="dice-shape die-d6"><span>6</span></span><span class="dice-count">0</span></button>
               <button class="dice-select" type="button" data-die="8" aria-label="Add a D8"><span class="dice-shape die-d8"><span>8</span></span><span class="dice-count">0</span></button>
               <button class="dice-select" type="button" data-die="10" aria-label="Add a D10"><span class="dice-shape die-d10"><span>10</span></span><span class="dice-count">0</span></button>
               <button class="dice-select" type="button" data-die="12" aria-label="Add a D12"><span class="dice-shape die-d12"><span>12</span></span><span class="dice-count">0</span></button>
@@ -419,7 +442,7 @@
               <button class="roller-action" type="button" id="roll-button">Roll DND Dice</button>
               <button class="roller-action" type="button" id="delete-button">Delete</button>
             </div>
-            <p class="roll-note" id="roll-note">Selected: 1D6. Click a die to add more.</p>
+            <p class="roll-note" id="roll-note">Click a die to add it and roll the first result.</p>
           </div>
         </section>
       </div>
@@ -456,7 +479,7 @@
     <section class="section faq">
       <div class="eyebrow">Dice roller FAQ</div>
       <h2>Common questions about rolling DND dice online.</h2>
-      <details open><summary>What dice can this online DND dice roller roll?</summary><p>The roller supports d4, d6, d8, d10, d12, d20, and d100 polyhedral dice. It also includes quick rolls for d20 ability checks, advantage, disadvantage, and 4d6 drop lowest.</p></details>
+      <details open><summary>What dice can this online DND dice roller roll?</summary><p>The roller supports d4, d6, d8, d10, d12, d20, and d100 polyhedral dice. Clicking a die adds it to the rolling area and immediately rolls its first result.</p></details>
       <details><summary>Can I add modifiers to a DND dice roll?</summary><p>Yes. Enter a positive or negative modifier before rolling. The roller shows the dice subtotal, modifier, and final total.</p></details>
       <details><summary>How do advantage and disadvantage work?</summary><p>Advantage rolls two d20 dice and uses the higher result. Disadvantage rolls two d20 dice and uses the lower result. The modifier is added after choosing the d20 result.</p></details>
       <details><summary>Is this dice roller a replacement for physical dice?</summary><p>It is useful for quick online rolls, teaching dice types, and checking 5e mechanics. For retail, events, campaigns, or product launches, physical polyhedral dice sets and sample kits are still recommended.</p></details>
@@ -482,11 +505,12 @@
   (() => {
     const diceTypes = [4, 6, 8, 10, 12, 20, 100];
     const state = {
-      counts: { 4: 0, 6: 1, 8: 0, 10: 0, 12: 0, 20: 0, 100: 0 },
+      counts: { 4: 0, 6: 0, 8: 0, 10: 0, 12: 0, 20: 0, 100: 0 },
       selectedType: 6,
       soundEnabled: true,
       rolling: false,
-      results: [{ sides: 6, value: 2 }],
+      results: [],
+      audioContext: null,
     };
 
     const field = document.querySelector("#dice-field");
@@ -547,10 +571,10 @@
         .join(" + ");
       const modifier = Number(modifierInput.value || 0);
       const modifierText = modifier ? ` ${modifier > 0 ? "+" : "-"} ${Math.abs(modifier)}` : "";
-      note.textContent = expression ? `Selected: ${expression}${modifierText}. Click a die to add more.` : "Select at least one die to roll.";
+      note.textContent = expression ? `Selected: ${expression}${modifierText}. Click a die to add more.` : "Click a die to add it and roll the first result.";
     }
 
-    function renderDice(results, rolling = false) {
+    function renderDice(results, rolling = false, focusIndex = -1) {
       field.innerHTML = "";
       if (!results.length) {
         const empty = document.createElement("p");
@@ -561,12 +585,17 @@
       }
 
       results.slice(0, 16).forEach((result, index) => {
-        const position = positionFor(index, Math.min(results.length, 16));
+        const isFocusedRoll = rolling && focusIndex === index;
+        const position = isFocusedRoll
+          ? { left: 50, top: 50, rotation: 720 }
+          : positionFor(index, Math.min(results.length, 16));
+        const shouldAnimate = rolling && (focusIndex < 0 || isFocusedRoll);
         const die = document.createElement("div");
-        die.className = `rolled-die ${shapeClass(result.sides)}${rolling ? " rolling" : ""}`;
+        die.className = `rolled-die ${shapeClass(result.sides)}${shouldAnimate ? " rolling" : ""}`;
         die.style.setProperty("--left", `${position.left}%`);
         die.style.setProperty("--top", `${position.top}%`);
-        die.style.setProperty("--rotation", `${position.rotation + (rolling ? 720 : 0)}deg`);
+        die.style.setProperty("--rotation", `${position.rotation + (shouldAnimate ? 720 : 0)}deg`);
+        die.style.zIndex = isFocusedRoll ? "4" : "1";
         die.setAttribute("aria-label", `D${result.sides} rolled ${result.value}`);
         die.innerHTML = `<span>${result.value}</span>`;
         field.appendChild(die);
@@ -581,62 +610,127 @@
       }
     }
 
-    function playDiceSound() {
+    function playDiceSound(intensity = 1, duration = 0.84) {
       if (!state.soundEnabled) return;
       const AudioContextClass = window.AudioContext || window.webkitAudioContext;
       if (!AudioContextClass) return;
 
-      const context = new AudioContextClass();
-      const now = context.currentTime;
-      const duration = 0.82;
-      const buffer = context.createBuffer(1, context.sampleRate * duration, context.sampleRate);
-      const data = buffer.getChannelData(0);
+      const context = state.audioContext || new AudioContextClass();
+      state.audioContext = context;
+      if (context.state === "suspended") context.resume();
 
-      for (let i = 0; i < data.length; i += 1) {
-        const time = i / context.sampleRate;
-        const decay = Math.pow(1 - time / duration, 2.7);
-        const rattle = Math.sin(time * 1550) * 0.16 + (Math.random() * 2 - 1) * 0.68;
-        data[i] = rattle * decay;
+      const now = context.currentTime + 0.012;
+      const master = context.createGain();
+      master.gain.setValueAtTime(0.7 * intensity, now);
+      master.connect(context.destination);
+
+      const reverb = context.createConvolver();
+      const impulseLength = Math.floor(context.sampleRate * 0.24);
+      const impulse = context.createBuffer(2, impulseLength, context.sampleRate);
+      for (let channel = 0; channel < 2; channel += 1) {
+        const impulseData = impulse.getChannelData(channel);
+        for (let i = 0; i < impulseLength; i += 1) {
+          const decay = Math.pow(1 - i / impulseLength, 3.4);
+          impulseData[i] = (Math.random() * 2 - 1) * decay;
+        }
       }
+      reverb.buffer = impulse;
+      const wetGain = context.createGain();
+      wetGain.gain.value = 0.13;
+      reverb.connect(wetGain).connect(master);
 
-      const source = context.createBufferSource();
-      const filter = context.createBiquadFilter();
-      const gain = context.createGain();
-      source.buffer = buffer;
-      filter.type = "bandpass";
-      filter.frequency.setValueAtTime(1050, now);
-      filter.Q.value = 0.7;
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(0.32, now + 0.018);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-      source.connect(filter).connect(gain).connect(context.destination);
-      source.start(now);
+      const impactOffsets = [0, .045, .096, .158, .235, .326, .438, .565, .704, .805]
+        .filter((offset) => offset < duration);
 
-      [0.1, 0.24, 0.4, 0.57, 0.72].forEach((offset, index) => {
-        const oscillator = context.createOscillator();
-        const clickGain = context.createGain();
-        oscillator.type = "triangle";
-        oscillator.frequency.setValueAtTime(170 + index * 27, now + offset);
-        clickGain.gain.setValueAtTime(0.12 - index * 0.012, now + offset);
-        clickGain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.055);
-        oscillator.connect(clickGain).connect(context.destination);
-        oscillator.start(now + offset);
-        oscillator.stop(now + offset + 0.06);
+      impactOffsets.forEach((offset, index) => {
+        const hitDuration = 0.028 + Math.random() * 0.028;
+        const hitBuffer = context.createBuffer(1, Math.ceil(context.sampleRate * hitDuration), context.sampleRate);
+        const hitData = hitBuffer.getChannelData(0);
+        for (let i = 0; i < hitData.length; i += 1) {
+          const envelope = Math.pow(1 - i / hitData.length, 4.5);
+          hitData[i] = (Math.random() * 2 - 1) * envelope;
+        }
+
+        const hit = context.createBufferSource();
+        const filter = context.createBiquadFilter();
+        const hitGain = context.createGain();
+        const remaining = 1 - offset / duration;
+        hit.buffer = hitBuffer;
+        filter.type = "bandpass";
+        filter.frequency.value = 760 + Math.random() * 1500;
+        filter.Q.value = 0.55 + Math.random() * 1.2;
+        hitGain.gain.setValueAtTime((0.24 + Math.random() * 0.14) * Math.pow(remaining, .52), now + offset);
+        hitGain.gain.exponentialRampToValueAtTime(0.0001, now + offset + hitDuration);
+        hit.connect(filter).connect(hitGain);
+        hitGain.connect(master);
+        hitGain.connect(reverb);
+        hit.start(now + offset);
+
+        const thump = context.createOscillator();
+        const thumpGain = context.createGain();
+        thump.type = index % 2 ? "triangle" : "sine";
+        thump.frequency.setValueAtTime(105 + Math.random() * 95, now + offset);
+        thump.frequency.exponentialRampToValueAtTime(68, now + offset + .045);
+        thumpGain.gain.setValueAtTime((0.055 + Math.random() * .035) * remaining, now + offset);
+        thumpGain.gain.exponentialRampToValueAtTime(0.0001, now + offset + .052);
+        thump.connect(thumpGain).connect(master);
+        thump.start(now + offset);
+        thump.stop(now + offset + .06);
       });
 
-      window.setTimeout(() => context.close(), 1100);
+      window.setTimeout(() => master.disconnect(), Math.ceil((duration + .4) * 1000));
     }
 
-    function trackRoll(dice, rollTotal) {
+    function trackRoll(dice, rollTotal, mode = "animated_roller") {
       if (typeof window.gtag !== "function") return;
       window.gtag("event", "dice_roll", {
-        roll_mode: "animated_roller",
+        roll_mode: mode,
         roll_total: rollTotal,
         roll_expression: dice.map((sides) => `D${sides}`).join("+"),
         dice_count: dice.length,
         page_path: window.location.pathname || "/dice-roller",
         transport_type: "beacon",
       });
+    }
+
+    function resultTotal(results) {
+      return results.reduce((sum, result) => sum + result.value, 0) + Number(modifierInput.value || 0);
+    }
+
+    function showFinalResults(results, mode, trackedDice = results.map((result) => result.sides)) {
+      state.results = results;
+      renderDice(results);
+      const modifier = Number(modifierInput.value || 0);
+      const rollTotal = resultTotal(results);
+      total.textContent = String(rollTotal);
+      const resultText = results.map((result) => `D${result.sides}: ${result.value}`).join(", ");
+      note.textContent = `${resultText}${modifier ? `, modifier ${modifier > 0 ? "+" : ""}${modifier}` : ""}.`;
+      state.rolling = false;
+      rollButton.disabled = false;
+      deleteButton.disabled = false;
+      trackRoll(trackedDice, rollTotal, mode);
+    }
+
+    function previewAddedDie(sides) {
+      state.rolling = true;
+      rollButton.disabled = true;
+      deleteButton.disabled = true;
+      const addedResult = { sides, value: randomDie(sides) };
+      const previewResults = [...state.results, addedResult];
+      const focusIndex = previewResults.length - 1;
+      playDiceSound(.86, .68);
+      renderDice(previewResults, true, focusIndex);
+      note.textContent = `Rolling the new D${sides}...`;
+
+      const numberShuffle = window.setInterval(() => {
+        const focused = field.querySelectorAll(".rolled-die")[focusIndex];
+        if (focused) focused.querySelector("span").textContent = String(randomDie(sides));
+      }, 64);
+
+      window.setTimeout(() => {
+        window.clearInterval(numberShuffle);
+        showFinalResults(previewResults, "click_to_add", [sides]);
+      }, 740);
     }
 
     function rollDice() {
@@ -649,7 +743,7 @@
       state.rolling = true;
       rollButton.disabled = true;
       deleteButton.disabled = true;
-      playDiceSound();
+      playDiceSound(1, .84);
 
       const finalResults = dice.map((sides) => ({ sides, value: randomDie(sides) }));
       const preview = dice.map((sides) => ({ sides, value: randomDie(sides) }));
@@ -665,46 +759,33 @@
 
       window.setTimeout(() => {
         window.clearInterval(numberShuffle);
-        state.results = finalResults;
-        renderDice(finalResults);
-        const modifier = Number(modifierInput.value || 0);
-        const rollTotal = finalResults.reduce((sum, result) => sum + result.value, 0) + modifier;
-        total.textContent = String(rollTotal);
-        const resultText = finalResults.map((result) => `D${result.sides}: ${result.value}`).join(", ");
-        note.textContent = `${resultText}${modifier ? `, modifier ${modifier > 0 ? "+" : ""}${modifier}` : ""}.`;
-        state.rolling = false;
-        rollButton.disabled = false;
-        deleteButton.disabled = false;
-        trackRoll(dice, rollTotal);
+        showFinalResults(finalResults, "animated_roller", dice);
       }, 820);
     }
 
     document.querySelectorAll("[data-die]").forEach((button) => {
       button.addEventListener("click", () => {
         if (state.rolling) return;
+        if (selectedDice().length >= 16) {
+          note.textContent = "The rolling area supports up to 16 dice at one time.";
+          return;
+        }
         const sides = Number(button.dataset.die);
         state.selectedType = sides;
-        state.counts[sides] = Math.min(20, state.counts[sides] + 1);
+        state.counts[sides] += 1;
         updateSelectors();
+        previewAddedDie(sides);
       });
     });
 
     deleteButton.addEventListener("click", () => {
       if (state.rolling) return;
-      if (state.counts[state.selectedType] > 0) {
-        state.counts[state.selectedType] -= 1;
-      } else {
-        const fallback = [...diceTypes].reverse().find((sides) => state.counts[sides] > 0);
-        if (fallback) {
-          state.selectedType = fallback;
-          state.counts[fallback] -= 1;
-        }
-      }
-      const dice = selectedDice();
-      state.results = dice.map((sides) => ({ sides, value: 1 }));
-      renderDice(state.results);
-      total.textContent = String(dice.length + Number(modifierInput.value || 0));
+      diceTypes.forEach((sides) => { state.counts[sides] = 0; });
+      state.results = [];
+      total.textContent = "0";
+      renderDice([]);
       updateSelectors();
+      note.textContent = "All dice cleared. Click a die to roll the first result.";
     });
 
     modifierToggle.addEventListener("click", () => {
@@ -713,7 +794,10 @@
       if (visible) modifierInput.focus();
     });
 
-    modifierInput.addEventListener("input", updateSelectors);
+    modifierInput.addEventListener("input", () => {
+      updateSelectors();
+      if (state.results.length) total.textContent = String(resultTotal(state.results));
+    });
     soundToggle.addEventListener("click", () => {
       state.soundEnabled = !state.soundEnabled;
       soundToggle.setAttribute("aria-pressed", String(state.soundEnabled));
