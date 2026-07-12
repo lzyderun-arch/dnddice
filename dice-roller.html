@@ -573,14 +573,14 @@
       20: "#f36d00",
       100: "#171a1f",
     };
-    const BASE_ANGLES = {
-      4: [-.72, .45, -.25],
-      6: [-.5, .58, .2],
-      8: [.42, -.68, -.12],
-      10: [.28, -.36, .2],
-      12: [-.22, .48, -.3],
-      20: [-.18, -.62, -.34],
-      100: [-.28, .4, 0],
+    const FRONT_TILT = {
+      4: -.3,
+      6: .24,
+      8: -.14,
+      10: .16,
+      12: -.2,
+      20: -.18,
+      100: .08,
     };
 
     function vectorSubtract(a, b) {
@@ -746,6 +746,23 @@
       return model;
     }
 
+    function frontFaceIndex(sides) {
+      return sides === 100 ? 59 : 0;
+    }
+
+    function getFrontAngles(sides) {
+      const model = getDieModel(sides);
+      const face = model.faces[frontFaceIndex(sides)] || model.faces[0];
+      const pointA = model.vertices[face[0]];
+      const pointB = model.vertices[face[1]];
+      const pointC = model.vertices[face[2]];
+      const normal = vectorNormalize(vectorCross(vectorSubtract(pointB, pointA), vectorSubtract(pointC, pointA)));
+      const angleX = Math.atan2(normal.y, normal.z);
+      const zAfterX = Math.hypot(normal.y, normal.z);
+      const angleY = Math.atan2(-normal.x, zAfterX);
+      return [angleX, angleY, FRONT_TILT[sides] || 0];
+    }
+
     function rotateVertex(vertex, angleX, angleY, angleZ) {
       const cosX = Math.cos(angleX), sinX = Math.sin(angleX);
       const cosY = Math.cos(angleY), sinY = Math.sin(angleY);
@@ -836,7 +853,7 @@
       const rows = Math.ceil(count / columns);
       const byWidth = (width - gap * (columns - 1)) / columns;
       const byHeight = (height - gap * (rows - 1)) / rows;
-      const maximum = window.innerWidth <= 680 ? 96 : 132;
+      const maximum = window.innerWidth <= 680 ? 108 : 148;
       return Math.max(42, Math.floor(Math.min(maximum, byWidth, byHeight)));
     }
 
@@ -858,7 +875,7 @@
       value.style.opacity = shouldAnimate ? "0" : "1";
       die.append(canvas, value);
 
-      const baseAngles = BASE_ANGLES[result.sides] || [0, 0, 0];
+      const baseAngles = getFrontAngles(result.sides);
       if (!shouldAnimate || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         drawCanvasDie(canvas, result.sides, baseAngles);
         value.style.opacity = "1";
@@ -910,6 +927,17 @@
     }
 
     function renderDice(results, rolling = false, focusIndex = -1) {
+      const previousOrder = Array.from(field.querySelectorAll(".rolled-die"))
+        .map((die) => Number(die.dataset.resultIndex))
+        .filter((index) => Number.isInteger(index) && index >= 0 && index < results.length);
+      const displayOrder = [...new Set(previousOrder)];
+      results.forEach((result, index) => {
+        if (!displayOrder.includes(index)) displayOrder.push(index);
+      });
+      if (focusIndex >= 0 && displayOrder.includes(focusIndex)) {
+        displayOrder.splice(displayOrder.indexOf(focusIndex), 1);
+        displayOrder.splice(Math.floor(displayOrder.length / 2), 0, focusIndex);
+      }
       field.innerHTML = "";
       if (!results.length) {
         const empty = document.createElement("p");
@@ -919,12 +947,7 @@
         return;
       }
 
-      const visibleResults = results.slice(0, 16).map((result, index) => ({ result, index }));
-      if (focusIndex >= 0 && focusIndex < visibleResults.length) {
-        const focusPosition = visibleResults.findIndex((entry) => entry.index === focusIndex);
-        const [focused] = visibleResults.splice(focusPosition, 1);
-        visibleResults.splice(Math.floor(visibleResults.length / 2), 0, focused);
-      }
+      const visibleResults = displayOrder.slice(0, 16).map((index) => ({ result: results[index], index }));
       const dieSize = calculateDieSize(visibleResults.length);
       visibleResults.forEach(({ result, index }) => {
         const shouldAnimate = rolling && (focusIndex < 0 || focusIndex === index);
@@ -1029,7 +1052,22 @@
 
     function showFinalResults(results, mode, trackedDice = results.map((result) => result.sides)) {
       state.results = results;
-      renderDice(results);
+      const renderedDice = Array.from(field.querySelectorAll(".rolled-die"));
+      if (renderedDice.length === results.length) {
+        results.forEach((result, index) => {
+          const die = field.querySelector(`[data-result-index="${index}"]`);
+          if (!die) return;
+          const canvas = die.querySelector("canvas");
+          const value = die.querySelector(".die-value");
+          drawCanvasDie(canvas, result.sides, getFrontAngles(result.sides));
+          value.textContent = String(result.value);
+          value.style.opacity = "1";
+          die.classList.remove("rolling");
+          die.setAttribute("aria-label", `D${result.sides} rolled ${result.value}`);
+        });
+      } else {
+        renderDice(results);
+      }
       const modifier = Number(modifierInput.value || 0);
       const rollTotal = resultTotal(results);
       total.textContent = String(rollTotal);
