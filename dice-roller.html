@@ -186,7 +186,9 @@
       display: block;
       width: 100%;
       height: 100%;
-      filter: drop-shadow(0 12px 7px rgba(31, 41, 55, .38));
+      filter:
+        drop-shadow(0 13px 8px rgba(31, 41, 55, .34))
+        drop-shadow(0 2px 2px rgba(15, 23, 42, .2));
     }
 
     .rolled-die .die-value {
@@ -198,8 +200,12 @@
       color: #fff;
       font-size: clamp(.9rem, calc(var(--die-size) * .16), 1.5rem);
       font-weight: 900;
+      letter-spacing: -.02em;
       pointer-events: none;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, .82), 0 -1px 1px rgba(255, 255, 255, .34);
+      text-shadow:
+        0 1px 0 rgba(255, 255, 255, .35),
+        0 2px 3px rgba(0, 0, 0, .88),
+        0 0 7px rgba(0, 0, 0, .34);
       transition: opacity 240ms ease;
     }
 
@@ -252,7 +258,9 @@
     .die-d100 { background: radial-gradient(circle at 30% 24%, #5f6874 0 4%, #1d2229 30%, #020304 72%, #000 100%); border: 1px solid #000; border-radius: 50%; box-shadow: inset 7px 8px 13px rgba(255, 255, 255, .12), inset -8px -9px 15px rgba(0, 0, 0, .7); }
 
     .rolled-die.rolling canvas {
-      filter: drop-shadow(0 18px 9px rgba(31, 41, 55, .24));
+      filter:
+        drop-shadow(0 19px 10px rgba(31, 41, 55, .22))
+        drop-shadow(0 3px 3px rgba(15, 23, 42, .16));
     }
 
     .total-points {
@@ -564,6 +572,7 @@
 
     const ROLL_DURATION = 1450;
     const MODEL_CACHE = new Map();
+    const MODEL_SCALE_CACHE = new Map();
     const DIE_COLORS = {
       4: "#24a146",
       6: "#27bcd1",
@@ -581,6 +590,15 @@
       12: -.2,
       20: -.18,
       100: .08,
+    };
+    const DISPLAY_TILT = {
+      4: [-.16, .18],
+      6: [-.38, .44],
+      8: [-.1, .15],
+      10: [-.08, .13],
+      12: [-.08, .12],
+      20: [-.07, .11],
+      100: [0, 0],
     };
 
     function vectorSubtract(a, b) {
@@ -675,7 +693,8 @@
         const even = index * 2;
         const odd = (even + 1) % 10;
         const nextEven = (even + 2) % 10;
-        faces.push([10, even, 11, odd], [10, odd, 11, nextEven]);
+        const nextOdd = (even + 3) % 10;
+        faces.push([10, even, odd, nextEven], [11, nextOdd, nextEven, odd]);
       }
       return orientAndNormalizeModel(vertices, faces);
     }
@@ -747,7 +766,9 @@
     }
 
     function frontFaceIndex(sides) {
-      return sides === 100 ? 59 : 0;
+      if (sides === 100) return 59;
+      if (sides === 6) return 1;
+      return 0;
     }
 
     function getFrontAngles(sides) {
@@ -760,7 +781,8 @@
       const angleX = Math.atan2(normal.y, normal.z);
       const zAfterX = Math.hypot(normal.y, normal.z);
       const angleY = Math.atan2(-normal.x, zAfterX);
-      return [angleX, angleY, FRONT_TILT[sides] || 0];
+      const displayTilt = DISPLAY_TILT[sides] || [0, 0];
+      return [angleX + displayTilt[0], angleY + displayTilt[1], FRONT_TILT[sides] || 0];
     }
 
     function rotateVertex(vertex, angleX, angleY, angleZ) {
@@ -791,6 +813,34 @@
       return `rgb(${Math.round(Math.min(255, rgb.r * factor))}, ${Math.round(Math.min(255, rgb.g * factor))}, ${Math.round(Math.min(255, rgb.b * factor))})`;
     }
 
+    function projectPoint(point, scale, center) {
+      const perspective = 3.85 / (3.85 - point.z);
+      return {
+        x: center + point.x * scale * perspective,
+        y: center - point.y * scale * perspective,
+      };
+    }
+
+    function getVisualScale(sides, logicalSize) {
+      if (!MODEL_SCALE_CACHE.has(sides)) {
+        const model = getDieModel(sides);
+        const angles = getFrontAngles(sides);
+        const rotated = model.vertices.map((vertex) => rotateVertex(vertex, angles[0], angles[1], angles[2]));
+        const projected = rotated.map((point) => projectPoint(point, 1, 0));
+        const width = Math.max(...projected.map((point) => point.x)) - Math.min(...projected.map((point) => point.x));
+        const height = Math.max(...projected.map((point) => point.y)) - Math.min(...projected.map((point) => point.y));
+        MODEL_SCALE_CACHE.set(sides, .79 / Math.max(width, height, .01));
+      }
+      return logicalSize * MODEL_SCALE_CACHE.get(sides);
+    }
+
+    function traceFace(context, points) {
+      context.beginPath();
+      context.moveTo(points[0].x, points[0].y);
+      points.slice(1).forEach((point) => context.lineTo(point.x, point.y));
+      context.closePath();
+    }
+
     function drawCanvasDie(canvas, sides, angles) {
       const logicalSize = Number(canvas.dataset.logicalSize);
       const pixelRatio = Number(canvas.dataset.pixelRatio);
@@ -799,45 +849,88 @@
       context.clearRect(0, 0, logicalSize, logicalSize);
       const model = getDieModel(sides);
       const rotated = model.vertices.map((vertex) => rotateVertex(vertex, angles[0], angles[1], angles[2]));
-      const light = vectorNormalize({ x: -.48, y: .72, z: 1 });
+      const light = vectorNormalize({ x: -.58, y: .72, z: 1.18 });
       const center = logicalSize / 2;
-      const scale = logicalSize * (sides === 4 ? .35 : sides === 10 ? .38 : .39);
+      const scale = getVisualScale(sides, logicalSize);
       const rgb = colorToRgb(DIE_COLORS[sides]);
+
+      context.save();
+      const groundShadow = context.createRadialGradient(center, logicalSize * .79, 0, center, logicalSize * .79, logicalSize * .34);
+      groundShadow.addColorStop(0, "rgba(28, 39, 60, .25)");
+      groundShadow.addColorStop(.48, "rgba(28, 39, 60, .1)");
+      groundShadow.addColorStop(1, "rgba(28, 39, 60, 0)");
+      context.translate(center, logicalSize * .79);
+      context.scale(1, .24);
+      context.translate(-center, -logicalSize * .79);
+      context.fillStyle = groundShadow;
+      context.fillRect(logicalSize * .13, logicalSize * .45, logicalSize * .74, logicalSize * .68);
+      context.restore();
+
       const faceData = model.faces.map((face) => {
         const points3d = face.map((index) => rotated[index]);
         const normal = vectorNormalize(vectorCross(vectorSubtract(points3d[1], points3d[0]), vectorSubtract(points3d[2], points3d[0])));
         const averageZ = points3d.reduce((sum, point) => sum + point.z, 0) / points3d.length;
-        const points2d = points3d.map((point) => {
-          const perspective = 3.7 / (3.7 - point.z);
-          return { x: center + point.x * scale * perspective, y: center - point.y * scale * perspective };
-        });
+        const points2d = points3d.map((point) => projectPoint(point, scale, center));
         return { averageZ, normal, points2d };
       }).filter((face) => face.normal.z > -.06).sort((a, b) => a.averageZ - b.averageZ);
 
       faceData.forEach((face) => {
-        const brightness = .42 + Math.max(0, vectorDot(face.normal, light)) * .95;
+        const brightness = .4 + Math.max(0, vectorDot(face.normal, light)) * .9 + Math.max(0, face.normal.z) * .1;
         const xs = face.points2d.map((point) => point.x);
         const ys = face.points2d.map((point) => point.y);
         const minX = Math.min(...xs), maxX = Math.max(...xs);
         const minY = Math.min(...ys), maxY = Math.max(...ys);
-        const gradient = context.createLinearGradient(minX, minY, maxX, maxY);
-        gradient.addColorStop(0, shadeColor(rgb, Math.min(1.7, brightness * 1.34)));
-        gradient.addColorStop(.52, shadeColor(rgb, brightness));
-        gradient.addColorStop(1, shadeColor(rgb, Math.max(.24, brightness * .58)));
-        context.beginPath();
-        context.moveTo(face.points2d[0].x, face.points2d[0].y);
-        face.points2d.slice(1).forEach((point) => context.lineTo(point.x, point.y));
-        context.closePath();
+        const faceWidth = Math.max(1, maxX - minX);
+        const faceHeight = Math.max(1, maxY - minY);
+        const radius = Math.max(faceWidth, faceHeight) * 1.1;
+        const gradient = context.createRadialGradient(
+          minX + faceWidth * .25,
+          minY + faceHeight * .18,
+          0,
+          minX + faceWidth * .54,
+          minY + faceHeight * .55,
+          radius
+        );
+        gradient.addColorStop(0, shadeColor(rgb, Math.min(1.85, brightness * 1.5 + .08)));
+        gradient.addColorStop(.42, shadeColor(rgb, Math.min(1.42, brightness * 1.04)));
+        gradient.addColorStop(1, shadeColor(rgb, Math.max(.2, brightness * .48)));
+        traceFace(context, face.points2d);
         context.fillStyle = gradient;
         context.fill();
-        context.strokeStyle = sides === 100 ? "rgba(255,255,255,.13)" : "rgba(20,20,20,.42)";
-        context.lineWidth = Math.max(.75, logicalSize / 130);
+        context.lineJoin = "round";
+        context.strokeStyle = sides === 100 ? "rgba(3,6,10,.72)" : "rgba(15,20,28,.55)";
+        context.lineWidth = Math.max(.9, logicalSize / 105);
         context.stroke();
+
+        traceFace(context, face.points2d);
+        context.strokeStyle = `rgba(255,255,255,${sides === 100 ? .12 : .22 + Math.max(0, face.normal.z) * .1})`;
+        context.lineWidth = Math.max(.3, logicalSize / 360);
+        context.stroke();
+
+        if (face.normal.z > .55 && sides !== 100) {
+          context.save();
+          traceFace(context, face.points2d);
+          context.clip();
+          const specular = context.createRadialGradient(
+            minX + faceWidth * .28,
+            minY + faceHeight * .2,
+            0,
+            minX + faceWidth * .28,
+            minY + faceHeight * .2,
+            Math.max(faceWidth, faceHeight) * .66
+          );
+          specular.addColorStop(0, "rgba(255,255,255,.25)");
+          specular.addColorStop(.22, "rgba(255,255,255,.09)");
+          specular.addColorStop(1, "rgba(255,255,255,0)");
+          context.fillStyle = specular;
+          context.fillRect(minX, minY, faceWidth, faceHeight);
+          context.restore();
+        }
       });
 
-      const gloss = context.createRadialGradient(logicalSize * .31, logicalSize * .24, 0, logicalSize * .31, logicalSize * .24, logicalSize * .45);
-      gloss.addColorStop(0, "rgba(255,255,255,.24)");
-      gloss.addColorStop(.28, "rgba(255,255,255,.06)");
+      const gloss = context.createRadialGradient(logicalSize * .3, logicalSize * .22, 0, logicalSize * .3, logicalSize * .22, logicalSize * .47);
+      gloss.addColorStop(0, "rgba(255,255,255,.2)");
+      gloss.addColorStop(.3, "rgba(255,255,255,.045)");
       gloss.addColorStop(1, "rgba(255,255,255,0)");
       context.globalCompositeOperation = "source-atop";
       context.fillStyle = gloss;
