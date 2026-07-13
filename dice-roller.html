@@ -544,6 +544,10 @@
       rolling: false,
       results: [],
       audioContext: null,
+      rollSequence: 0,
+      shuffleTimer: null,
+      finishTimer: null,
+      pendingAddedSides: [],
     };
 
     const field = document.querySelector("#dice-field");
@@ -1130,6 +1134,15 @@
       return results.reduce((sum, result) => sum + result.value, 0) + Number(modifierInput.value || 0);
     }
 
+    function cancelPendingRoll() {
+      state.rollSequence += 1;
+      if (state.shuffleTimer) window.clearInterval(state.shuffleTimer);
+      if (state.finishTimer) window.clearTimeout(state.finishTimer);
+      state.shuffleTimer = null;
+      state.finishTimer = null;
+      return state.rollSequence;
+    }
+
     function showFinalResults(results, mode, trackedDice = results.map((result) => result.sides)) {
       state.results = results;
       const renderedDice = Array.from(field.querySelectorAll(".rolled-die"));
@@ -1154,30 +1167,39 @@
       const resultText = results.map((result) => `D${result.sides}: ${result.value}`).join(", ");
       note.textContent = `${resultText}${modifier ? `, modifier ${modifier > 0 ? "+" : ""}${modifier}` : ""}.`;
       state.rolling = false;
+      state.shuffleTimer = null;
+      state.finishTimer = null;
       rollButton.disabled = false;
       deleteButton.disabled = false;
       trackRoll(trackedDice, rollTotal, mode);
+      state.pendingAddedSides = [];
     }
 
     function previewAddedDie(sides) {
+      const wasRolling = state.rolling;
+      const sequence = cancelPendingRoll();
+      if (!wasRolling) state.pendingAddedSides = [];
+      state.pendingAddedSides.push(sides);
       state.rolling = true;
       rollButton.disabled = true;
       deleteButton.disabled = true;
       const addedResult = { sides, value: randomDie(sides) };
       const previewResults = [...state.results, addedResult];
+      state.results = previewResults;
       const focusIndex = previewResults.length - 1;
       playDiceSound(.86, 1.05);
       renderDice(previewResults, true, focusIndex);
       note.textContent = `Rolling the new D${sides}...`;
 
-      const numberShuffle = window.setInterval(() => {
+      state.shuffleTimer = window.setInterval(() => {
         const focused = field.querySelector(`[data-result-index="${focusIndex}"]`);
         if (focused) focused.querySelector("span").textContent = String(randomDie(sides));
       }, 64);
 
-      window.setTimeout(() => {
-        window.clearInterval(numberShuffle);
-        showFinalResults(previewResults, "click_to_add", [sides]);
+      state.finishTimer = window.setTimeout(() => {
+        if (sequence !== state.rollSequence) return;
+        window.clearInterval(state.shuffleTimer);
+        showFinalResults(previewResults, "click_to_add", [...state.pendingAddedSides]);
       }, ROLL_DURATION + 40);
     }
 
@@ -1189,6 +1211,8 @@
       }
 
       state.rolling = true;
+      const sequence = cancelPendingRoll();
+      state.pendingAddedSides = [];
       rollButton.disabled = true;
       deleteButton.disabled = true;
       playDiceSound(1, 1.12);
@@ -1198,22 +1222,22 @@
       renderDice(preview, true);
       note.textContent = "Rolling...";
 
-      const numberShuffle = window.setInterval(() => {
+      state.shuffleTimer = window.setInterval(() => {
         field.querySelectorAll(".rolled-die").forEach((die, index) => {
           const value = randomDie(dice[index]);
           die.querySelector("span").textContent = String(value);
         });
       }, 70);
 
-      window.setTimeout(() => {
-        window.clearInterval(numberShuffle);
+      state.finishTimer = window.setTimeout(() => {
+        if (sequence !== state.rollSequence) return;
+        window.clearInterval(state.shuffleTimer);
         showFinalResults(finalResults, "animated_roller", dice);
       }, ROLL_DURATION + 40);
     }
 
     document.querySelectorAll("[data-die]").forEach((button) => {
       button.addEventListener("click", () => {
-        if (state.rolling) return;
         if (selectedDice().length >= 16) {
           note.textContent = "The rolling area supports up to 16 dice at one time.";
           return;
