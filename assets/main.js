@@ -1,12 +1,92 @@
-const toggle = document.querySelector(".nav-toggle");
-const links = document.querySelector(".nav-links");
+const nav = document.querySelector(".nav");
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.querySelector(".nav-links");
+const navDropdowns = Array.from(document.querySelectorAll(".has-dropdown"));
+const mobileNavigation = window.matchMedia("(max-width: 1080px)");
 
-if (toggle && links) {
-  toggle.addEventListener("click", () => {
-    const isOpen = links.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", String(isOpen));
+function setDropdownState(dropdown, isOpen) {
+  const dropdownToggle = dropdown.querySelector(".dropdown-toggle");
+  dropdown.classList.toggle("is-open", isOpen);
+
+  if (dropdownToggle) {
+    dropdownToggle.setAttribute("aria-expanded", String(isOpen));
+  }
+}
+
+function closeDropdowns(exceptDropdown = null) {
+  navDropdowns.forEach((dropdown) => {
+    if (dropdown !== exceptDropdown) {
+      setDropdownState(dropdown, false);
+    }
   });
 }
+
+function closeNavigation() {
+  closeDropdowns();
+
+  if (navLinks) {
+    navLinks.classList.remove("open");
+  }
+
+  if (navToggle) {
+    navToggle.setAttribute("aria-expanded", "false");
+  }
+}
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+
+    if (!isOpen) {
+      closeDropdowns();
+    }
+  });
+}
+
+navDropdowns.forEach((dropdown) => {
+  const dropdownToggle = dropdown.querySelector(".dropdown-toggle");
+
+  if (!dropdownToggle) {
+    return;
+  }
+
+  dropdownToggle.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const shouldOpen = !dropdown.classList.contains("is-open");
+    closeDropdowns(dropdown);
+    setDropdownState(dropdown, shouldOpen);
+  });
+});
+
+if (navLinks) {
+  navLinks.querySelectorAll("a[href]").forEach((link) => {
+    link.addEventListener("click", () => {
+      closeNavigation();
+    });
+  });
+}
+
+document.addEventListener("click", (event) => {
+  if (nav && !nav.contains(event.target)) {
+    closeNavigation();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") {
+    return;
+  }
+
+  const navigationWasOpen = Boolean(navLinks && navLinks.classList.contains("open"));
+  closeNavigation();
+
+  if (navigationWasOpen && navToggle) {
+    navToggle.focus();
+  }
+});
+
+mobileNavigation.addEventListener("change", closeNavigation);
 
 const formsubmitForm = document.querySelector("[data-formsubmit-form]");
 const GA_CALLBACK_TIMEOUT = 700;
