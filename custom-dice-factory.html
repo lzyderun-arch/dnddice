@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Custom Dice Factory & Production Process | DND Custom Dice</title>
+  <meta name="description" content="See our custom dice factory, metal and resin manufacturing steps, real production photos, quality checks, packaging, samples, and B2B customization.">
+  <meta name="keywords" content="custom dice factory, custom dice manufacturer, dice manufacturing process, metal dice manufacturing, resin dice manufacturing, RPG dice factory">
+  <link rel="canonical" href="https://dndcustomdice.com/custom-dice-factory">
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Custom Dice Factory & Production Process | DND Custom Dice">
+  <meta property="og:description" content="Real factory photos and step-by-step metal and resin dice production for custom wholesale projects.">
+  <meta property="og:url" content="https://dndcustomdice.com/custom-dice-factory">
+  <meta property="og:image" content="https://dndcustomdice.com/assets/factory/factory-exterior.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Custom Dice Factory & Production Process">
+  <meta name="twitter:description" content="Review real metal and resin dice production steps, QC, packaging, and customization options.">
+  <meta name="twitter:image" content="https://dndcustomdice.com/assets/factory/factory-exterior.webp">
+  <link rel="stylesheet" href="assets/styles.css?v=20260625-2">
+  <style>
+    .factory-hero {
+      position: relative;
+      display: grid;
+      min-height: 620px;
+      align-items: end;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: #090909 url("assets/factory/factory-exterior.webp") center 52% / cover no-repeat;
+      color: #fff;
+      isolation: isolate;
+    }
+
+    .factory-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(90deg, rgba(0, 0, 0, .9) 0%, rgba(0, 0, 0, .65) 48%, rgba(0, 0, 0, .28) 78%, rgba(0, 0, 0, .34) 100%);
+    }
+
+    .factory-hero .section {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding-top: 96px;
+      padding-bottom: 72px;
+    }
+    .factory-hero-copy { max-width: 780px; }
+    .factory-hero h1 { max-width: 760px; margin-bottom: 22px; }
+    .factory-hero .lead { max-width: 720px; color: #f4ead8; }
+
+    .proof-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .proof-bar > div {
+      min-height: 126px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 24px;
+    }
+
+    .proof-bar strong { display: block; margin-bottom: 7px; color: var(--gold); font-size: 1.06rem; }
+    .proof-bar span { color: var(--muted); }
+
+    .factory-gallery {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .factory-gallery figure,
+    .process-step figure,
+    .trust-media { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 4px; background: #101010; }
+    .factory-gallery img { width: 100%; height: 300px; object-fit: cover; }
+    .factory-gallery figure:first-child img { height: 360px; }
+    .factory-gallery figcaption,
+    .process-step figcaption { padding: 13px 15px; color: var(--muted); font-size: .88rem; }
+
+    .process-header {
+      display: grid;
+      grid-template-columns: minmax(0, .78fr) minmax(320px, 1.22fr);
+      gap: 44px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .process-path {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .process-path li {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: #f4ead8;
+      font-size: .84rem;
+      font-weight: 700;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      counter-reset: process-step;
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: minmax(210px, .88fr) minmax(0, 1.12fr);
+      min-height: 290px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #11100e;
+      counter-increment: process-step;
+    }
+
+    .process-step figure { border: 0; border-radius: 0; }
+    .process-step img { width: 100%; height: 100%; min-height: 250px; object-fit: cover; }
+    .process-copy { padding: 25px 24px; }
+    .process-copy::before {
+      content: "0" counter(process-step);
+      display: block;
+      margin-bottom: 15px;
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .process-copy h3 { margin-bottom: 10px; }
+    .process-copy p { margin: 0; color: var(--muted); }
+    .process-step-wide { grid-column: 1 / -1; grid-template-columns: minmax(340px, .76fr) minmax(0, 1.24fr); }
+
+    .trust-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, .92fr);
+      gap: 42px;
+      align-items: center;
+    }
+
+    .trust-media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+    .buyer-checklist {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .buyer-checklist div { border-top: 1px solid var(--line); padding: 17px 0 0; }
+    .buyer-checklist strong { display: block; margin-bottom: 6px; color: #f4ead8; }
+    .buyer-checklist span { color: var(--muted); }
+
+    .factory-cta {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(310px, .8fr);
+      gap: 36px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #15120d;
+      padding: 40px;
+    }
+
+    .factory-cta ul { margin: 0; color: var(--muted); }
+
+    @media (max-width: 980px) {
+      .proof-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .factory-gallery { grid-template-columns: 1fr 1fr; }
+      .factory-gallery figure:first-child { grid-column: 1 / -1; }
+      .factory-gallery figure:first-child img { height: 340px; }
+      .process-grid { grid-template-columns: 1fr; }
+      .process-step-wide { grid-column: auto; }
+      .process-header,
+      .trust-split,
+      .factory-cta { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .factory-hero { min-height: 560px; background-position: 60% 50%; }
+      .factory-hero .section { padding-top: 64px; padding-bottom: 46px; }
+      .proof-bar,
+      .factory-gallery,
+      .buyer-checklist { grid-template-columns: 1fr; }
+      .factory-gallery figure:first-child { grid-column: auto; }
+      .factory-gallery img,
+      .factory-gallery figure:first-child img { height: 260px; }
+      .process-step,
+      .process-step-wide { grid-template-columns: 1fr; }
+      .process-step img { min-height: 0; aspect-ratio: 4 / 3; }
+      .factory-cta { padding: 28px 22px; }
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JB9554D4TW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JB9554D4TW');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://dndcustomdice.com/custom-dice-factory#webpage",
+        "url": "https://dndcustomdice.com/custom-dice-factory",
+        "name": "Custom Dice Factory & Production Process",
+        "description": "Real factory photos and a step-by-step explanation of metal and resin dice manufacturing, quality inspection, packaging, and custom project control.",
+        "dateModified": "2026-07-16",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://dndcustomdice.com/assets/factory/factory-exterior.webp",
+          "width": 1800,
+          "height": 1100
+        },
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "DND Custom Dice",
+          "url": "https://dndcustomdice.com/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dndcustomdice.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Quality and Manufacturing", "item": "https://dndcustomdice.com/quality-manufacturing"},
+          {"@type": "ListItem", "position": 3, "name": "Custom Dice Factory", "item": "https://dndcustomdice.com/custom-dice-factory"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the metal dice manufacturing process?",
+            "acceptedAnswer": {"@type": "Answer", "text": "The metal dice process shown here includes mold making, die casting, polishing, electroplating, coloring, and packaging. Custom geometry, faces, finish, number color, and packaging are reviewed before bulk production."}
+          },
+          {
+            "@type": "Question",
+            "name": "What is the resin dice manufacturing process?",
+            "acceptedAnswer": {"@type": "Answer", "text": "The resin dice process includes master model making, mold making, resin casting, polishing, laser engraving, coloring, and packaging. Samples are used to review shape, color, inclusions, readability, and finish."}
+          },
+          {
+            "@type": "Question",
+            "name": "Can buyers approve a custom dice sample before production?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Yes. Sample review can confirm material, color, surface finish, number fill, custom faces, packaging fit, and visual expectations before the bulk order is released."}
+          },
+          {
+            "@type": "Question",
+            "name": "Which custom details should be included in a factory quote request?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Send the dice material, dice type, custom face or logo artwork, color reference, finish, estimated quantity, packaging format, delivery country, and target launch date."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header"><nav class="nav"><a class="brand" href="/"><span class="brand-mark">D20</span><span>DND Custom Dice</span></a><button class="nav-toggle" type="button">Menu</button><div class="nav-links"><a href="wholesale-dice">Wholesale</a><a href="wholesale-dice-catalog">Catalog</a><a href="custom-rpg-dice">Custom Dice</a><a href="fantasy-rpg-dice-themes">Themes</a><a href="sample-kits">Sample Kits</a><a href="quality-manufacturing">Quality</a><a href="blog/">Blog</a><a class="nav-contact" href="https://wa.me/8613922851014">WhatsApp</a><a class="button" href="request-a-quote">Request Quote</a></div></nav></header>
+  <main>
+    <section class="factory-hero">
+      <div class="section">
+        <div class="factory-hero-copy">
+          <div class="breadcrumbs"><a href="/">Home</a> / <a href="quality-manufacturing">Quality</a> / Factory</div>
+          <div class="eyebrow">Custom Dice Factory</div>
+          <h1>Custom dice factory and production process.</h1>
+          <p class="lead">See how custom metal dice and custom resin dice move from molds and casting through polishing, coloring, quality inspection, and packaging. These real production photos show the workflow behind B2B samples, custom projects, and repeat wholesale orders.</p>
+          <div class="hero-actions"><a class="button" href="request-a-quote?source=factory-page">Discuss a Custom Project</a><a class="button secondary" href="#metal-process">View Production Steps</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="proof-bar" aria-label="Factory capabilities">
+        <div><strong>Metal dice production</strong><span>Mold making, die casting, polishing, plating, coloring, and packing.</span></div>
+        <div><strong>Resin dice production</strong><span>Master models, molds, casting, polishing, engraving, coloring, and packing.</span></div>
+        <div><strong>Custom project control</strong><span>Artwork, material, finish, number color, sample, and packaging review.</span></div>
+        <div><strong>B2B order preparation</strong><span>SKU separation, inspection, packaging checks, and warehouse staging.</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="split">
+        <div>
+          <div class="eyebrow">Real Production Evidence</div>
+          <h2>A visible workflow builds more trust than a product list alone.</h2>
+        </div>
+        <div>
+          <p>Custom dice buyers need to know how a design becomes a repeatable physical product. Factory photos make the key control points visible: tooling, casting, surface finishing, engraving, number filling, inspection, and retail packing.</p>
+          <p>For brands, game stores, distributors, crowdfunding projects, and event suppliers, this process supports better sample feedback and clearer production requirements before a bulk order begins.</p>
+        </div>
+      </div>
+      <div class="factory-gallery">
+        <figure><img src="assets/factory/metal-dice-die-casting.webp" width="1200" height="900" loading="lazy" alt="Metal dice die casting workshop with production machinery and cast components"><figcaption>Metal die casting workshop and equipment used for repeatable component production.</figcaption></figure>
+        <figure><img src="assets/factory/resin-dice-casting.webp" width="1200" height="900" loading="lazy" alt="Worker casting resin into a multi-cavity custom dice mold"><figcaption>Resin casting into multi-cavity molds for controlled batch production.</figcaption></figure>
+        <figure><img src="assets/factory/factory-quality-inspection.webp" width="1200" height="900" loading="lazy" alt="Factory workers inspecting and sorting finished blue polyhedral dice"><figcaption>Visual inspection, sorting, and bagging before final packaging.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="band" id="metal-process">
+      <div class="section">
+        <div class="process-header">
+          <div>
+            <div class="eyebrow">Metal Dice Manufacturing</div>
+            <h2>Metal dice manufacturing process.</h2>
+          </div>
+          <div>
+            <p>The metal dice workflow turns an approved shape and face design into a plated, colored, and packed product. Each stage affects weight, edge feel, surface consistency, finish color, and number readability.</p>
+            <ol class="process-path" aria-label="Metal dice process summary"><li>Mold</li><li>Die Casting</li><li>Polishing</li><li>Electroplating</li><li>Coloring</li><li>Packaging</li></ol>
+          </div>
+        </div>
+        <div class="process-grid">
+          <article class="process-step">
+            <figure><img src="assets/factory/metal-dice-mold-making.webp" width="1200" height="900" loading="lazy" alt="Technician machining a metal dice production mold"><figcaption>Tooling preparation for the approved metal dice shape.</figcaption></figure>
+            <div class="process-copy"><h3>Mold making</h3><p>The approved dice geometry, face layout, symbols, and production method are translated into tooling. Accurate mold preparation supports consistent shape and repeatable custom faces across a production batch.</p></div>
+          </article>
+          <article class="process-step">
+            <figure><img src="assets/factory/metal-dice-die-casting.webp" width="1200" height="900" loading="lazy" alt="Metal dice parts moving through die casting equipment"><figcaption>Die casting machinery and freshly cast components.</figcaption></figure>
+            <div class="process-copy"><h3>Die casting</h3><p>Molten metal is formed with the production tooling. The cast parts are separated and prepared for finishing. This stage establishes the core weight, structure, and surface that later polishing and plating refine.</p></div>
+          </article>
+          <article class="process-step">
+            <figure><img src="assets/factory/metal-dice-polishing.webp" width="1200" height="900" loading="lazy" alt="Worker polishing metal polyhedral dice at a buffing wheel"><figcaption>Manual polishing before the selected metal finish is applied.</figcaption></figure>
+            <div class="process-copy"><h3>Polishing</h3><p>Cast surfaces and edges are polished to remove roughness and prepare the dice for plating. The target finish is reviewed for surface uniformity, edge feel, and readable face details.</p></div>
+          </article>
+          <article class="process-step">
+            <figure><img src="assets/factory/metal-dice-electroplating.webp" width="1200" height="900" loading="lazy" alt="Metal d20 and d4 dice suspended on racks during electroplating"><figcaption>Metal polyhedral dice arranged on racks for electroplating.</figcaption></figure>
+            <div class="process-copy"><h3>Electroplating</h3><p>The selected surface finish is applied after polishing. Finish choices are matched to the approved sample so the product line has a consistent visual direction before the recessed numbers are colored.</p></div>
+          </article>
+          <article class="process-step">
+            <figure><img src="assets/factory/metal-dice-coloring.webp" width="1200" height="900" loading="lazy" alt="Worker hand coloring numbers on plated metal dice"><figcaption>Hand filling recessed numbers on plated metal dice.</figcaption></figure>
+            <div class="process-copy"><h3>Coloring</h3><p>Number and symbol recesses are filled with the approved color. Contrast, fill coverage, and surface cleanup are checked because readable faces are central to both gameplay and retail presentation.</p></div>
+          </article>
+          <article class="process-step">
+            <figure><img src="assets/factory/custom-dice-packaging.webp" width="1200" height="900" loading="lazy" alt="Workers packing finished custom dice into metal presentation boxes"><figcaption>Retail box assembly and set packing for finished dice.</figcaption></figure>
+            <div class="process-copy"><h3>Packaging</h3><p>Finished sets are counted, matched to the correct SKU, and packed into the approved box, tin, bag, or private label format. Packaging artwork, inserts, labels, and carton requirements are confirmed before shipment.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="resin-process">
+      <div class="process-header">
+        <div>
+          <div class="eyebrow">Resin Dice Manufacturing</div>
+          <h2>Resin dice manufacturing process.</h2>
+        </div>
+        <div>
+          <p>Custom resin dice involve more manual control over color, inclusions, casting, surface finishing, engraving, and number fill. Physical samples are especially useful when buyers need to approve handmade visual variation.</p>
+          <ol class="process-path" aria-label="Resin dice process summary"><li>Master Model</li><li>Mold</li><li>Resin Casting</li><li>Polishing</li><li>Laser Engraving</li><li>Coloring</li><li>Packaging</li></ol>
+        </div>
+      </div>
+      <div class="process-grid">
+        <article class="process-step">
+          <figure><img src="assets/factory/resin-dice-master-model.webp" width="1200" height="900" loading="lazy" alt="Worker preparing master models for custom resin dice molds"><figcaption>Master dice preparation before mold production.</figcaption></figure>
+          <div class="process-copy"><h3>Master model making</h3><p>The custom face layout, logo, number style, and dice geometry are prepared as master pieces. These models define the shape that the production molds will reproduce.</p></div>
+        </article>
+        <article class="process-step">
+          <figure><img src="assets/factory/resin-dice-mold-making.webp" width="1200" height="900" loading="lazy" alt="Rows of silicone molds prepared for resin polyhedral dice casting"><figcaption>Multi-cavity silicone molds prepared for resin casting.</figcaption></figure>
+          <div class="process-copy"><h3>Mold making</h3><p>Production molds are made from the approved master models. Mold condition and cavity shape influence edge consistency, face detail, and the amount of finishing required after casting.</p></div>
+        </article>
+        <article class="process-step">
+          <figure><img src="assets/factory/resin-dice-casting.webp" width="1200" height="900" loading="lazy" alt="Resin being poured into custom dice mold cavities"><figcaption>Controlled resin casting into prepared dice molds.</figcaption></figure>
+          <div class="process-copy"><h3>Resin casting</h3><p>Resin, pigments, and approved decorative inclusions are prepared and cast into the molds. Color references and sample expectations guide the batch while allowing for the natural variation of handmade resin work.</p></div>
+        </article>
+        <article class="process-step">
+          <figure><img src="assets/factory/resin-dice-polishing.webp" width="1200" height="900" loading="lazy" alt="Worker polishing a resin die against a finishing wheel"><figcaption>Individual surface polishing for clear faces and clean edges.</figcaption></figure>
+          <div class="process-copy"><h3>Polishing</h3><p>Resin dice are finished to improve clarity, remove casting marks, and refine the surface. The target can vary by product type, including sharp edge resin dice and other specialty forms.</p></div>
+        </article>
+        <article class="process-step">
+          <figure><img src="assets/factory/resin-dice-laser-engraving.webp" width="1200" height="900" loading="lazy" alt="Laser engraving workstation marking numbers on resin dice"><figcaption>Laser engraving custom numbers and face details.</figcaption></figure>
+          <div class="process-copy"><h3>Laser engraving</h3><p>Numbers, logos, or selected custom face details are engraved after surface preparation. Artwork needs to balance brand detail with practical readability at the final dice size.</p></div>
+        </article>
+        <article class="process-step">
+          <figure><img src="assets/factory/resin-dice-coloring.webp" width="1200" height="900" loading="lazy" alt="Worker coloring engraved numbers on blue and purple resin dice"><figcaption>Hand coloring engraved numbers on finished resin dice.</figcaption></figure>
+          <div class="process-copy"><h3>Coloring</h3><p>The engraved recesses are filled with the selected number color. Workers check contrast, coverage, and cleanup so the finished dice remain readable and match the approved product concept.</p></div>
+        </article>
+        <article class="process-step process-step-wide">
+          <figure><img src="assets/factory/custom-dice-packaging.webp" width="1200" height="900" loading="lazy" alt="Bulk custom resin dice sets being assembled in retail presentation boxes"><figcaption>Set assembly, box preparation, and SKU packing.</figcaption></figure>
+          <div class="process-copy"><h3>Packaging</h3><p>Approved resin sets are assembled and packed for wholesale delivery. Buyers can plan bags, tins, rigid boxes, display cartons, inserts, labels, and other private label packaging around the target retail channel.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="section trust-split">
+        <div>
+          <div class="eyebrow">Customization Control Points</div>
+          <h2>Where buyers can define the custom product.</h2>
+          <p>A custom dice project is not limited to choosing a color. The production brief should connect the game concept, material, faces, finish, number readability, packaging, and sales channel.</p>
+          <div class="buyer-checklist">
+            <div><strong>Shape and faces</strong><span>Standard polyhedral sets, custom d20 faces, logos, symbols, and compatible artwork.</span></div>
+            <div><strong>Material and finish</strong><span>Resin, metal, surface finish, transparency, color direction, and decorative inclusions.</span></div>
+            <div><strong>Number treatment</strong><span>Font, engraving, recessed details, number fill, contrast, and readability.</span></div>
+            <div><strong>Retail packaging</strong><span>Bags, tins, boxes, inserts, labels, display formats, and private label artwork.</span></div>
+          </div>
+          <div class="hero-actions"><a class="button" href="custom-rpg-dice">Review Custom Dice Options</a><a class="button secondary" href="custom-dice-sample-kit">Plan a Sample Review</a></div>
+        </div>
+        <figure class="trust-media"><img src="assets/factory/factory-warehouse.webp" width="1200" height="900" loading="lazy" alt="Dice factory warehouse shelves holding organized production inventory"></figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="split">
+        <div>
+          <div class="eyebrow">Sample, QC, and Packing</div>
+          <h2>Approval points before a custom dice order ships.</h2>
+        </div>
+        <div>
+          <ul class="feature-list">
+            <li>Confirm artwork, custom faces, material, color references, finish, and packaging requirements.</li>
+            <li>Review physical samples or detailed sample evidence before bulk production is released.</li>
+            <li>Check surface finish, edge condition, number fill, readability, set completeness, and SKU matching.</li>
+            <li>Verify box artwork, inserts, labels, set counts, inner packing, and export carton marks.</li>
+          </ul>
+          <p>For more inspection detail, see our <a href="quality-manufacturing">RPG dice quality control</a> page and the <a href="how-to-order-custom-rpg-dice">custom dice ordering guide</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <div class="eyebrow">Factory FAQ</div>
+      <h2>Custom dice manufacturing questions.</h2>
+      <details open><summary>What is the metal dice manufacturing process?</summary><p>The metal dice process shown here includes mold making, die casting, polishing, electroplating, coloring, and packaging. Custom geometry, faces, finish, number color, and packaging are reviewed before bulk production.</p></details>
+      <details><summary>What is the resin dice manufacturing process?</summary><p>The resin dice process includes master model making, mold making, resin casting, polishing, laser engraving, coloring, and packaging. Samples are used to review shape, color, inclusions, readability, and finish.</p></details>
+      <details><summary>Can I approve a custom dice sample before production?</summary><p>Yes. Sample review can confirm material, color, surface finish, number fill, custom faces, packaging fit, and visual expectations before the bulk order is released.</p></details>
+      <details><summary>What should I send for a custom dice factory quote?</summary><p>Send the dice material, dice type, custom face or logo artwork, color reference, finish, estimated quantity, packaging format, delivery country, and target launch date. Add reference images when the visual direction is difficult to describe.</p></details>
+      <details><summary>Can metal and resin dice use custom packaging?</summary><p>Yes. Packaging can be planned around bags, tins, rigid boxes, inserts, labels, display cartons, gift sets, and private label retail requirements. The exact structure is confirmed with the product size and order plan.</p></details>
+    </section>
+
+    <section class="section compact">
+      <div class="factory-cta">
+        <div>
+          <div class="eyebrow">Start With a Complete Brief</div>
+          <h2>Request a custom dice production review.</h2>
+          <p>Send enough information for the team to recommend the right material, tooling path, sample plan, packaging format, and quotation scope.</p>
+          <div class="hero-actions"><a class="button" href="request-a-quote?source=custom-dice-factory">Request a Factory Quote</a><a class="button secondary" href="https://wa.me/8613922851014?text=Hello%2C%20I%20want%20to%20discuss%20a%20custom%20dice%20manufacturing%20project.">Send Details on WhatsApp</a></div>
+        </div>
+        <ul>
+          <li>Metal or resin dice and target set type</li>
+          <li>Logo, custom face, or number artwork</li>
+          <li>Color and finish references</li>
+          <li>Estimated quantity and packaging format</li>
+          <li>Delivery country and target launch date</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="section compact footer-grid">
+      <div>
+        <a class="brand" href="/"><span class="brand-mark">D20</span><span>DND Custom Dice</span></a>
+        <p style="margin-top: 14px;">Wholesale 5e-compatible fantasy RPG dice, custom polyhedral dice, real product samples, and private label packaging for B2B buyers worldwide.</p>
+        <div class="contact-line"><a href="mailto:Info@dndcustomdice.com">Email: Info@dndcustomdice.com</a><a href="https://wa.me/8613922851014">WhatsApp: +86 13922851014</a></div>
+      </div>
+      <div><strong>Programs</strong><div class="footer-links"><a href="/free-wholesale-dice-sample-kit-catalog-request">Free Catalog & Sample Kit Request</a><a href="/custom-dice-factory">Custom Dice Factory</a><a href="/wholesale-dice">Wholesale Dice</a><a href="/wholesale-dice-catalog">Wholesale Catalog</a><a href="/wholesale-resin-dice">Wholesale Resin Dice</a><a href="/sharp-edge-resin-dice-wholesale">Sharp Edge Resin Dice</a><a href="/liquid-core-dice-manufacturer">Liquid Core Manufacturer</a><a href="/metal-dice-wholesale">Metal Dice Wholesale</a><a href="/bulk-polyhedral-dice">Bulk Polyhedral Dice</a><a href="/types-of-dnd-dice">Types of DND Dice</a><a href="/dice-roller">Dice Roller</a><a href="/sample-kits">Sample Kits</a></div></div>
+      <div><strong>Themes</strong><div class="footer-links"><a href="/dragon-dice-wholesale">Dragon Dice</a><a href="/character-class-dice">Class Dice</a><a href="/elemental-dice-sets">Elemental Dice</a><a href="/dungeon-relic-dice">Dungeon Relic Dice</a><a href="/wholesale-d20-dice">Wholesale D20 Dice</a></div></div>
+      <div><strong>Buyers</strong><div class="footer-links"><a href="/game-store-dice-supplier">Game Store Dice Supplier</a><a href="/kickstarter-dice-manufacturer">Kickstarter Dice Manufacturer</a><a href="/custom-dice-packaging-supplier">Packaging Supplier</a><a href="/wholesale-dice-moq">Wholesale MOQ Guide</a><a href="/custom-dice-sample-kit">Sample Kit Guide</a><a href="/how-to-order-custom-rpg-dice">How to Order</a><a href="/quality-manufacturing">Quality</a><a href="/faq">FAQ</a><a href="/request-a-quote">Request Quote</a></div></div>
+      <p class="disclaimer">DND-inspired and 5e-compatible are used descriptively for tabletop RPG compatibility. This website is not affiliated with, endorsed by, or sponsored by any official game publisher.</p>
+    </div>
+  </footer>
+  <script src="assets/main.js?v=20260708-chat"></script>
+</body>
+</html>
