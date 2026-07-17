@@ -816,6 +816,7 @@ h3 {
 
 .product-shot img {
   width: 100%;
+  height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   background: #f6f6f1;
