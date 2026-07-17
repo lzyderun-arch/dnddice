@@ -367,7 +367,7 @@ h3 {
   min-height: 680px;
   background:
     linear-gradient(90deg, rgba(20, 20, 20, 0.88) 0%, rgba(20, 20, 20, 0.74) 37%, rgba(20, 20, 20, 0.2) 72%),
-    url("fantasy-rpg-dice-hero.png") center right / cover no-repeat;
+    url("fantasy-rpg-dice-hero.webp") center right / cover no-repeat;
   color: var(--white);
 }
 
@@ -594,40 +594,40 @@ h3 {
 }
 
 .bg-wholesale {
-  --page-hero-image: url("wholesale-sample-kit.png");
+  --page-hero-image: url("wholesale-sample-kit.webp");
 }
 
 .bg-custom {
-  --page-hero-image: url("custom-dice-packaging.png");
+  --page-hero-image: url("custom-dice-packaging.webp");
 }
 
 .bg-themes {
-  --page-hero-image: url("class-elemental-dice.png");
+  --page-hero-image: url("class-elemental-dice.webp");
 }
 
 .bg-dragon {
-  --page-hero-image: url("dragon-dice-series.png");
+  --page-hero-image: url("dragon-dice-series.webp");
 }
 
 .bg-class,
 .bg-elemental {
-  --page-hero-image: url("class-elemental-dice.png");
+  --page-hero-image: url("class-elemental-dice.webp");
 }
 
 .bg-dungeon,
 .bg-sample,
 .bg-blog {
-  --page-hero-image: url("wholesale-sample-kit.png");
+  --page-hero-image: url("wholesale-sample-kit.webp");
 }
 
 .bg-packaging,
 .bg-quote {
-  --page-hero-image: url("custom-dice-packaging.png");
+  --page-hero-image: url("custom-dice-packaging.webp");
 }
 
 .bg-quality,
 .bg-faq {
-  --page-hero-image: url("factory-quality-control.png");
+  --page-hero-image: url("factory-quality-control.webp");
 }
 
 .breadcrumbs {
@@ -1189,7 +1189,7 @@ h3 {
     min-height: 620px;
     background:
       linear-gradient(180deg, rgba(20, 20, 20, 0.9) 0%, rgba(20, 20, 20, 0.68) 64%, rgba(20, 20, 20, 0.38) 100%),
-      url("fantasy-rpg-dice-hero.png") center / cover no-repeat;
+      url("fantasy-rpg-dice-hero.webp") center / cover no-repeat;
   }
 
   .hero .section {

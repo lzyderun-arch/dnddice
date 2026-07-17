@@ -23,12 +23,12 @@ This is a static B2B website for a wholesale 5e-compatible fantasy RPG dice supp
 
 The site currently uses original AI-generated placeholder imagery under `assets/`:
 
-- `fantasy-rpg-dice-hero.png` - homepage hero product image
-- `factory-quality-control.png` - factory, polishing, inspection, and QC image
-- `custom-dice-packaging.png` - private label packaging and display options
-- `dragon-dice-series.png` - dragon theme product collection
-- `class-elemental-dice.png` - character class and elemental dice collection
-- `wholesale-sample-kit.png` - sample kit and retail display assortment
+- `fantasy-rpg-dice-hero.webp` - homepage hero product image
+- `factory-quality-control.webp` - factory, polishing, inspection, and QC image
+- `custom-dice-packaging.webp` - private label packaging and display options
+- `dragon-dice-series.webp` - dragon theme product collection
+- `class-elemental-dice.webp` - character class and elemental dice collection
+- `wholesale-sample-kit.webp` - sample kit and retail display assortment
 
 Replace these with real factory and product photos when available. Keep the same filenames if you want to avoid editing page references.
 
