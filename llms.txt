@@ -53,6 +53,7 @@ Core product categories:
 - Online DND dice roller tool: https://dndcustomdice.com/dice-roller
 - Request quote: https://dndcustomdice.com/request-a-quote
 - Blog index: https://dndcustomdice.com/blog/
+- 5e grapple rules for 2014 and updated play: https://dndcustomdice.com/blog/5e-grapple-rules
 - Bard 5e build, spells, strategy, roleplay, and Bard dice guide: https://dndcustomdice.com/blog/bard-5e-guide
 - Blog guide: https://dndcustomdice.com/blog/how-to-choose-wholesale-resin-dice-for-game-stores
 - Blog guide: https://dndcustomdice.com/blog/sharp-edge-resin-dice-vs-standard-resin-dice
@@ -91,6 +92,7 @@ Core product categories:
 - What are the production steps for custom metal dice and custom resin dice?
 - How should a player build and play a Bard in 5e?
 - What dice does a Bard need and how can Bardic Inspiration dice be tracked?
+- How do grapple checks, saving throw DCs, escapes, movement, and shove tactics differ between 2014 and updated 5e rules?
 
 ## Quote Checklist
 

@@ -1163,10 +1163,16 @@ h3 {
   font-size: 1.25rem;
 }
 
-.article-body ul {
+.article-body ul,
+.article-body ol {
   display: grid;
   gap: 12px;
   padding-left: 24px;
+}
+
+.article-body .product-table {
+  margin: 26px 0 34px;
+  font-size: 0.94rem;
 }
 
 .article-note {

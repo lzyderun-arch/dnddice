@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>5e Grapple Rules: 2014 vs Updated Rules Explained</title>
+  <meta name="description" content="Learn 5e grapple rules for 2014 and updated play: grapple checks, save DCs, the Grappled condition, escaping, movement, shove tactics, and FAQs.">
+  <link rel="canonical" href="https://dndcustomdice.com/blog/5e-grapple-rules">
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt">
+  <link rel="preload" as="image" href="../assets/blog/5e-grapple-rules-hero.webp" type="image/webp">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="5e Grapple Rules: 2014 vs Updated Rules Explained">
+  <meta property="og:description" content="A clear guide to grappling, escaping, moving creatures, shove tactics, and the differences between 2014 and updated 5e rules.">
+  <meta property="og:url" content="https://dndcustomdice.com/blog/5e-grapple-rules">
+  <meta property="og:image" content="https://dndcustomdice.com/assets/blog/5e-grapple-rules-hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260720-grapple-guide">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://dndcustomdice.com/blog/5e-grapple-rules#article",
+        "headline": "5e Grapple Rules: 2014 vs Updated Rules Explained",
+        "description": "A practical guide to 5e grapple rules, including checks, save DCs, the Grappled condition, movement, escaping, shove tactics, and common questions.",
+        "image": [
+          "https://dndcustomdice.com/assets/blog/5e-grapple-rules-hero.webp",
+          "https://dndcustomdice.com/assets/blog/grapple-tactical-map.webp",
+          "https://dndcustomdice.com/assets/blog/grappler-dice-concept.webp"
+        ],
+        "datePublished": "2026-07-20",
+        "dateModified": "2026-07-20",
+        "author": {"@type": "Organization", "name": "DND Custom Dice Editorial Team"},
+        "publisher": {"@type": "Organization", "name": "DND Custom Dice", "url": "https://dndcustomdice.com/"},
+        "mainEntityOfPage": "https://dndcustomdice.com/blog/5e-grapple-rules",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dndcustomdice.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dndcustomdice.com/blog/"},
+          {"@type": "ListItem", "position": 3, "name": "5e Grapple Rules", "item": "https://dndcustomdice.com/blog/5e-grapple-rules"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does the Grappled condition do in 5e?",
+            "acceptedAnswer": {"@type": "Answer", "text": "In both rulesets, a grappled creature has Speed 0. Grappling does not automatically make the target Prone or Restrained. Updated rules also give the grappled creature Disadvantage on attack rolls against targets other than the grappler."}
+          },
+          {
+            "@type": "Question",
+            "name": "How do you grapple in 2014 5e rules?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Use the Attack action and replace one attack with a grapple attempt. Make a Strength (Athletics) check contested by the target's Strength (Athletics) or Dexterity (Acrobatics) check. You need a free hand, and the target can be no more than one size larger."}
+          },
+          {
+            "@type": "Question",
+            "name": "How do you grapple in the updated rules?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Choose the Grapple option of an Unarmed Strike. The target makes a Strength or Dexterity saving throw against a DC equal to 8 plus your Strength modifier and Proficiency Bonus. A free hand and the size limit still apply."}
+          },
+          {
+            "@type": "Question",
+            "name": "Does grappling deal damage?",
+            "acceptedAnswer": {"@type": "Answer", "text": "A normal grapple attempt does not deal damage. Some class features, feats, spells, and monster attacks can combine damage with a grapple, so use the exact wording of the feature or stat block."}
+          },
+          {
+            "@type": "Question",
+            "name": "Can you grapple as an Opportunity Attack?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Not under the 2014 grapple rule, which requires the Attack action. Under updated rules, an Opportunity Attack can be an Unarmed Strike, and an Unarmed Strike can use its Grapple option if all targeting requirements are met."}
+          },
+          {
+            "@type": "Question",
+            "name": "Can you grapple more than one creature?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Yes, if you have enough free hands or other permitted grappling body parts and enough attacks or effects to establish each grapple. Each occupied hand or body part can normally maintain one grapple."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JB9554D4TW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JB9554D4TW');
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="DND Custom Dice home"><span class="brand-mark">D20</span><span>DND Custom Dice</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <div class="nav-links" id="nav-links">
+        <div class="nav-item has-dropdown">
+          <div class="nav-parent-row"><a class="nav-parent" id="nav-factory-label" href="/custom-dice-factory">Factory &amp; Custom</a><button class="dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-factory-menu" aria-label="Toggle Factory and Custom menu"><span class="dropdown-chevron" aria-hidden="true"></span></button></div>
+          <div class="dropdown-menu" id="nav-factory-menu" aria-labelledby="nav-factory-label"><span class="dropdown-heading">Factory &amp; Custom</span><div class="dropdown-links"><a class="dropdown-link dropdown-link-featured" href="/custom-dice-factory">Factory &amp; Production Process</a><a class="dropdown-link" href="/custom-rpg-dice">Custom RPG Dice</a><a class="dropdown-link" href="/custom-dice-manufacturer">Custom Dice Manufacturer</a><a class="dropdown-link" href="/custom-dice-packaging-options">Packaging &amp; Private Label</a><a class="dropdown-link" href="/quality-manufacturing">Quality Control</a><a class="dropdown-link" href="/how-to-order-custom-rpg-dice">How to Order Custom Dice</a></div></div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <div class="nav-parent-row"><a class="nav-parent" id="nav-catalog-label" href="/wholesale-dice-catalog">Catalog</a><button class="dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-catalog-menu" aria-label="Toggle Catalog menu"><span class="dropdown-chevron" aria-hidden="true"></span></button></div>
+          <div class="dropdown-menu" id="nav-catalog-menu" aria-labelledby="nav-catalog-label"><span class="dropdown-heading">Wholesale Catalogs</span><div class="dropdown-links"><a class="dropdown-link dropdown-link-featured" href="/wholesale-dice-catalog">View All Wholesale Catalogs</a><a class="dropdown-link" href="/resin-dice-wholesale-catalog">Resin Dice Catalog</a><a class="dropdown-link" href="/metal-dice-wholesale-catalog">Metal Dice Catalog</a><a class="dropdown-link" href="/hollow-dice-wholesale-catalog">Hollow Dice Catalog</a><a class="dropdown-link" href="/exotic-dice-wholesale-catalog">Exotic Dice Catalog</a><a class="dropdown-link" href="/free-wholesale-dice-sample-kit-catalog-request">Free Catalog &amp; Sample Kit</a></div></div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <div class="nav-parent-row"><a class="nav-parent" id="nav-wholesale-label" href="/wholesale-dice">Wholesale</a><button class="dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-wholesale-menu" aria-label="Toggle Wholesale menu"><span class="dropdown-chevron" aria-hidden="true"></span></button></div>
+          <div class="dropdown-menu dropdown-menu-wide" id="nav-wholesale-menu" aria-labelledby="nav-wholesale-label"><div class="dropdown-groups"><div class="dropdown-group"><span class="dropdown-heading">Wholesale Buying</span><div class="dropdown-links"><a class="dropdown-link dropdown-link-featured" href="/wholesale-dice">Wholesale Dice</a><a class="dropdown-link" href="/game-store-dice-supplier">Game Store Dice Supplier</a><a class="dropdown-link" href="/private-label-dice">Private Label Dice</a><a class="dropdown-link" href="/sample-kits">Sample Kits</a><a class="dropdown-link" href="/wholesale-dice-moq">Wholesale MOQ Guide</a></div></div><div class="dropdown-group"><span class="dropdown-heading">Themes &amp; Support</span><div class="dropdown-links"><a class="dropdown-link" href="/fantasy-rpg-dice-themes">Fantasy RPG Dice Themes</a><a class="dropdown-link" href="/rpg-dice-manufacturer-faq">RPG Dice Manufacturer FAQ</a></div></div></div></div>
+        </div>
+        <a class="nav-direct is-current" href="/blog/" aria-current="page">Blog</a>
+        <a class="nav-direct" href="/dice-roller">Dice Roller</a>
+        <a class="nav-contact" href="https://wa.me/8613922851014">WhatsApp</a>
+        <a class="button" href="/request-a-quote">Request Quote</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="article-page">
+      <header class="article-hero">
+        <div class="article-hero-copy">
+          <div class="breadcrumbs"><a href="../">Home</a> / <a href="./">Blog</a> / 5e Grapple Rules</div>
+          <div class="eyebrow">Combat Rules Guide</div>
+          <h1>5e grapple rules: how grappling works in 2014 and updated play.</h1>
+          <p class="lead">Learn how to start, maintain, move, escape, and end a grapple without mixing two different rulesets. This guide also covers shove tactics, Opportunity Attacks, multiple targets, spellcasting, and common table disputes.</p>
+          <div class="article-meta"><span>By DND Custom Dice Editorial Team</span><span>Updated July 20, 2026</span><span>About 11 minutes</span></div>
+        </div>
+        <figure class="article-hero-media">
+          <img src="../assets/blog/5e-grapple-rules-hero.webp" width="1600" height="900" fetchpriority="high" decoding="async" alt="Unarmed fantasy adventurer grappling an armored opponent beside a battle map and polyhedral dice">
+        </figure>
+      </header>
+
+      <div class="article-layout">
+        <aside class="article-toc" aria-label="Article contents">
+          <strong>In this guide</strong>
+          <a href="#quick-answer">Quick answer</a>
+          <a href="#comparison">Rules comparison</a>
+          <a href="#2014-rules">2014 grapple steps</a>
+          <a href="#updated-rules">Updated grapple steps</a>
+          <a href="#condition">Grappled condition</a>
+          <a href="#movement">Moving a target</a>
+          <a href="#escape">Escaping a grapple</a>
+          <a href="#shove">Grapple and shove</a>
+          <a href="#opportunity">Opportunity Attacks</a>
+          <a href="#build">Building a grappler</a>
+          <a href="#faq">Grapple FAQ</a>
+        </aside>
+
+        <div class="article-body">
+          <div class="article-note"><strong>Rules note:</strong> D&amp;D Beyond now labels the updated rules as 5.5e and the 2014 rules as 5e. Many players still call both versions 5e, so confirm which Player's Handbook your table uses before resolving a grapple. This is an independent compatibility guide and is not affiliated with an official game publisher.</div>
+
+          <p>Grappling is a control option, not a complete wrestling simulation. A successful grapple normally stops movement and allows the grappler to move the target at a cost. It does not automatically deal damage, silence the target, stop spellcasting, impose the Restrained condition, or make every attack easier. Those additional effects require another rule, feature, spell, monster action, or a separate shove.</p>
+
+          <p>The confusion comes from a major rules change. In 2014 5e, a grapple begins with an opposed ability check. In the updated rules, Grapple is an option of an Unarmed Strike and the target makes a saving throw against a fixed DC. Advice about Athletics expertise, ties, Opportunity Attacks, and defensive bonuses can be correct for one version and wrong for the other.</p>
+
+          <h2 id="quick-answer">5e grapple rules: the quick answer</h2>
+          <p><strong>2014 rules:</strong> take the Attack action, replace one attack with a grapple attempt, and roll Strength (Athletics). The target opposes that roll with Strength (Athletics) or Dexterity (Acrobatics). You need a free hand, the target must be within reach, and it cannot be more than one size larger than you.</p>
+
+          <p><strong>Updated rules:</strong> use the Grapple option of an Unarmed Strike. The target chooses a Strength or Dexterity saving throw against your grapple DC: 8 + Proficiency Bonus + Strength modifier. You still need a free hand, and the target can be no more than one size larger.</p>
+
+          <p>On success, the target gains the Grappled condition. Its Speed becomes 0. The exact additional effects and movement wording depend on the ruleset. The official <a href="https://www.dndbeyond.com/sources/dnd/basic-rules-2014/combat#Grappling" rel="noopener">2014 combat rules</a> and <a href="https://www.dndbeyond.com/sources/dnd/br-2024/rules-glossary#Grappling" rel="noopener">updated rules glossary</a> provide the controlling text.</p>
+
+          <h2 id="comparison">2014 vs updated grapple rules</h2>
+          <table class="product-table">
+            <thead><tr><th>Rule question</th><th>2014 5e</th><th>Updated rules</th></tr></thead>
+            <tbody>
+              <tr><td>How it starts</td><td>Special melee attack within the Attack action</td><td>Grapple option of an Unarmed Strike</td></tr>
+              <tr><td>Resolution</td><td>Opposed ability checks</td><td>Target makes a saving throw against a fixed DC</td></tr>
+              <tr><td>Attacker's value</td><td>Strength (Athletics)</td><td>8 + Proficiency Bonus + Strength modifier, unless a feature changes it</td></tr>
+              <tr><td>Defender's choice</td><td>Strength (Athletics) or Dexterity (Acrobatics)</td><td>Strength or Dexterity saving throw</td></tr>
+              <tr><td>Attacking others</td><td>No penalty from Grappled alone</td><td>Disadvantage against targets other than the grappler</td></tr>
+              <tr><td>Moving the target</td><td>Your speed is halved, with a size exception</td><td>Each foot costs 1 extra foot, with Tiny and size exceptions</td></tr>
+              <tr><td>Opportunity Attack</td><td>No, because grappling requires the Attack action</td><td>Yes, an Opportunity Attack can use an Unarmed Strike</td></tr>
+            </tbody>
+          </table>
+
+          <h2 id="2014-rules">How to grapple in 2014 5e</h2>
+          <ol>
+            <li>Take the Attack action and choose a creature within your reach.</li>
+            <li>Confirm that the target is no more than one size larger and that you have at least one free hand.</li>
+            <li>Replace one attack with a Strength (Athletics) grapple check. Extra Attack can let you grapple and make another attack during the same Attack action.</li>
+            <li>The target chooses Strength (Athletics) or Dexterity (Acrobatics) and rolls an opposed check.</li>
+            <li>If your total is higher, the target becomes grappled. On a tie, the situation remains unchanged, so a new grapple does not take hold.</li>
+          </ol>
+
+          <p>Armor Class does not matter because this is not an attack roll. Weapon attack bonuses do not apply. Athletics proficiency, Expertise, advantage on Strength checks, and effects that modify ability checks can matter. A natural 20 is not automatically successful on an ability check unless the table uses a house rule; compare the final totals.</p>
+
+          <h2 id="updated-rules">How to grapple in the updated rules</h2>
+          <ol>
+            <li>Use an Unarmed Strike and choose its Grapple option rather than its Damage or Shove option.</li>
+            <li>Choose a target within 5 feet that is no more than one size larger. You need a free hand.</li>
+            <li>Calculate the grapple DC: 8 + your Proficiency Bonus + your Strength modifier. A class feature may allow a different ability, such as Dexterity for an updated Monk.</li>
+            <li>The target chooses a Strength or Dexterity saving throw.</li>
+            <li>On a failed save, the target gains the Grappled condition.</li>
+          </ol>
+
+          <p>The grappler does not roll an attack or Athletics check for a normal updated grapple. Athletics Expertise therefore does not improve the initial save DC, although Athletics can still help your character escape a grapple. Effects that improve the target's Strength or Dexterity saving throw can protect it from the initial attempt.</p>
+
+          <figure class="article-figure">
+            <img src="../assets/blog/grapple-tactical-map.webp" width="1200" height="800" loading="lazy" decoding="async" alt="Top-down battle map showing one miniature grappling an armored target while an ally positions near a ledge">
+            <figcaption>Positioning creates the value: a grapple can hold a target near allies, block a route, or set up a separate shove without automatically causing damage.</figcaption>
+          </figure>
+
+          <h2 id="condition">What does the Grappled condition do?</h2>
+          <p>In both versions, the core effect is Speed 0. A grappled creature cannot increase its Speed, so it cannot walk away. If it is also Prone, it generally cannot stand because standing requires movement and its Speed is 0.</p>
+
+          <p>Under 2014 rules, Grappled alone does not change attack rolls. The creature can attack the grappler or somebody else normally, subject to other conditions. Under updated rules, the grappled creature has Disadvantage on attack rolls against any target other than the grappler. It can attack the grappler without that particular penalty.</p>
+
+          <p>Grappled is not Restrained. Attacks against a merely grappled target do not automatically gain Advantage. The target can still speak, take actions, use items, and cast spells unless another rule prevents it. Spell components still apply normally, but the Grappled condition itself does not occupy the target's hands or silence it.</p>
+
+          <h2 id="movement">Can you move a grappled creature?</h2>
+          <p>Yes. In 2014, the grappler can drag or carry the target while moving, but the grappler's speed is halved unless the target is two or more sizes smaller. In updated rules, each foot of movement costs 1 extra foot unless the grappled creature is Tiny or at least two sizes smaller. Both methods often feel like half movement on an open floor, but the updated wording interacts more directly with difficult terrain and other movement costs.</p>
+
+          <p>Movement must still be legal. The creature needs space, and the Game Master adjudicates unusual geometry. A grapple lets you carry or drag; it does not automatically let you throw a target across the room. To push a creature 5 feet or knock it Prone, use the Shove option or another feature.</p>
+
+          <h2 id="escape">How do you escape or end a grapple?</h2>
+          <p>In 2014, a grappled creature can use its action to make Strength (Athletics) or Dexterity (Acrobatics), opposed by the grappler's Strength (Athletics). A tie leaves the current situation unchanged, so the target remains grappled. The target can also escape when an effect moves it beyond the grappler's reach or when the grappler becomes Incapacitated.</p>
+
+          <p>In updated rules, the creature uses its action to make Strength (Athletics) or Dexterity (Acrobatics) against the fixed escape DC. It escapes on a success. The grapple also ends if the grappler is Incapacitated, if the distance exceeds the grapple's range, or if the grappler releases the target. Teleportation or forced movement can therefore end many grapples when it creates enough separation, but always read monster abilities because they may specify different escape rules.</p>
+
+          <h2 id="shove">Grapple and shove: why the combination works</h2>
+          <p>Grapple and Shove are separate effects. A shove can push a target 5 feet or make it Prone. If you first grapple and then knock the target Prone, its Speed 0 prevents it from spending movement to stand until the grapple ends. Melee attacks from within 5 feet generally gain Advantage against a Prone creature, while the Prone creature makes attacks with Disadvantage.</p>
+
+          <p>This combination can be strong, but it costs attacks and requires two successful resolutions. It can also hinder ranged allies because attacks from farther than 5 feet against a Prone target have Disadvantage. Check initiative order and party positioning before putting a target on the ground.</p>
+
+          <h2 id="opportunity">Can you grapple as an Opportunity Attack?</h2>
+          <p><strong>2014: no.</strong> An Opportunity Attack allows one melee attack, while the 2014 grapple rule specifically requires the Attack action. A reaction attack is not the Attack action, even though both involve attacks.</p>
+
+          <p><strong>Updated rules: yes, when the requirements are met.</strong> The updated Opportunity Attack explicitly allows one melee attack with a weapon or an Unarmed Strike. Because Grapple is an option of an Unarmed Strike, you can choose it just before the creature leaves your reach. The target still needs to be within 5 feet, no more than one size larger, and you need a free hand. The target then makes its saving throw against your grapple DC.</p>
+
+          <h2>Multiple creatures, damage, and spellcasting</h2>
+          <p><strong>You can maintain more than one grapple.</strong> A character with two free hands can normally grapple two creatures if they have enough attacks or effects to establish both. The updated glossary makes the limit explicit: one grapple per hand or permitted body part. A creature with tentacles or another special grappling feature follows its stat block.</p>
+
+          <p><strong>A normal grapple does not deal damage.</strong> In 2014, the grapple replaces an attack but has no damage roll. In updated rules, Grapple and Damage are different Unarmed Strike options. A feat, class feature, spell, or monster attack may combine them, but that is an exception written into the feature.</p>
+
+          <p><strong>Grappling does not automatically stop spellcasting.</strong> A spellcaster still needs to satisfy verbal, somatic, and material components. The target's hands are not disabled by the condition. The grappler, however, may have fewer free hands for weapons, shields, material components, or somatic gestures because one hand is maintaining the grapple.</p>
+
+          <h2 id="build">How to build an effective grappler</h2>
+          <p>Start with the ruleset. For a 2014 grappler, Strength, Athletics proficiency, Expertise, and advantage on Strength checks directly improve the opposed roll. Characters with Extra Attack can attempt a grapple and still attack or shove in the same action. Durability matters because the controlled enemy can usually attack you.</p>
+
+          <p>For an updated grappler, prioritize the ability used to calculate your grapple DC and look for features that interact with Unarmed Strikes, Grapple, movement, or saving throws. Athletics is not added to the initial DC, so do not import a 2014 build without checking every feature. The updated Monk is a notable alternative because its Martial Arts rules can use Dexterity for Grapple and Shove DCs.</p>
+
+          <p>In either version, coordinate with allies. A grappler is most valuable when control changes the map: hold an enemy inside a hazardous area, keep it away from a fragile ally, prevent an escape, or create a Prone target for nearby melee attackers. Size-changing magic and features can expand valid targets because the target can be no more than one size larger than the grappler.</p>
+
+          <figure class="article-figure">
+            <img src="../assets/blog/grappler-dice-concept.webp" width="1200" height="800" loading="lazy" decoding="async" alt="Smoky black and bronze grappler-themed polyhedral dice with wrestling miniatures and condition rings">
+            <figcaption>Use a visible d20, condition ring, or token to separate the Grappled and Prone states and reduce rules disputes during combat.</figcaption>
+          </figure>
+
+          <h2>Table tips for faster grapple turns</h2>
+          <ul>
+            <li>Write the ruleset and grapple DC on the character sheet.</li>
+            <li>Use separate condition rings for Grappled, Prone, and Restrained.</li>
+            <li>Track which hand or monster body part maintains each grapple.</li>
+            <li>Measure the target's size before rolling.</li>
+            <li>State whether an Unarmed Strike is Damage, Grapple, or Shove.</li>
+            <li>For 2014 contests, compare final totals and remember that a tie preserves the current situation.</li>
+          </ul>
+
+          <p>You can practice attack and saving throw rolls with our free <a href="../dice-roller">online 5e dice roller</a>, review the <a href="../types-of-dnd-dice">dice used in a standard polyhedral set</a>, or explore <a href="../character-class-dice">character class dice themes</a> for Fighters, Barbarians, and Monks.</p>
+
+          <section class="article-faq" id="faq">
+            <div class="eyebrow">Quick Answers</div>
+            <h2>5e grapple rules FAQ</h2>
+            <details open><summary>What does the Grappled condition do in 5e?</summary><p>It makes the creature's Speed 0. Grappling does not automatically make the target Prone or Restrained. Updated rules also impose Disadvantage when the grappled creature attacks anybody other than the grappler.</p></details>
+            <details><summary>Does grappling deal damage?</summary><p>Not by default. A normal grapple uses its resolution to impose the Grappled condition. Specific feats, class features, spells, and monster attacks can combine damage and grappling.</p></details>
+            <details><summary>Can you grapple as an Opportunity Attack?</summary><p>Not in 2014 rules because grappling requires the Attack action. In updated rules, an Opportunity Attack can use an Unarmed Strike, and the Grapple option is available if its size, distance, and free-hand requirements are met.</p></details>
+            <details><summary>Can you grapple two creatures?</summary><p>Yes, if you have two free hands or suitable grappling body parts and enough attacks or effects to establish both grapples. Each hand or body part normally maintains one target.</p></details>
+            <details><summary>Does a grapple stop spellcasting?</summary><p>No. The Grappled condition does not silence a creature or occupy its hands. Spell components still apply, and another condition or effect may interfere with casting.</p></details>
+            <details><summary>Does a grapple give Advantage on attacks?</summary><p>No. Grappled alone does not grant Advantage against the target. Combining Grappled with Prone can create Advantage for attacks made within 5 feet.</p></details>
+          </section>
+
+          <div class="article-cta">
+            <div><div class="eyebrow">For Game Stores &amp; Dice Brands</div><h2>Create a Fighter, Barbarian, or grappler-themed dice collection.</h2><p>Choose catalog products or discuss custom colors, number fills, motifs, packaging, and sample review for a character-class RPG dice program.</p></div>
+            <div class="hero-actions"><a class="button" href="../custom-rpg-dice">Explore Custom Dice</a><a class="button secondary" href="../request-a-quote">Request a Quote</a></div>
+          </div>
+
+          <h2>Final rules checklist</h2>
+          <p>Identify the ruleset first. Check reach, target size, and a free hand. In 2014, resolve an opposed Athletics check. In updated play, calculate a fixed DC and call for the target's Strength or Dexterity saving throw. Apply only the effects of the Grappled condition, track movement cost, and use a separate Shove when you want Prone. That sequence resolves most grapple questions before they slow down combat.</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="section compact footer-grid">
+      <div><a class="brand" href="/"><span class="brand-mark">D20</span><span>DND Custom Dice</span></a><p style="margin-top: 14px;">Wholesale 5e-compatible fantasy RPG dice, custom polyhedral dice, real product samples, and private label packaging for B2B buyers worldwide.</p><div class="contact-line"><a href="mailto:Info@dndcustomdice.com">Email: Info@dndcustomdice.com</a><a href="https://wa.me/8613922851014">WhatsApp: +86 13922851014</a></div></div>
+      <div><strong>Programs</strong><div class="footer-links"><a href="/free-wholesale-dice-sample-kit-catalog-request">Free Catalog &amp; Sample Kit Request</a><a href="/wholesale-dice">Wholesale Dice</a><a href="/wholesale-dice-catalog">Wholesale Catalog</a><a href="/wholesale-resin-dice">Wholesale Resin Dice</a><a href="/sharp-edge-resin-dice-wholesale">Sharp Edge Resin Dice</a><a href="/liquid-core-dice-manufacturer">Liquid Core Manufacturer</a><a href="/metal-dice-wholesale">Metal Dice Wholesale</a><a href="/resin-dice-wholesale-catalog">Resin Dice Catalog</a><a href="/metal-dice-wholesale-catalog">Metal Dice Catalog</a><a href="/hollow-dice-wholesale-catalog">Hollow Dice Catalog</a><a href="/exotic-dice-wholesale-catalog">Exotic Dice Catalog</a><a href="/bulk-polyhedral-dice">Bulk Polyhedral Dice</a><a href="/types-of-dnd-dice">Types of DND Dice</a><a href="/dice-roller">Dice Roller</a><a href="/sample-kits">Sample Kits</a></div></div>
+      <div><strong>Themes</strong><div class="footer-links"><a href="/dragon-dice-wholesale">Dragon Dice</a><a href="/character-class-dice">Class Dice</a><a href="/elemental-dice-sets">Elemental Dice</a><a href="/dungeon-relic-dice">Dungeon Relic Dice</a><a href="/wholesale-d20-dice">Wholesale D20 Dice</a></div></div>
+      <div><strong>Buyers</strong><div class="footer-links"><a href="/game-store-dice-supplier">Game Store Dice Supplier</a><a href="/kickstarter-dice-manufacturer">Kickstarter Dice Manufacturer</a><a href="/custom-dice-packaging-supplier">Packaging Supplier</a><a href="/wholesale-dice-moq">Wholesale MOQ Guide</a><a href="/custom-dice-sample-kit">Sample Kit Guide</a><a href="/custom-dice-packaging-options">Packaging Options</a><a href="/how-to-order-custom-rpg-dice">How to Order</a><a href="/rpg-dice-manufacturer-faq">Manufacturer FAQ</a><a href="/bulk-rpg-dice-for-game-stores">Game Store Bulk Guide</a><a href="/quality-manufacturing">Quality</a><a href="/faq">FAQ</a><a href="/request-a-quote">Request Quote</a></div></div>
+      <p class="disclaimer">DND-inspired and 5e-compatible are used descriptively for tabletop RPG compatibility. This website is not affiliated with, endorsed by, or sponsored by any official game publisher.</p>
+    </div>
+  </footer>
+  <script src="../assets/main.js?v=20260708-chat"></script>
+</body>
+</html>
