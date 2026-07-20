@@ -53,6 +53,7 @@ Core product categories:
 - Online DND dice roller tool: https://dndcustomdice.com/dice-roller
 - Request quote: https://dndcustomdice.com/request-a-quote
 - Blog index: https://dndcustomdice.com/blog/
+- Bard 5e build, spells, strategy, roleplay, and Bard dice guide: https://dndcustomdice.com/blog/bard-5e-guide
 - Blog guide: https://dndcustomdice.com/blog/how-to-choose-wholesale-resin-dice-for-game-stores
 - Blog guide: https://dndcustomdice.com/blog/sharp-edge-resin-dice-vs-standard-resin-dice
 - Blog guide: https://dndcustomdice.com/blog/metal-dice-wholesale-buying-guide
@@ -88,6 +89,8 @@ Core product categories:
 - What should RPG retailers check before buying metal dice wholesale?
 - What should be included in a custom dice sample kit?
 - What are the production steps for custom metal dice and custom resin dice?
+- How should a player build and play a Bard in 5e?
+- What dice does a Bard need and how can Bardic Inspiration dice be tracked?
 
 ## Quote Checklist
 

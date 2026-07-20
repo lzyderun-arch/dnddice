@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
+    <loc>https://dndcustomdice.com/blog/bard-5e-guide</loc>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/bard-5e-guide-hero.webp</image:loc>
+      <image:title>Fantasy Bard 5e guide with lute and purple polyhedral dice</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/bard-5e-guide-toolkit.webp</image:loc>
+      <image:title>Bard adventuring toolkit with lute journal and polyhedral dice</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/bard-dice-set-concept.webp</image:loc>
+      <image:title>Purple and gold Bard dice set concept with lute charm</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://dndcustomdice.com/blog/best-dice-themes-for-5e-character-classes</loc>
     <image:image>
       <image:loc>https://dndcustomdice.com/assets/class-elemental-dice.webp</image:loc>

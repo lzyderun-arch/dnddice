@@ -1052,6 +1052,203 @@ h3 {
   text-underline-offset: 3px;
 }
 
+.article-page {
+  padding-bottom: 56px;
+}
+
+.article-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+  gap: 54px;
+  align-items: center;
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 64px 0 52px;
+}
+
+.article-hero-copy h1 {
+  max-width: 760px;
+  margin-bottom: 22px;
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
+  line-height: 1.02;
+}
+
+.article-hero-media {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.article-hero-media img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.article-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 780px);
+  gap: 64px;
+  justify-content: center;
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 44px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.article-toc {
+  position: sticky;
+  top: 92px;
+  display: grid;
+  align-self: start;
+  gap: 9px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.article-toc strong {
+  margin-bottom: 4px;
+  color: var(--gold);
+}
+
+.article-toc a {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.article-toc a:hover,
+.article-toc a:focus-visible,
+.article-body a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article-body {
+  min-width: 0;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.78;
+}
+
+.article-body h2,
+.article-body h3 {
+  color: var(--ink);
+  scroll-margin-top: 100px;
+}
+
+.article-body h2 {
+  margin: 52px 0 18px;
+  font-size: clamp(1.8rem, 3vw, 2.55rem);
+  line-height: 1.16;
+}
+
+.article-body h3 {
+  margin: 30px 0 10px;
+  font-size: 1.25rem;
+}
+
+.article-body ul {
+  display: grid;
+  gap: 12px;
+  padding-left: 24px;
+}
+
+.article-note {
+  margin-bottom: 30px;
+  padding: 18px 20px;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  background: rgba(214, 163, 77, 0.09);
+}
+
+.article-figure {
+  margin: 38px 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.article-figure img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.article-figure figcaption {
+  padding: 14px 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.article-faq {
+  margin-top: 58px;
+  padding-top: 38px;
+  border-top: 1px solid var(--line);
+}
+
+.article-faq h2 {
+  margin-top: 8px;
+}
+
+.article-faq details {
+  border-top: 1px solid var(--line);
+  padding: 18px 0;
+}
+
+.article-faq details:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.article-faq summary {
+  color: var(--ink);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.article-faq details p {
+  margin: 12px 0 0;
+}
+
+.article-cta {
+  display: grid;
+  gap: 24px;
+  margin: 54px 0;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.article-cta h2 {
+  margin: 8px 0 12px;
+}
+
+.article-cta .button {
+  color: #15100a;
+  text-decoration: none;
+}
+
+.article-cta .button.secondary {
+  color: var(--ink);
+}
+
 @media (max-width: 1080px) {
   .nav-toggle {
     display: inline-flex;
@@ -1178,6 +1375,25 @@ h3 {
   .quote-conversion .quote-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .article-hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .article-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .article-toc {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .article-toc strong {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1219,5 +1435,38 @@ h3 {
   .catalog-product-grid,
   .quote-conversion .quote-card-grid {
     grid-template-columns: 1fr;
+  }
+
+  .article-hero,
+  .article-layout {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .article-hero {
+    padding: 42px 0 34px;
+  }
+
+  .article-hero-copy h1 {
+    font-size: 2.5rem;
+  }
+
+  .article-layout {
+    padding-top: 30px;
+  }
+
+  .article-toc {
+    grid-template-columns: 1fr;
+  }
+
+  .article-body {
+    font-size: 1rem;
+  }
+
+  .article-body h2 {
+    margin-top: 42px;
+  }
+
+  .article-cta {
+    padding: 22px;
   }
 }
