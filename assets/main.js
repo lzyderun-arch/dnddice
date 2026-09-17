@@ -116,6 +116,11 @@ function linkText(link) {
     .slice(0, 120);
 }
 
+function productSeries(link) {
+  const series = link.dataset.series || link.querySelector(".catalog-series");
+  return typeof series === "string" ? series : (series ? series.textContent : "");
+}
+
 function trackEvent(eventName, params = {}, callback) {
   let callbackCalled = false;
 
@@ -188,6 +193,9 @@ document.addEventListener("click", (event) => {
       link_text: linkText(link),
       link_url: link.href,
       click_type: "contact_whatsapp",
+      sku: link.dataset.sku || "",
+      product_name: link.dataset.whatsappProduct || "",
+      product_series: productSeries(link).replace(/\s+/g, " ").trim(),
     });
     return;
   }
@@ -308,6 +316,31 @@ function prefillQuoteForm() {
 prefillQuoteForm();
 
 if (formsubmitForm) {
+  const fileInput = formsubmitForm.querySelector("input[type='file']");
+
+  if (fileInput) {
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files && fileInput.files[0];
+      const fileName = formsubmitForm.querySelector("[data-file-upload-name]");
+
+      if (fileName) {
+        fileName.textContent = file ? file.name : "No file selected";
+      }
+
+      if (!file) {
+        return;
+      }
+
+      trackEvent("file_upload_select", {
+        file_extension: file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "",
+        file_size_kb: Math.round(file.size / 1024),
+        form_name: "wholesale_quote_form",
+      });
+    });
+  }
+}
+
+if (formsubmitForm) {
   let formSubmitTracked = false;
 
   formsubmitForm.addEventListener("submit", (event) => {
@@ -377,4 +410,31 @@ function initTawkTo() {
   firstScript.parentNode.insertBefore(script, firstScript);
 }
 
+function initWhatsAppFloat() {
+  if (!document.body || document.querySelector("[data-whatsapp-float]")) {
+    return;
+  }
+
+  const link = document.createElement("a");
+
+  link.className = "whatsapp-float";
+  link.dataset.whatsappFloat = "true";
+  link.href = "https://wa.me/8613922851014";
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.setAttribute("aria-label", "Chat with DND Custom Dice on WhatsApp");
+  link.innerHTML = `
+    <span class="whatsapp-float-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path d="M20.5 3.5A11.8 11.8 0 0 0 12.08 0C5.55 0 .24 5.31.24 11.84c0 2.09.55 4.13 1.59 5.93L.14 23.86l6.24-1.64a11.84 11.84 0 0 0 5.69 1.45h.01c6.53 0 11.84-5.31 11.84-11.84 0-3.16-1.23-6.13-3.42-8.33ZM12.08 21.6h-.01a9.78 9.78 0 0 1-4.98-1.36l-.36-.21-3.7.97.99-3.61-.23-.37a9.78 9.78 0 0 1-1.5-5.18C2.29 6.44 6.68 2.05 12.09 2.05c2.62 0 5.08 1.02 6.93 2.87a9.75 9.75 0 0 1 2.87 6.94c0 5.4-4.4 9.79-9.81 9.79Z"/>
+        <path d="M17.43 14.78c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.76.96-.93 1.16-.17.2-.34.22-.64.08-.3-.15-1.24-.46-2.36-1.47-.87-.77-1.46-1.72-1.63-2.01-.17-.3-.02-.46.13-.61.14-.14.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.01-1.04 2.47s1.07 2.86 1.22 3.05c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.71.63.72.23 1.38.2 1.9.12.58-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.12-.27-.2-.57-.35Z"/>
+      </svg>
+    </span>
+    <span>WhatsApp</span>
+  `;
+
+  document.body.appendChild(link);
+}
+
+initWhatsAppFloat();
 initTawkTo();

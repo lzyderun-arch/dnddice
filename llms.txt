@@ -38,6 +38,7 @@ Core product categories:
 - How to order custom RPG dice: https://dndcustomdice.com/how-to-order-custom-rpg-dice
 - RPG dice manufacturer FAQ: https://dndcustomdice.com/rpg-dice-manufacturer-faq
 - Bulk RPG dice for game stores: https://dndcustomdice.com/bulk-rpg-dice-for-game-stores
+- Wholesale D20 dice for game stores, events, custom logo programs, oversized D20, dragon eye D20, MOQ, samples, and packaging: https://dndcustomdice.com/wholesale-d20-dice
 - Free wholesale dice sample kit and catalog request: https://dndcustomdice.com/free-wholesale-dice-sample-kit-catalog-request
 - Wholesale resin dice: https://dndcustomdice.com/wholesale-resin-dice
 - Custom dice manufacturer: https://dndcustomdice.com/custom-dice-manufacturer
@@ -52,9 +53,22 @@ Core product categories:
 - Types of DND dice and 5e polyhedral dice set guide: https://dndcustomdice.com/types-of-dnd-dice
 - Online DND dice roller tool: https://dndcustomdice.com/dice-roller
 - Request quote: https://dndcustomdice.com/request-a-quote
+- Custom dice use cases and buyer scenarios: https://dndcustomdice.com/custom-dice-use-cases
+- Custom dice for Kickstarter RPG campaigns and crowdfunding rewards: https://dndcustomdice.com/custom-dice-for-kickstarter-rpg-campaigns
+- Wholesale dice for game stores and retail RPG assortments: https://dndcustomdice.com/wholesale-dice-for-game-stores
+- Private label dice for dice brands: https://dndcustomdice.com/private-label-dice-for-dice-brands
+- Custom logo dice for RPG publishers: https://dndcustomdice.com/custom-logo-dice-for-rpg-publishers
+- Dice for subscription boxes and event gifts: https://dndcustomdice.com/dice-for-subscription-boxes-and-event-gifts
 - Blog index: https://dndcustomdice.com/blog/
+- Blog guide: https://dndcustomdice.com/blog/bulk-dnd-dice-buying-guide-for-game-stores
+- Blog guide: https://dndcustomdice.com/blog/custom-dnd-dice-materials-logo-packaging-moq-guide
+- Wholesale DND dice packaging guide covering bags, boxes, tins, private label, MOQ, samples, and retail display: https://dndcustomdice.com/blog/wholesale-dnd-dice-packaging-guide
+- Blog guide: https://dndcustomdice.com/blog/custom-d20-dice-logo-symbol-size-moq-guide
+- D&D dice set count guide: https://dndcustomdice.com/blog/how-many-dice-in-a-dnd-set
+- Blog guide: https://dndcustomdice.com/blog/how-to-choose-custom-dice-for-kickstarter-rpg-campaigns
 - 5e grapple rules for 2014 and updated play: https://dndcustomdice.com/blog/5e-grapple-rules
-- Bard 5e build, spells, strategy, roleplay, and Bard dice guide: https://dndcustomdice.com/blog/bard-5e-guide
+- Mastering the Bard in D&D 5e: build, spells, combat, roleplay, hit dice, and party strategy guide: https://dndcustomdice.com/blog/bard-5e-guide
+- Best Bard spells for 5e: support, control, combat, concentration, and ruleset guide: https://dndcustomdice.com/blog/best-bard-spells-for-5e
 - Blog guide: https://dndcustomdice.com/blog/how-to-choose-wholesale-resin-dice-for-game-stores
 - Blog guide: https://dndcustomdice.com/blog/sharp-edge-resin-dice-vs-standard-resin-dice
 - Blog guide: https://dndcustomdice.com/blog/metal-dice-wholesale-buying-guide
@@ -69,14 +83,18 @@ Core product categories:
 - Can dice packaging be customized for private label brands?
 - Which dice materials are available for wholesale sourcing?
 - How should buyers send SKU lists from the catalog pages?
+- How should buyers download and use the wholesale dice catalog, resin dice catalog, metal dice catalog, hollow dice catalog, exotic dice catalog, SKU lists, sample kits, MOQ details, and quote checklist before requesting B2B wholesale pricing?
 - What is the difference between stock-style wholesale dice and fully custom dice?
 - What packaging options are available for private label dice?
+- How should buyers choose custom dice packaging, including dice boxes, dice bags, dice trays, tins, retail display boxes, private label artwork, MOQ, and sample approval?
+- How should wholesale buyers compare custom dice packaging formats such as dice bags, paper boxes, tins, magnetic gift boxes, dice trays, insert cards, barcode labels, display cartons, and private label packaging before requesting MOQ and samples?
 - How do buyers order custom RPG dice step by step?
 - Can buyers source custom DND dice sets, custom polyhedral dice, custom d20 dice sets, or custom metal dice?
 - What details are needed to quote a custom made dice set with private label packaging?
 - How should buyers compare RPG dice manufacturers?
 - What bulk RPG dice should game stores buy first?
 - What dice are included in a standard 5e polyhedral dice set?
+- How many dice are in a standard D&D set, and what are the d4, d6, d8, d10, percentile die, d12, and d20 used for?
 - How should buyers compare different types of DND dice before wholesale sourcing?
 - Where can users roll d20, d100, and polyhedral DND dice online?
 - How can buyers request wholesale dice catalogs and sample kit options?
@@ -93,6 +111,19 @@ Core product categories:
 - How should a player build and play a Bard in 5e?
 - What dice does a Bard need and how can Bardic Inspiration dice be tracked?
 - How do grapple checks, saving throw DCs, escapes, movement, and shove tactics differ between 2014 and updated 5e rules?
+- How should Kickstarter and Gamefound RPG creators plan custom dice rewards and add-ons?
+- What wholesale dice assortment should a game store start with?
+- How can dice brands plan private label dice packaging and SKU lines?
+- What artwork is needed for custom logo dice for RPG publishers?
+- How should subscription boxes and event teams plan themed RPG dice gifts?
+- How should Kickstarter RPG creators choose custom dice for add-ons, stretch goals, deluxe rewards, and retail follow-up?
+- How should RPG publishers, Kickstarter creators, dice brands, and game stores choose custom d20 dice with logos, symbols, sizes, MOQ, and packaging?
+- How should buyers plan custom DND dice by material, logo or symbol face, custom dice set format, private label packaging, MOQ, sample kit, and quote checklist?
+- How should buyers source custom DND dice sets, custom d20 dice, custom metal dice, custom resin dice, private label packaging, MOQ planning, and sample approval from a custom dice manufacturer?
+- How should buyers plan bulk DND dice and wholesale polyhedral dice orders by SKU mix, MOQ, sample kit, packaging, buyer type, and reorder plan?
+- How should game stores choose bulk DND dice, wholesale polyhedral dice assortments, D20 bulk dice, retail packaging, MOQ, sample kits, and reorder-ready SKU plans?
+- How should game stores, dice brands, distributors, event buyers, and subscription boxes plan a bulk polyhedral dice wholesale order with starter SKU mix, D20 bulk dice, fantasy themes, MOQ, sample kits, packaging, barcode labels, display cartons, and reorder support?
+- How should buyers source bulk D20 dice, wholesale D20 dice, custom logo D20 dice, oversized D20 dice, dragon eye D20 dice, event dice, RPG promotion dice, sample kits, MOQ, packaging, barcode labels, and retail display cartons?
 
 ## Quote Checklist
 

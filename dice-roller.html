@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Online DND Dice Roller | Roll D20, D100 and Polyhedral Dice</title>
-  <meta name="description" content="Free online DND dice roller for d20, d12, d10, d100, d8, d6, and d4 polyhedral dice. Roll ability checks, advantage, disadvantage, damage dice, and 5e dice sets.">
-  <meta name="keywords" content="online dnd dice roller, dnd dice roller, d20 roller, d100 dice roller, polyhedral dice roller, roll dnd dice online, 5e dice roller">
+  <meta name="description" content="Free online DND dice roller with d20, d100, modifier, advantage, disadvantage, damage dice, and mixed polyhedral rolls for 5e and tabletop RPG play.">
+  <meta name="keywords" content="online dnd dice roller, dnd dice roller, dnd dice roller with modifier, d20 dice roller, d100 dice roller, 2d20 advantage roller, dnd damage dice roller, rpg dice roller, polyhedral dice roller">
   <link rel="canonical" href="https://dndcustomdice.com/dice-roller">
   <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt">
-  <link rel="stylesheet" href="assets/styles.css?v=20260717-webp">
+  <link rel="stylesheet" href="assets/styles.css?v=20260825-whatsapp-effect">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JB9554D4TW"></script>
   <script>
@@ -73,6 +73,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Yes. Enter a positive or negative modifier before rolling. The roller shows the dice subtotal, modifier, and final total."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do advantage and disadvantage work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Select Advantage or Disadvantage in the roller controls. The tool rolls two d20 dice, uses the higher or lower result, and then applies the modifier."
           }
         },
         {
@@ -391,6 +399,7 @@
       justify-content: center;
       gap: 15px;
       margin-top: 25px;
+      flex-wrap: wrap;
     }
 
     .roller-action {
@@ -409,11 +418,320 @@
     .roller-action:hover { background: #0f67bd; }
     .roller-action:disabled { cursor: wait; opacity: .7; }
 
+    .roller-action.secondary {
+      border: 1px solid #b8c1ce;
+      background: #fff;
+      color: #344054;
+      box-shadow: none;
+    }
+
+    .roller-action.secondary:hover {
+      border-color: #8b99aa;
+      background: #f5f7fa;
+    }
+
+    .roll-mode-control {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .roll-mode-label {
+      color: #475467;
+      font-size: .86rem;
+      font-weight: 800;
+    }
+
+    .roll-mode-toggle {
+      min-height: 34px;
+      border: 1px solid #cfd5df;
+      border-radius: 999px;
+      background: #fff;
+      padding: 0 13px;
+      color: #475467;
+      font: inherit;
+      font-size: .82rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .roll-mode-toggle:hover,
+    .roll-mode-toggle:focus-visible,
+    .roll-mode-toggle[aria-pressed="true"] {
+      border-color: #1976d2;
+      background: #e8f1fb;
+      color: #155fae;
+    }
+
+    .rolled-die.is-ignored {
+      opacity: .45;
+      filter: grayscale(.65);
+    }
+
     .roll-note {
       min-height: 22px;
       margin: 15px 0 0;
       color: #667085;
       font-size: .86rem;
+    }
+
+    .roller-intent-section {
+      max-width: 1040px;
+      padding-top: 42px;
+      padding-bottom: 20px;
+    }
+
+    .roller-intent-intro {
+      max-width: 780px;
+      margin: 12px 0 0;
+      color: #c8c1b8;
+      line-height: 1.7;
+    }
+
+    .roller-intent-grid {
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .roller-intent-card {
+      display: flex;
+      min-height: 214px;
+      flex-direction: column;
+      background: #151311;
+    }
+
+    .roller-intent-card h3 {
+      margin-top: 0;
+      color: #fffaf0;
+      font-size: 1.08rem;
+    }
+
+    .roller-intent-card p {
+      color: #c8c1b8;
+      line-height: 1.6;
+    }
+
+    .roller-intent-card a {
+      margin-top: auto;
+      padding-top: 16px;
+      color: #d9a441;
+      font-size: .86rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .roller-intent-card a:hover {
+      color: #f0c66c;
+    }
+
+    .roller-b2b-bridge {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 24px;
+      max-width: 1040px;
+      margin: 24px auto 0;
+      padding: 24px 26px;
+      border: 1px solid #5b4523;
+      border-radius: 10px;
+      background: #151311;
+      color: #f7f2e8;
+    }
+
+    .roller-b2b-bridge .eyebrow {
+      margin-bottom: 7px;
+      color: #d9a441;
+    }
+
+    .roller-b2b-bridge h2 {
+      max-width: 640px;
+      margin: 0;
+      color: #fffaf0;
+      font-size: clamp(1.35rem, 2.4vw, 2rem);
+      line-height: 1.15;
+    }
+
+    .roller-b2b-bridge p {
+      max-width: 680px;
+      margin: 10px 0 0;
+      color: #d7d0c5;
+      font-size: .95rem;
+      line-height: 1.65;
+    }
+
+    .roller-b2b-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 9px;
+      min-width: 245px;
+    }
+
+    .roller-b2b-actions .button {
+      min-height: 42px;
+      justify-content: center;
+      padding: 0 15px;
+      white-space: nowrap;
+      font-size: .84rem;
+    }
+
+    .roller-b2b-actions .button.secondary {
+      border-color: #b18a42;
+      color: #f7f2e8;
+    }
+
+    .roller-b2b-actions .button.whatsapp-cta {
+      border-color: #168b55;
+      background: #168b55;
+      color: #fff;
+    }
+
+    .roller-b2b-actions .button.whatsapp-cta:hover {
+      border-color: #1eaa69;
+      background: #1eaa69;
+    }
+
+    .roller-affiliate {
+      max-width: 1040px;
+      margin: 24px auto 0;
+      padding: 26px;
+      border: 1px solid #d8c9ae;
+      border-radius: 10px;
+      background: #fbf7ef;
+      color: #1c1a17;
+    }
+
+    .roller-affiliate-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 24px;
+    }
+
+    .roller-affiliate-heading h2 {
+      max-width: 650px;
+      margin: 0;
+      color: #211d18;
+      font-size: clamp(1.4rem, 2.6vw, 2.15rem);
+      line-height: 1.12;
+    }
+
+    .roller-affiliate-heading p {
+      max-width: 720px;
+      margin: 10px 0 0;
+      color: #5b5145;
+      line-height: 1.6;
+    }
+
+    .roller-affiliate-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 17px;
+      border-radius: 5px;
+      background: #c7922c;
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(158, 107, 21, .18);
+    }
+
+    .roller-affiliate-cta:hover {
+      background: #a9761c;
+    }
+
+    .roller-affiliate-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .roller-affiliate-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid #dfd4c2;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 6px 16px rgba(41, 31, 19, .08);
+    }
+
+    .roller-affiliate-link {
+      display: block;
+      height: 100%;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .roller-affiliate-media {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #eee6d9;
+    }
+
+    .roller-affiliate-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 360ms ease;
+    }
+
+    .roller-affiliate-link:hover .roller-affiliate-media img {
+      transform: scale(1.04);
+    }
+
+    .roller-affiliate-rank {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1;
+      padding: 6px 8px;
+      border-radius: 4px;
+      background: #ed1c24;
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .02em;
+    }
+
+    .roller-affiliate-card-body {
+      padding: 12px 13px 14px;
+    }
+
+    .roller-affiliate-brand {
+      color: #918678;
+      font-size: .78rem;
+    }
+
+    .roller-affiliate-card h3 {
+      min-height: 2.75em;
+      margin: 6px 0 10px;
+      color: #211d18;
+      font-size: .95rem;
+      line-height: 1.35;
+    }
+
+    .roller-affiliate-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #a56e13;
+      font-size: .82rem;
+      font-weight: 800;
+    }
+
+    .roller-affiliate-disclosure {
+      margin: 15px 0 0;
+      color: #74695b;
+      font-size: .76rem;
+      line-height: 1.5;
     }
 
     @media (max-width: 680px) {
@@ -429,6 +747,42 @@
       .dice-shape { width: 37px; height: 37px; font-size: .82rem; }
       .roller-actions { gap: 9px; }
       .roller-action { padding: 0 17px; }
+      .roller-action { flex: 1 1 145px; }
+      .roll-mode-control { gap: 6px; }
+      .roll-mode-label { flex-basis: 100%; }
+      .roller-b2b-bridge {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 18px;
+        padding: 20px 18px;
+      }
+      .roller-b2b-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        min-width: 0;
+      }
+      .roller-b2b-actions .button {
+        width: 100%;
+      }
+      .roller-affiliate {
+        margin-top: 18px;
+        padding: 20px 18px;
+      }
+      .roller-affiliate-heading {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      .roller-affiliate-cta {
+        width: 100%;
+      }
+      .roller-affiliate-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .roller-affiliate-card h3 {
+        min-height: 0;
+        font-size: .88rem;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -503,6 +857,23 @@
             </div>
           </div>
         </div>
+        <div class="nav-item has-dropdown">
+          <div class="nav-parent-row">
+            <a class="nav-parent" id="nav-use-cases-label" href="/custom-dice-use-cases">Use Cases</a>
+            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-use-cases-menu" aria-label="Toggle Use Cases menu"><span class="dropdown-chevron" aria-hidden="true"></span></button>
+          </div>
+          <div class="dropdown-menu" id="nav-use-cases-menu" aria-labelledby="nav-use-cases-label">
+            <span class="dropdown-heading">Buyer Scenarios</span>
+            <div class="dropdown-links">
+              <a class="dropdown-link dropdown-link-featured" href="/custom-dice-use-cases">All Buyer Scenarios</a>
+              <a class="dropdown-link" href="/custom-dice-for-kickstarter-rpg-campaigns">Kickstarter RPG Campaigns</a>
+              <a class="dropdown-link" href="/wholesale-dice-for-game-stores">Game Stores</a>
+              <a class="dropdown-link" href="/private-label-dice-for-dice-brands">Dice Brands</a>
+              <a class="dropdown-link" href="/custom-logo-dice-for-rpg-publishers">RPG Publishers</a>
+              <a class="dropdown-link" href="/dice-for-subscription-boxes-and-event-gifts">Subscription Boxes &amp; Events</a>
+            </div>
+          </div>
+        </div>
         <a class="nav-direct" href="/blog/">Blog</a>
         <a class="nav-direct is-current" href="/dice-roller" aria-current="page">Dice Roller</a>
         <a class="nav-contact" href="https://wa.me/8613922851014">WhatsApp</a>
@@ -546,8 +917,116 @@
             <div class="roller-actions">
               <button class="roller-action" type="button" id="roll-button">Roll DND Dice</button>
               <button class="roller-action" type="button" id="delete-button">Delete</button>
+              <button class="roller-action secondary" type="button" id="copy-result-button" disabled>Copy Result</button>
+            </div>
+            <div class="roll-mode-control" role="group" aria-label="D20 roll mode">
+              <span class="roll-mode-label">D20 roll mode</span>
+              <button class="roll-mode-toggle" type="button" data-roll-mode="normal" aria-pressed="true">Normal</button>
+              <button class="roll-mode-toggle" type="button" data-roll-mode="advantage" aria-pressed="false">Advantage</button>
+              <button class="roll-mode-toggle" type="button" data-roll-mode="disadvantage" aria-pressed="false">Disadvantage</button>
             </div>
             <p class="roll-note" id="roll-note">Click a die to add it and roll the first result.</p>
+          </div>
+        </section>
+
+        <section class="roller-affiliate" aria-labelledby="roller-affiliate-title">
+          <div class="roller-affiliate-heading">
+            <div>
+              <div class="eyebrow">Physical dice inspiration</div>
+              <h2 id="roller-affiliate-title">Like the roll? Take the experience to the table.</h2>
+              <p>Explore distinctive physical DND dice and accessories from BearDice, selected for players who want more than a standard set.</p>
+            </div>
+            <a class="roller-affiliate-cta" href="https://beardice.com/?ref=endtfgwl" target="_blank" rel="sponsored noopener" data-dice-affiliate="beardice" data-product-name="BearDice collection">Shop BearDice favorites</a>
+          </div>
+
+          <div class="roller-affiliate-grid">
+            <article class="roller-affiliate-card">
+              <a class="roller-affiliate-link" href="https://beardice.com/products/metal-solid-revolver-cylinder-bullet-shape-dice?ref=endtfgwl" target="_blank" rel="sponsored noopener" data-dice-affiliate="beardice" data-product-name="Metal Revolver Bullet Dice Set">
+                <div class="roller-affiliate-media"><span class="roller-affiliate-rank">TOP 1</span><img src="assets/affiliate/beardice/revolver.webp" alt="BearDice metal revolver bullet DND dice set" loading="lazy"></div>
+                <div class="roller-affiliate-card-body"><span class="roller-affiliate-brand">BearDice</span><h3>Metal Revolver Bullet Dice Set</h3><span class="roller-affiliate-action">View product <span aria-hidden="true">↗</span></span></div>
+              </a>
+            </article>
+
+            <article class="roller-affiliate-card">
+              <a class="roller-affiliate-link" href="https://beardice.com/products/dnd-multi-sided-engraved-glass-gemstone-dice-set?ref=endtfgwl" target="_blank" rel="sponsored noopener" data-dice-affiliate="beardice" data-product-name="Engraved Glass Gemstone Dice Set">
+                <div class="roller-affiliate-media"><span class="roller-affiliate-rank">TOP 2</span><img src="assets/affiliate/beardice/gemstone.webp" alt="BearDice engraved glass gemstone DND dice set" loading="lazy"></div>
+                <div class="roller-affiliate-card-body"><span class="roller-affiliate-brand">BearDice</span><h3>Engraved Glass Gemstone Dice Set</h3><span class="roller-affiliate-action">View product <span aria-hidden="true">↗</span></span></div>
+              </a>
+            </article>
+
+            <article class="roller-affiliate-card">
+              <a class="roller-affiliate-link" href="https://beardice.com/products/7-in-1-metal-solid-cube-six-sided-circular-spinning-roulette-dice?ref=endtfgwl" target="_blank" rel="sponsored noopener" data-dice-affiliate="beardice" data-product-name="7-in-1 Metal Cube Spinner Dice">
+                <div class="roller-affiliate-media"><span class="roller-affiliate-rank">TOP 3</span><img src="assets/affiliate/beardice/spinner-cube.webp" alt="BearDice 7 in 1 metal cube spinner DND dice" loading="lazy"></div>
+                <div class="roller-affiliate-card-body"><span class="roller-affiliate-brand">BearDice</span><h3>7-in-1 Metal Cube Spinner Dice</h3><span class="roller-affiliate-action">View product <span aria-hidden="true">↗</span></span></div>
+              </a>
+            </article>
+
+            <article class="roller-affiliate-card">
+              <a class="roller-affiliate-link" href="https://beardice.com/products/foldable-dice-box-dnd-turntable-dice-spinner?ref=endtfgwl" target="_blank" rel="sponsored noopener" data-dice-affiliate="beardice" data-product-name="Foldable Metal Dice Box Spinner">
+                <div class="roller-affiliate-media"><span class="roller-affiliate-rank">TOP 4</span><img src="assets/affiliate/beardice/foldable-box.webp" alt="BearDice foldable metal DND dice box and spinner" loading="lazy"></div>
+                <div class="roller-affiliate-card-body"><span class="roller-affiliate-brand">BearDice</span><h3>Foldable Metal Dice Box Spinner</h3><span class="roller-affiliate-action">View product <span aria-hidden="true">↗</span></span></div>
+              </a>
+            </article>
+
+            <article class="roller-affiliate-card">
+              <a class="roller-affiliate-link" href="https://beardice.com/products/plague-elixir-liquid-core-resin-dice-set?ref=endtfgwl" target="_blank" rel="sponsored noopener" data-dice-affiliate="beardice" data-product-name="Plague Elixir Green Liquid Core Dice Set">
+                <div class="roller-affiliate-media"><span class="roller-affiliate-rank">TOP 5</span><img src="assets/affiliate/beardice/plague-green.webp" alt="BearDice green Plague Elixir liquid core resin DND dice set" loading="lazy"></div>
+                <div class="roller-affiliate-card-body"><span class="roller-affiliate-brand">BearDice</span><h3>Plague Elixir Green Liquid Core Dice</h3><span class="roller-affiliate-action">View product <span aria-hidden="true">↗</span></span></div>
+              </a>
+            </article>
+          </div>
+
+          <p class="roller-affiliate-disclosure">Affiliate disclosure: We may earn a commission if you purchase through these links, at no extra cost to you.</p>
+        </section>
+
+        <section class="roller-b2b-bridge" aria-labelledby="roller-b2b-title">
+          <div>
+            <div class="eyebrow">For game stores, brands &amp; RPG creators</div>
+            <h2 id="roller-b2b-title">Need physical dice for your store or RPG project?</h2>
+            <p>Use the roller for play, then compare real resin and metal dice, custom packaging, sample kits, and wholesale options for your next order.</p>
+          </div>
+          <div class="roller-b2b-actions">
+            <a class="button" href="/wholesale-dice-catalog" data-dice-roller-event="catalog_click">View Wholesale Catalog</a>
+            <a class="button secondary" href="/free-wholesale-dice-sample-kit-catalog-request?source=dice-roller" data-dice-roller-event="sample_kit_click">Request Sample Kit</a>
+            <a class="button whatsapp-cta" href="https://wa.me/8613922851014?text=Hi%2C%20I%20used%20your%20DND%20dice%20roller%20and%20would%20like%20to%20discuss%20wholesale%20dice%20or%20custom%20dice." target="_blank" rel="noopener">Chat on WhatsApp</a>
+          </div>
+        </section>
+
+        <section class="section roller-intent-section" aria-labelledby="roller-intent-title">
+          <div class="eyebrow">Search by dice task</div>
+          <h2 id="roller-intent-title">Find the right online DND dice roller for your roll.</h2>
+          <p class="roller-intent-intro">Use the same tool for common 5e checks, percentile rolls, modifiers, advantage, disadvantage, damage rolls, and mixed RPG dice. Each guide explains when to choose a die and links back to the live roller.</p>
+          <div class="grid three roller-intent-grid">
+            <article class="card roller-intent-card" id="d20-dice-roller">
+              <h3>D20 Dice Roller for Checks and Attacks</h3>
+              <p>Roll a d20 for an ability check, attack roll, saving throw, or initiative check. Add a modifier when your character sheet calls for one.</p>
+              <a href="types-of-dnd-dice">Learn what a d20 does <span aria-hidden="true">&rarr;</span></a>
+            </article>
+            <article class="card roller-intent-card" id="d100-dice-roller">
+              <h3>D100 Dice Roller for Percentile Rolls</h3>
+              <p>Use the d100 for random tables, treasure results, encounter outcomes, and other percentile-based RPG tables.</p>
+              <a href="types-of-dnd-dice">Explore polyhedral dice types <span aria-hidden="true">&rarr;</span></a>
+            </article>
+            <article class="card roller-intent-card" id="dnd-dice-roller-with-modifier">
+              <h3>DND Dice Roller With Modifier</h3>
+              <p>Open the modifier control, enter a positive or negative number, and the tool will show the dice subtotal and adjusted total.</p>
+              <a href="#dice-roller-faq">See modifier questions <span aria-hidden="true">&rarr;</span></a>
+            </article>
+            <article class="card roller-intent-card" id="advantage-disadvantage-roller">
+              <h3>2d20 Advantage and Disadvantage Roller</h3>
+              <p>Select Advantage or Disadvantage to roll two d20s and automatically count the higher or lower result before applying your modifier.</p>
+              <a href="#dice-roller-faq">Read the rules explanation <span aria-hidden="true">&rarr;</span></a>
+            </article>
+            <article class="card roller-intent-card" id="dnd-damage-dice-roller">
+              <h3>DND Damage Dice Roller</h3>
+              <p>Add repeated d4, d6, d8, d10, or d12 dice for weapon, spell, monster, and effect damage rolls.</p>
+              <a href="types-of-dnd-dice">Match dice to damage rolls <span aria-hidden="true">&rarr;</span></a>
+            </article>
+            <article class="card roller-intent-card" id="rpg-dice-roller">
+              <h3>RPG Dice Roller for Mixed Polyhedral Rolls</h3>
+              <p>Combine different dice in one result for tabletop RPG checks, homebrew systems, encounter tables, and campaign play.</p>
+              <a href="custom-rpg-dice">Explore RPG dice options <span aria-hidden="true">&rarr;</span></a>
+            </article>
           </div>
         </section>
       </div>
@@ -592,12 +1071,12 @@
       <figure class="media-card"><img src="assets/wholesale-sample-kit.webp" alt="Wholesale polyhedral dice sample kit for buyers comparing online dice roller results with real dice sets"><figcaption class="media-caption">Online dice rollers are useful for play and teaching. Physical sample kits help buyers compare weight, finish, number readability, packaging, and retail presentation before bulk orders.</figcaption></figure>
     </section>
 
-    <section class="section faq">
+    <section class="section faq" id="dice-roller-faq">
       <div class="eyebrow">Dice roller FAQ</div>
       <h2>Common questions about rolling DND dice online.</h2>
       <details open><summary>What dice can this online DND dice roller roll?</summary><p>The roller supports d4, d6, d8, d10, d12, d20, and d100 polyhedral dice. Clicking a die adds it to the rolling area and immediately rolls its first result.</p></details>
       <details><summary>Can I add modifiers to a DND dice roll?</summary><p>Yes. Enter a positive or negative modifier before rolling. The roller shows the dice subtotal, modifier, and final total.</p></details>
-      <details><summary>How do advantage and disadvantage work?</summary><p>Advantage rolls two d20 dice and uses the higher result. Disadvantage rolls two d20 dice and uses the lower result. The modifier is added after choosing the d20 result.</p></details>
+      <details><summary>How do advantage and disadvantage work?</summary><p>Select Advantage or Disadvantage in the roller controls. The tool rolls two d20 dice, uses the higher or lower result, and then applies the modifier.</p></details>
       <details><summary>Is this dice roller a replacement for physical dice?</summary><p>It is useful for quick online rolls, teaching dice types, and checking 5e mechanics. For retail, events, campaigns, or product launches, physical polyhedral dice sets and sample kits are still recommended.</p></details>
     </section>
   </main>
@@ -616,13 +1095,43 @@
     <div><strong>Buyers</strong><div class="footer-links"><a href="/game-store-dice-supplier">Game Store Dice Supplier</a><a href="/kickstarter-dice-manufacturer">Kickstarter Dice Manufacturer</a><a href="/custom-dice-packaging-supplier">Packaging Supplier</a><a href="/wholesale-dice-moq">Wholesale MOQ Guide</a><a href="/custom-dice-sample-kit">Sample Kit Guide</a><a href="/custom-dice-packaging-options">Packaging Options</a><a href="/how-to-order-custom-rpg-dice">How to Order</a><a href="/rpg-dice-manufacturer-faq">Manufacturer FAQ</a><a href="/bulk-rpg-dice-for-game-stores">Game Store Bulk Guide</a><a href="/quality-manufacturing">Quality</a><a href="/faq">FAQ</a><a href="/request-a-quote">Request Quote</a></div></div>
     <p class="disclaimer">DND-inspired and 5e-compatible are used descriptively for tabletop RPG compatibility. This website is not affiliated with, endorsed by, or sponsored by any official game publisher.</p>
   </div>
-</footer><script src="assets/main.js?v=20260708-chat"></script>
+</footer><script src="assets/main.js?v=20260825-whatsapp-float"></script>
+<script>
+  document.querySelectorAll("[data-dice-roller-event]").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (typeof window.gtag !== "function") return;
+      window.gtag("event", link.dataset.diceRollerEvent, {
+        page_path: window.location.pathname || "/dice-roller",
+        page_title: document.title,
+        cta_location: "dice_roller_b2b_bridge",
+        cta_text: link.textContent.trim(),
+        transport_type: "beacon",
+      });
+    });
+  });
+</script>
+<script>
+  document.querySelectorAll("[data-dice-affiliate]").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (typeof window.gtag !== "function") return;
+      window.gtag("event", "affiliate_click", {
+        affiliate_partner: link.dataset.diceAffiliate,
+        product_name: link.dataset.productName,
+        cta_location: "dice_roller_affiliate_products",
+        page_path: window.location.pathname || "/dice-roller",
+        page_title: document.title,
+        transport_type: "beacon",
+      });
+    });
+  });
+</script>
 <script>
   (() => {
     const diceTypes = [4, 6, 8, 10, 12, 20, 100];
     const state = {
       counts: { 4: 0, 6: 0, 8: 0, 10: 0, 12: 0, 20: 0, 100: 0 },
       selectedType: 6,
+      rollMode: "normal",
       soundEnabled: true,
       rolling: false,
       results: [],
@@ -638,10 +1147,12 @@
     const note = document.querySelector("#roll-note");
     const rollButton = document.querySelector("#roll-button");
     const deleteButton = document.querySelector("#delete-button");
+    const copyResultButton = document.querySelector("#copy-result-button");
     const modifierInput = document.querySelector("#roll-modifier");
     const modifierToggle = document.querySelector("#modifier-toggle");
     const modifierControl = document.querySelector("#modifier-control");
     const soundToggle = document.querySelector("#sound-toggle");
+    const rollModeButtons = document.querySelectorAll("[data-roll-mode]");
 
     function randomDie(sides) {
       if (window.crypto && window.crypto.getRandomValues) {
@@ -654,6 +1165,28 @@
 
     function selectedDice() {
       return diceTypes.flatMap((sides) => Array(state.counts[sides]).fill(sides));
+    }
+
+    function rollModeName(mode = state.rollMode) {
+      return mode === "advantage" ? "Advantage" : mode === "disadvantage" ? "Disadvantage" : "Normal";
+    }
+
+    function updateRollModeButtons() {
+      rollModeButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.rollMode === state.rollMode));
+      });
+    }
+
+    function setRollMode(mode) {
+      if (state.rolling || !["normal", "advantage", "disadvantage"].includes(mode)) return;
+      state.rollMode = mode;
+      diceTypes.forEach((sides) => { state.counts[sides] = 0; });
+      state.results = [];
+      total.textContent = "0";
+      renderDice([]);
+      copyResultButton.disabled = true;
+      updateRollModeButtons();
+      updateSelectors();
     }
 
     const ROLL_DURATION = 1750;
@@ -1024,10 +1557,10 @@
 
     function createCanvasDie(result, size, shouldAnimate, resultIndex) {
       const die = document.createElement("div");
-      die.className = `rolled-die canvas-die${shouldAnimate ? " rolling" : ""}`;
+      die.className = `rolled-die canvas-die${shouldAnimate ? " rolling" : ""}${result.included === false ? " is-ignored" : ""}`;
       die.style.setProperty("--die-size", `${size}px`);
       die.dataset.resultIndex = String(resultIndex);
-      die.setAttribute("aria-label", `D${result.sides} rolled ${result.value}`);
+      die.setAttribute("aria-label", `D${result.sides} rolled ${result.value}${result.included === false ? ", not used for the final total" : ""}`);
       const canvas = document.createElement("canvas");
       const pixelRatio = Math.min(2, window.devicePixelRatio || 1);
       canvas.width = Math.round(size * pixelRatio);
@@ -1090,6 +1623,13 @@
         .join(" + ");
       const modifier = Number(modifierInput.value || 0);
       const modifierText = modifier ? ` ${modifier > 0 ? "+" : "-"} ${Math.abs(modifier)}` : "";
+      if (state.rollMode !== "normal") {
+        const choice = state.rollMode === "advantage" ? "higher" : "lower";
+        note.textContent = state.results.length
+          ? `${rollModeName()} result ready. The ${choice} D20 is included in the total.`
+          : `${rollModeName()} selected: roll two d20s and use the ${choice} result${modifierText}.`;
+        return;
+      }
       note.textContent = expression ? `Selected: ${expression}${modifierText}. Click a die to add more.` : "Click a die to add it and roll the first result.";
     }
 
@@ -1214,7 +1754,7 @@
     }
 
     function resultTotal(results) {
-      return results.reduce((sum, result) => sum + result.value, 0) + Number(modifierInput.value || 0);
+      return results.reduce((sum, result) => sum + (result.included === false ? 0 : result.value), 0) + Number(modifierInput.value || 0);
     }
 
     function cancelPendingRoll() {
@@ -1224,6 +1764,49 @@
       state.shuffleTimer = null;
       state.finishTimer = null;
       return state.rollSequence;
+    }
+
+    function formatResultText(results = state.results) {
+      if (!results.length) return "No dice rolled yet.";
+      const modifier = Number(modifierInput.value || 0);
+      const modifierText = modifier ? ` ${modifier > 0 ? "+" : "-"} ${Math.abs(modifier)}` : "";
+      const rollTotal = resultTotal(results);
+      if (state.rollMode !== "normal" && results.length === 2) {
+        const used = results.find((result) => result.included !== false) || results[0];
+        const ignored = results.find((result) => result.included === false) || results[1];
+        return `${rollModeName()}: D20 ${used.value} (ignored ${ignored.value})${modifierText} = ${rollTotal}`;
+      }
+      return `${results.map((result) => `D${result.sides}: ${result.value}`).join(", ")}${modifierText} = ${rollTotal}`;
+    }
+
+    async function copyResult() {
+      if (!state.results.length || state.rolling) {
+        note.textContent = "Roll the dice first, then copy the result.";
+        return;
+      }
+      const text = formatResultText();
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (error) {
+        const fallback = document.createElement("textarea");
+        fallback.value = text;
+        fallback.setAttribute("readonly", "");
+        fallback.style.position = "fixed";
+        fallback.style.opacity = "0";
+        document.body.appendChild(fallback);
+        fallback.select();
+        document.execCommand("copy");
+        fallback.remove();
+      }
+      note.textContent = `Copied: ${text}`;
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "copy_result", {
+          roll_mode: state.rollMode,
+          roll_total: resultTotal(state.results),
+          page_path: window.location.pathname || "/dice-roller",
+          transport_type: "beacon",
+        });
+      }
     }
 
     function showFinalResults(results, mode, trackedDice = results.map((result) => result.sides)) {
@@ -1239,21 +1822,21 @@
           value.textContent = String(result.value);
           value.style.opacity = "1";
           die.classList.remove("rolling");
-          die.setAttribute("aria-label", `D${result.sides} rolled ${result.value}`);
+          die.classList.toggle("is-ignored", result.included === false);
+          die.setAttribute("aria-label", `D${result.sides} rolled ${result.value}${result.included === false ? ", not used for the final total" : ""}`);
         });
       } else {
         renderDice(results);
       }
-      const modifier = Number(modifierInput.value || 0);
       const rollTotal = resultTotal(results);
       total.textContent = String(rollTotal);
-      const resultText = results.map((result) => `D${result.sides}: ${result.value}`).join(", ");
-      note.textContent = `${resultText}${modifier ? `, modifier ${modifier > 0 ? "+" : ""}${modifier}` : ""}.`;
+      note.textContent = formatResultText(results);
       state.rolling = false;
       state.shuffleTimer = null;
       state.finishTimer = null;
       rollButton.disabled = false;
       deleteButton.disabled = false;
+      copyResultButton.disabled = false;
       trackRoll(trackedDice, rollTotal, mode);
       state.pendingAddedSides = [];
     }
@@ -1266,6 +1849,7 @@
       state.rolling = true;
       rollButton.disabled = true;
       deleteButton.disabled = true;
+      copyResultButton.disabled = true;
       const addedResult = { sides, value: randomDie(sides) };
       const previewResults = [...state.results, addedResult];
       state.results = previewResults;
@@ -1287,7 +1871,7 @@
     }
 
     function rollDice() {
-      const dice = selectedDice();
+      const dice = state.rollMode === "normal" ? selectedDice() : [20, 20];
       if (!dice.length || state.rolling) {
         if (!dice.length) note.textContent = "Select at least one die before rolling.";
         return;
@@ -1298,12 +1882,19 @@
       state.pendingAddedSides = [];
       rollButton.disabled = true;
       deleteButton.disabled = true;
+      copyResultButton.disabled = true;
       playDiceSound(1, 1.12);
 
       const finalResults = dice.map((sides) => ({ sides, value: randomDie(sides) }));
+      if (state.rollMode !== "normal") {
+        const selectedIndex = state.rollMode === "advantage"
+          ? (finalResults[0].value >= finalResults[1].value ? 0 : 1)
+          : (finalResults[0].value <= finalResults[1].value ? 0 : 1);
+        finalResults.forEach((result, index) => { result.included = index === selectedIndex; });
+      }
       const preview = dice.map((sides) => ({ sides, value: randomDie(sides) }));
       renderDice(preview, true);
-      note.textContent = "Rolling...";
+      note.textContent = state.rollMode === "normal" ? "Rolling..." : `${rollModeName()} is rolling two d20s...`;
 
       state.shuffleTimer = window.setInterval(() => {
         field.querySelectorAll(".rolled-die").forEach((die, index) => {
@@ -1315,12 +1906,13 @@
       state.finishTimer = window.setTimeout(() => {
         if (sequence !== state.rollSequence) return;
         window.clearInterval(state.shuffleTimer);
-        showFinalResults(finalResults, "animated_roller", dice);
+        showFinalResults(finalResults, state.rollMode === "normal" ? "animated_roller" : state.rollMode, dice);
       }, ROLL_DURATION + 40);
     }
 
     document.querySelectorAll("[data-die]").forEach((button) => {
       button.addEventListener("click", () => {
+        if (state.rollMode !== "normal") setRollMode("normal");
         if (selectedDice().length >= 16) {
           note.textContent = "The rolling area supports up to 16 dice at one time.";
           return;
@@ -1339,8 +1931,15 @@
       state.results = [];
       total.textContent = "0";
       renderDice([]);
+      state.rollMode = "normal";
+      updateRollModeButtons();
+      copyResultButton.disabled = true;
       updateSelectors();
       note.textContent = "All dice cleared. Click a die to roll the first result.";
+    });
+
+    rollModeButtons.forEach((button) => {
+      button.addEventListener("click", () => setRollMode(button.dataset.rollMode));
     });
 
     modifierToggle.addEventListener("click", () => {
@@ -1360,6 +1959,7 @@
       soundToggle.title = state.soundEnabled ? "Turn rolling sound off" : "Turn rolling sound on";
     });
     rollButton.addEventListener("click", rollDice);
+    copyResultButton.addEventListener("click", copyResult);
 
     let resizeTimer;
     window.addEventListener("resize", () => {
