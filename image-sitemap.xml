@@ -1560,6 +1560,17 @@
     </image:image>
   </url>
   <url>
+    <loc>https://dndcustomdice.com/blog/how-to-use-d20-dice-roller</loc>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/d20-dice-roller-ability-checks-attacks-hero.webp</image:loc>
+      <image:title>Emerald d20 beside a tabletop character sheet for ability checks and attack rolls</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/d20-dice-roller-workflow.webp</image:loc>
+      <image:title>D20 dice roller workflow showing normal rolls, advantage, modifiers, and a target number</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://dndcustomdice.com/blog/how-many-dice-in-a-dnd-set</loc>
     <image:image>
       <image:loc>https://dndcustomdice.com/assets/blog/dnd-dice-set-count-hero.webp</image:loc>

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Use a D20 Dice Roller for Ability Checks and Attacks</title>
+  <meta name="description" content="Learn how to use a d20 dice roller for D&amp;D ability checks and attack rolls, add modifiers, handle advantage, and compare results with DC or AC.">
+  <link rel="canonical" href="https://dndcustomdice.com/blog/how-to-use-d20-dice-roller">
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt">
+  <link rel="preload" as="image" href="../assets/blog/d20-dice-roller-ability-checks-attacks-hero.webp" type="image/webp">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Use a D20 Dice Roller for Ability Checks and Attacks">
+  <meta property="og:description" content="A practical guide to rolling a d20 online, adding ability and proficiency modifiers, handling advantage, and checking attacks against AC.">
+  <meta property="og:url" content="https://dndcustomdice.com/blog/how-to-use-d20-dice-roller">
+  <meta property="og:image" content="https://dndcustomdice.com/assets/blog/d20-dice-roller-ability-checks-attacks-hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Use a D20 Dice Roller for Ability Checks and Attacks">
+  <meta name="twitter:description" content="Use a d20 dice roller for ability checks and attack rolls with clear examples for modifiers, DC, AC, advantage, and disadvantage.">
+  <meta name="twitter:image" content="https://dndcustomdice.com/assets/blog/d20-dice-roller-ability-checks-attacks-hero.webp">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825-whatsapp-effect">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://dndcustomdice.com/blog/how-to-use-d20-dice-roller#article",
+        "headline": "How to Use a D20 Dice Roller for Ability Checks and Attacks",
+        "description": "A practical guide to rolling a d20 online, adding ability and proficiency modifiers, handling advantage, and checking attacks against AC.",
+        "image": [
+          "https://dndcustomdice.com/assets/blog/d20-dice-roller-ability-checks-attacks-hero.webp",
+          "https://dndcustomdice.com/assets/blog/d20-dice-roller-workflow.webp"
+        ],
+        "datePublished": "2026-09-18",
+        "dateModified": "2026-09-18",
+        "author": {"@type": "Organization", "name": "DND Custom Dice Editorial Team"},
+        "publisher": {"@type": "Organization", "name": "DND Custom Dice", "url": "https://dndcustomdice.com/"},
+        "mainEntityOfPage": "https://dndcustomdice.com/blog/how-to-use-d20-dice-roller",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dndcustomdice.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dndcustomdice.com/blog/"},
+          {"@type": "ListItem", "position": 3, "name": "How to Use a D20 Dice Roller for Ability Checks and Attacks", "item": "https://dndcustomdice.com/blog/how-to-use-d20-dice-roller"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "What is a d20 dice roller used for?", "acceptedAnswer": {"@type": "Answer", "text": "A d20 dice roller is used for D&D ability checks, attack rolls, saving throws, initiative, and other tests that call for a twenty-sided die."}},
+          {"@type": "Question", "name": "How do I roll a d20 with a modifier?", "acceptedAnswer": {"@type": "Answer", "text": "Roll the d20, identify the relevant ability modifier and any proficiency bonus that applies, then add the allowed bonuses to the die result."}},
+          {"@type": "Question", "name": "How does advantage or disadvantage work on a d20?", "acceptedAnswer": {"@type": "Answer", "text": "Roll two d20s for the same test and use the higher result with advantage or the lower result with disadvantage. Follow the rule set used by your table when both apply."}},
+          {"@type": "Question", "name": "Does a natural 20 automatically succeed on an ability check?", "acceptedAnswer": {"@type": "Answer", "text": "Not normally. A natural 20 is primarily an attack-roll rule. An ability check still depends on the DC and the specific rules or house rules used by the table."}},
+          {"@type": "Question", "name": "Does an attack roll include the damage roll?", "acceptedAnswer": {"@type": "Answer", "text": "No. The attack roll determines whether an attack hits the target's AC. Damage is rolled separately after a hit, using the weapon, spell, or feature instructions."}}
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JB9554D4TW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JB9554D4TW');
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="DND Custom Dice home"><span class="brand-mark">D20</span><span>DND Custom Dice</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <div class="nav-links" id="nav-links">
+        <a class="nav-direct" href="/custom-dice-factory">Factory &amp; Custom</a>
+        <a class="nav-direct" href="/wholesale-dice-catalog">Catalog</a>
+        <a class="nav-direct" href="/wholesale-dice">Wholesale</a>
+        <a class="nav-direct is-current" href="/blog/" aria-current="page">Blog</a>
+        <a class="nav-direct" href="/dice-roller">Dice Roller</a>
+        <a class="nav-contact" href="https://wa.me/8613922851014">WhatsApp</a>
+        <a class="button" href="/request-a-quote">Request Quote</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="article-page">
+      <header class="article-hero">
+        <div class="article-hero-copy">
+          <div class="breadcrumbs"><a href="../">Home</a> / <a href="./">Blog</a> / D20 Dice Roller Guide</div>
+          <div class="eyebrow">D&amp;D Dice Basics</div>
+          <h1>How to Use a D20 Dice Roller for Ability Checks and Attacks</h1>
+          <p class="lead">Learn the complete workflow for using an online d20 dice roller: choose the correct roll, add your modifier, handle advantage or disadvantage, and compare the final result with a DC or AC.</p>
+          <div class="article-meta"><span>By DND Custom Dice Editorial Team</span><span>Updated September 18, 2026</span><span>About 11 minutes</span></div>
+        </div>
+        <figure class="article-hero-media">
+          <img src="../assets/blog/d20-dice-roller-ability-checks-attacks-hero.webp" width="1536" height="1024" fetchpriority="high" decoding="async" alt="Emerald d20 beside a tabletop character sheet for ability checks and attack rolls">
+        </figure>
+      </header>
+
+      <div class="article-layout">
+        <aside class="article-toc" aria-label="Article contents">
+          <strong>In this guide</strong>
+          <a href="#quick-answer">Quick answer</a>
+          <a href="#what-d20-does">What a d20 does</a>
+          <a href="#step-by-step">Step-by-step roller workflow</a>
+          <a href="#ability-checks">Ability checks</a>
+          <a href="#attack-rolls">Attack rolls</a>
+          <a href="#advantage">Advantage and disadvantage</a>
+          <a href="#mistakes">Common mistakes</a>
+          <a href="#faq">FAQ</a>
+        </aside>
+
+        <div class="article-body">
+          <div class="article-note"><strong>Quick answer:</strong> Roll a d20, add the relevant ability modifier and any bonus that the rules allow, then compare the total with the target number. Ability checks usually compare with a Difficulty Class (DC); attack rolls compare with the target's Armor Class (AC).</div>
+
+          <p>A d20 dice roller is more than a random number generator. Used correctly, it gives players and Dungeon Masters a fast, consistent way to resolve the most common decisions in a D&amp;D game. The tool can replace physical dice when you are away from the table, help a new player learn the math, or make a remote session easier to follow.</p>
+
+          <p>The most important habit is to separate the <strong>die result</strong> from the <strong>final total</strong>. The d20 supplies the random part. Your character sheet, the action, the target, and the rule set determine what gets added and what the result means. This guide explains that process for ability checks and attacks, with examples you can repeat in the <a href="../dice-roller">online D&amp;D dice roller</a>.</p>
+
+          <h2 id="quick-answer">The d20 formula in one line</h2>
+          <p>For many D&amp;D tests, use this basic formula:</p>
+          <p class="article-note"><strong>d20 result + relevant modifier + applicable bonuses = final total</strong></p>
+
+          <p>For an ability check, compare the final total with the DC chosen by the Dungeon Master. For an attack roll, compare it with the target's AC. A result that meets or exceeds the target normally succeeds, but always check the specific feature, spell, item, or adventure rule when one changes the normal process.</p>
+
+          <p>The formula is intentionally simple, but the words “relevant modifier” matter. A Strength (Athletics) check normally uses Strength, while a Dexterity (Stealth) check uses Dexterity. A melee weapon attack commonly uses Strength, a ranged weapon attack commonly uses Dexterity, and a spell attack uses the spellcaster's relevant spellcasting ability. The character sheet tells you the modifier to start with.</p>
+
+          <h2 id="what-d20-does">What is a d20 dice roller used for?</h2>
+          <p>The twenty-sided die is the main resolution die for a large number of D&amp;D actions. Common uses include:</p>
+          <ul>
+            <li><strong>Ability checks:</strong> climb, hide, investigate, notice, persuade, recall information, or perform another uncertain task.</li>
+            <li><strong>Attack rolls:</strong> determine whether a weapon attack, spell attack, or other attack hits its target.</li>
+            <li><strong>Saving throws:</strong> resist a spell, trap, poison, condition, or other threat when the rules call for a save.</li>
+            <li><strong>Initiative:</strong> determine turn order when combat begins, depending on the rule set and character features.</li>
+            <li><strong>Other tests:</strong> resolve a check or contest that a class feature, monster, item, or adventure specifically describes.</li>
+          </ul>
+
+          <p>Other dice still matter. Damage, healing, hit points, and spell effects often use a d4, d6, d8, d10, or d12. If you want a quick overview of the full set, read our guide to the <a href="../types-of-dnd-dice">types of D&amp;D dice</a>. The d20 decides whether the attempt works; the other dice often determine how much effect follows.</p>
+
+          <h2 id="step-by-step">How to use an online d20 dice roller</h2>
+          <p>Follow this sequence whenever you need to roll a d20 online. It works for a normal check, an attack, and most situations involving advantage or disadvantage.</p>
+
+          <h3>1. Identify the action</h3>
+          <p>Before clicking Roll, name the action. “I make a Dexterity (Stealth) check to cross the hallway” is more useful than “I roll.” “I attack the ogre with my longsword” tells the table that this is an attack roll, not a Strength check. Naming the action prevents the wrong modifier from being used.</p>
+
+          <h3>2. Choose the d20</h3>
+          <p>Open the <a href="../dice-roller">DND Custom Dice Roller</a> and select d20. The tool is designed for quick single-die rolls, but it can also help when you need multiple dice or a visible result for a remote table. If you are teaching a new player, explain that the “20” refers to the number of faces, not the number you are guaranteed to roll.</p>
+
+          <h3>3. Add the correct modifier</h3>
+          <p>Read the relevant ability modifier from the character sheet. Then add proficiency or another bonus only when the rule says it applies. A proficient skill check usually includes the character's proficiency bonus. An attack roll may include proficiency with the weapon or spell attack. A circumstance bonus might come from cover, a feature, a magic item, or the Dungeon Master's ruling.</p>
+
+          <h3>4. Select normal, advantage, or disadvantage</h3>
+          <p>Use a normal d20 when no special condition changes the roll. Use advantage when a rule gives two d20s and lets you use the higher result. Use disadvantage when a rule gives two d20s and you use the lower result. The roller's mode should affect the d20 result, not cause you to add the modifier twice.</p>
+
+          <h3>5. Roll and read both values</h3>
+          <p>Record the natural d20 face and the final total. This distinction matters for features that care about a natural 20 or natural 1, for critical hits, for saving throws, and for explaining a result to the table. If the tool displays the adjusted total, keep the original die face visible in your notes or chat message.</p>
+
+          <h3>6. Compare with DC or AC</h3>
+          <p>Compare an ability check with its DC. Compare an attack roll with the target's AC. Do not compare an attack roll with a skill DC, and do not add weapon damage before deciding whether an attack hits. After a successful attack, roll damage separately using the weapon, spell, or feature instructions.</p>
+
+          <h3>7. Share or copy the result</h3>
+          <p>For remote sessions, use the roller's result-sharing or copy control so the group can see exactly what was rolled. A useful message includes the action, die face, modifier, and total, such as: “Stealth: d20 = 12, Dexterity +3, proficiency +2, total 17.” This makes the outcome easy to audit without slowing the game.</p>
+
+          <figure class="article-figure">
+            <img src="../assets/blog/d20-dice-roller-workflow.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="D20 dice roller workflow showing normal rolls, advantage, modifiers, and a target number">
+            <figcaption>A clear workflow keeps the d20 face, modifiers, and target number separate, which helps players avoid adding the wrong bonus.</figcaption>
+          </figure>
+
+          <h2 id="ability-checks">Using a d20 dice roller for ability checks</h2>
+          <p>An ability check resolves an uncertain attempt that could succeed or fail. The Dungeon Master chooses a DC based on the situation, and the player rolls the d20 plus the relevant modifier and applicable bonuses. A skill name in parentheses tells you which trained skill is being used, but the underlying ability still matters.</p>
+
+          <h3>Example: Strength (Athletics)</h3>
+          <p>Your character tries to force open a jammed door. The DM sets DC 15. Your Strength modifier is +3 and you are proficient in Athletics with a +2 proficiency bonus. You roll 10 on the d20. The total is 10 + 3 + 2 = 15, so the check meets the DC and succeeds.</p>
+
+          <h3>Example: Dexterity (Stealth)</h3>
+          <p>You want to move past a guard without being heard. The character sheet shows Dexterity +4 and Stealth proficiency +3. The d20 roller returns 12. The final total is 19. Whether that is enough depends on the guard's passive perception or the DC selected by the DM. The roller does not decide the DC; it only produces the random result and helps with the arithmetic.</p>
+
+          <h3>Choose the skill carefully</h3>
+          <p>Perception, Investigation, and Survival may all involve noticing or finding something, but they are not interchangeable in every situation. Persuasion, Deception, and Intimidation can produce different approaches to a social problem. Ask what the character is trying to do, then choose the ability and skill that match the described action and the table's ruling.</p>
+
+          <p>A natural 20 on a normal ability check is still a die result of 20 plus modifiers. It does not automatically turn every impossible task into a success unless a specific rule or house rule says otherwise. This is one reason it is helpful to show the die face and the final total separately in a digital roller.</p>
+
+          <h2 id="attack-rolls">Using a d20 dice roller for attack rolls</h2>
+          <p>An attack roll answers a different question: does the attack hit the target? Start with the attack entry on the character sheet or stat block. It should identify the relevant ability, proficiency, and bonus. Roll the d20, add the attack modifier, and compare the result with the target's AC.</p>
+
+          <p>For example, a character with a +5 longsword attack rolls 13. The total is 18. Against AC 17, the attack hits. Against AC 19, it misses. The damage roll happens only after the hit is confirmed. If the weapon deals 1d8 + 3 damage, roll that separately rather than adding 1d8 to the attack total.</p>
+
+          <p>Finesse weapons can allow a character to use Strength or Dexterity according to the weapon rule and the player's choice. Ranged attacks commonly use Dexterity, while a spell attack uses the character's spellcasting ability and proficiency where applicable. Read the exact attack entry when a feature, weapon, or spell changes the normal ability.</p>
+
+          <p>The same d20 workflow also applies to special attacks such as a grapple or shove when the table's rule set calls for a contest or check. Our <a href="../5e-grapple-rules">5e Grapple Rules guide</a> explains why it is important to identify the edition and the exact action before choosing the roll.</p>
+
+          <h2 id="advantage">Advantage and disadvantage on a d20 roller</h2>
+          <p>Advantage and disadvantage change how you roll the d20, not the value of your modifier. With advantage, roll two d20s and use the higher face. With disadvantage, roll two d20s and use the lower face. Then add the modifier once to the chosen face.</p>
+
+          <p>Suppose a rogue has Dexterity +4 and Stealth proficiency +3. With advantage, the roller returns 7 and 16. Choose 16, then add +7 for a total of 23. With disadvantage, the same two faces would use 7, for a total of 14. Do not add both d20s together, and do not apply +7 to both dice before selecting the result.</p>
+
+          <p>In the 2014 rules, multiple sources of advantage do not normally create extra d20s, and advantage and disadvantage cancel when both apply. Updated rules may express related mechanics differently in a particular feature, so use the Player's Handbook or the rules reference your group has selected. For the core concept and exact wording, compare the official <a href="https://www.dndbeyond.com/sources/dnd/basic-rules-2014/using-ability-scores" target="_blank" rel="noopener noreferrer">2014 ability check rules</a> with the official <a href="https://www.dndbeyond.com/sources/dnd/br-2024/playing-the-game" target="_blank" rel="noopener noreferrer">updated Playing the Game rules</a>.</p>
+
+          <h2 id="ruleset-notes">2014 and updated rules: what to check</h2>
+          <p>The basic d20 workflow is shared across common D&amp;D rulesets, but the details around critical hits, contests, conditions, and specific actions can change. Before a campaign begins, agree on which Player's Handbook or rules reference is being used. Do not mix a 2014 formula with an updated feature description just because both use a d20.</p>
+
+          <p>For attacks, natural 20 and natural 1 are important results, but the exact terms and critical-hit procedure should follow the chosen ruleset. For ability checks, do not assume that a natural 20 automatically succeeds or that a natural 1 automatically fails unless your table has adopted that rule. The safest digital workflow is to report the die face, modifier, final total, and the rule being applied.</p>
+
+          <h2 id="mistakes">Common d20 dice roller mistakes</h2>
+          <ol>
+            <li><strong>Using the wrong die:</strong> A d20 is not a d12 or d10. Confirm the selected die before rolling.</li>
+            <li><strong>Forgetting the modifier:</strong> The die face is only the random part. Check the character sheet and action.</li>
+            <li><strong>Adding proficiency twice:</strong> Apply the proficiency bonus once unless a feature specifically changes it.</li>
+            <li><strong>Adding damage to the attack roll:</strong> First compare the attack total with AC; roll damage only after a hit.</li>
+            <li><strong>Mixing advantage with the modifier:</strong> Choose the higher or lower d20 face first, then add the modifier once.</li>
+            <li><strong>Confusing DC and AC:</strong> DC usually resolves an ability check, while AC is the target number for an attack.</li>
+            <li><strong>Ignoring the ruleset:</strong> 2014 and updated rules can use different language or procedures for the same situation.</li>
+          </ol>
+
+          <p>For players, these checks are easy to build into a routine. For game masters, asking players to announce the action and the final total keeps the table moving. If you are creating custom or branded dice for a campaign, product, or game store, clear number fill and a readable d20 face are just as important as the theme. Explore our <a href="../custom-rpg-dice">custom RPG dice</a> options when you need a coordinated set for a launch or retail program.</p>
+
+          <h2 id="quick-reference">D20 quick reference</h2>
+          <table class="product-table">
+            <thead><tr><th>Roll type</th><th>Roll</th><th>Add</th><th>Compare with</th></tr></thead>
+            <tbody>
+              <tr><td>Ability check</td><td>1d20</td><td>Relevant ability modifier and applicable proficiency or bonuses</td><td>Difficulty Class (DC)</td></tr>
+              <tr><td>Attack roll</td><td>1d20</td><td>Attack ability modifier and applicable proficiency or bonuses</td><td>Armor Class (AC)</td></tr>
+              <tr><td>Advantage</td><td>2d20, keep higher</td><td>Add the modifier once</td><td>DC or AC, as appropriate</td></tr>
+              <tr><td>Disadvantage</td><td>2d20, keep lower</td><td>Add the modifier once</td><td>DC or AC, as appropriate</td></tr>
+              <tr><td>Damage after a hit</td><td>Weapon or spell dice</td><td>Damage modifier when applicable</td><td>Do not compare with AC again</td></tr>
+            </tbody>
+          </table>
+
+          <p>For official rules references, use the <a href="https://www.dndbeyond.com/sources/dnd/basic-rules-2014/combat" target="_blank" rel="noopener noreferrer">2014 combat rules</a> and the official <a href="https://www.dndbeyond.com/sources/dnd/br-2024/playing-the-game" target="_blank" rel="noopener noreferrer">updated rules reference</a>. The table above is a practical summary, not a replacement for the rule text or a feature's specific instructions.</p>
+
+          <section class="article-faq" id="faq">
+            <div class="eyebrow">Quick Answers</div>
+            <h2>D20 dice roller FAQ</h2>
+            <details open><summary>What is a d20 dice roller used for?</summary><p>A d20 dice roller is used for ability checks, attack rolls, saving throws, initiative, and other D&amp;D tests that call for a twenty-sided die.</p></details>
+            <details><summary>How do I roll a d20 with a modifier?</summary><p>Roll the d20, identify the relevant ability modifier and any proficiency or circumstance bonus that applies, and add those values to the die face.</p></details>
+            <details><summary>How does advantage or disadvantage work?</summary><p>Roll two d20s for the same test. Use the higher face with advantage or the lower face with disadvantage, then add the modifier once.</p></details>
+            <details><summary>Does a natural 20 automatically succeed on an ability check?</summary><p>Not normally. A natural 20 is primarily an attack-roll rule. An ability check still depends on the DC and the rules or house rules used by your table.</p></details>
+            <details><summary>Does an attack roll include damage?</summary><p>No. The attack roll is compared with AC. After a hit, roll damage separately using the attack's weapon, spell, or feature instructions.</p></details>
+          </section>
+
+          <section>
+            <div class="eyebrow">Related resources</div>
+            <h2>Continue learning and planning your dice setup.</h2>
+            <div class="grid three" style="margin-top: 24px;">
+              <a class="card" href="../dice-roller"><h3>Online D&amp;D Dice Roller</h3><p>Roll d4, d6, d8, d10, d12, d20, and other dice with modifiers and result sharing.</p></a>
+              <a class="card" href="../types-of-dnd-dice"><h3>Types of D&amp;D Dice</h3><p>Review the common polyhedral dice shapes and what they are used for at the table.</p></a>
+              <a class="card" href="../wholesale-dice-catalog"><h3>Wholesale Dice Catalog</h3><p>Browse custom and wholesale dice options for game stores, brands, publishers, and events.</p></a>
+            </div>
+          </section>
+
+          <div class="article-cta">
+            <div><div class="eyebrow">For Stores, Brands &amp; Publishers</div><h2>Turn a memorable d20 into a product line.</h2><p>Share your target material, color direction, logo artwork, set contents, packaging plan, and quantity range. We can help compare samples, MOQ paths, and private label dice options for a game store or RPG launch.</p></div>
+            <div class="hero-actions"><a class="button" href="../free-wholesale-dice-sample-kit-catalog-request">Request Catalog &amp; Sample Kit</a><a class="button secondary" href="../request-a-quote">Request a Quote</a></div>
+          </div>
+
+          <h2>Final takeaway</h2>
+          <p>To use a d20 dice roller well, identify the action, choose the correct mode, roll the d20, add the relevant modifier once, and compare the final total with the correct DC or AC. Keep the natural die face separate from the total, especially when advantage, disadvantage, critical results, or a special feature is involved. That small habit makes online D&amp;D rolls easier to understand, easier to share, and much less likely to create rules confusion.</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="section compact footer-grid">
+      <div><a class="brand" href="/"><span class="brand-mark">D20</span><span>DND Custom Dice</span></a><p style="margin-top: 14px;">Wholesale 5e-compatible fantasy RPG dice, custom polyhedral dice, real product samples, and private label packaging for B2B buyers worldwide.</p><div class="contact-line"><a href="mailto:Info@dndcustomdice.com">Email: Info@dndcustomdice.com</a><a href="https://wa.me/8613922851014">WhatsApp: +86 13922851014</a></div></div>
+      <div><strong>Programs</strong><div class="footer-links"><a href="/free-wholesale-dice-sample-kit-catalog-request">Free Catalog &amp; Sample Kit Request</a><a href="/wholesale-dice">Wholesale Dice</a><a href="/wholesale-dice-catalog">Wholesale Catalog</a><a href="/types-of-dnd-dice">Types of DND Dice</a><a href="/dice-roller">Dice Roller</a><a href="/sample-kits">Sample Kits</a></div></div>
+      <div><strong>Themes</strong><div class="footer-links"><a href="/dragon-dice-wholesale">Dragon Dice</a><a href="/character-class-dice">Class Dice</a><a href="/elemental-dice-sets">Elemental Dice</a><a href="/wholesale-d20-dice">Wholesale D20 Dice</a></div></div>
+      <div><strong>Buyers</strong><div class="footer-links"><a href="/game-store-dice-supplier">Game Store Dice Supplier</a><a href="/custom-dice-packaging-options">Packaging Options</a><a href="/how-to-order-custom-rpg-dice">How to Order</a><a href="/rpg-dice-manufacturer-faq">Manufacturer FAQ</a><a href="/quality-manufacturing">Quality</a><a href="/request-a-quote">Request Quote</a></div></div>
+      <p class="disclaimer">DND-inspired and 5e-compatible are used descriptively for tabletop RPG compatibility. This website is not affiliated with, endorsed by, or sponsored by any official game publisher.</p>
+    </div>
+  </footer>
+  <script src="../assets/main.js?v=20260825-whatsapp-float"></script>
+</body>
+</html>
