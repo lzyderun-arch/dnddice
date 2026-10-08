@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
+    <loc>https://dndcustomdice.com/blog/game-store-day-2026-rpg-dice-display-checklist</loc>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/game-store-day-2026-dice-display-hero.webp</image:loc>
+      <image:title>Independent game store RPG dice display prepared for Game Store Day</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/game-store-day-dice-merchandising.webp</image:loc>
+      <image:title>Tiered tabletop retail display grouping core polyhedral dice and premium sets</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://dndcustomdice.com/blog/2026-rpg-dice-trends-game-store-buyers</loc>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/rpg-dice-trends-2026-game-store-hero.webp</image:loc>
+      <image:title>Illustrative assortment of resin and metal polyhedral RPG dice for game store buyers</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/rpg-dice-assortment-planning.webp</image:loc>
+      <image:title>Illustrative core and premium RPG dice assortment planning display</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://dndcustomdice.com/blog/5e-grapple-rules</loc>
     <image:image>
       <image:loc>https://dndcustomdice.com/assets/blog/5e-grapple-rules-hero.webp</image:loc>
