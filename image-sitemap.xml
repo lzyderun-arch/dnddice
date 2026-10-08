@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
+    <loc>https://dndcustomdice.com/blog/holiday-rpg-dice-buying-guide-game-stores</loc>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/holiday-rpg-dice-gift-assortment.webp</image:loc>
+      <image:title>Giftable polyhedral RPG dice assortment in an independent game store</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://dndcustomdice.com/blog/game-store-day-2026-rpg-dice-display-checklist</loc>
     <image:image>
       <image:loc>https://dndcustomdice.com/assets/blog/game-store-day-2026-dice-display-hero.webp</image:loc>
