@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
+    <loc>https://dndcustomdice.com/blog/accessible-rpg-dice-design-guide</loc>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/accessible-rpg-dice-design-guide.webp</image:loc>
+      <image:title>Illustrative colorful polyhedral RPG dice with large high-contrast numerals for an accessible dice design guide</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://dndcustomdice.com/blog/dnd-5e-bard-colleges-guide</loc>
     <image:image>
       <image:loc>https://dndcustomdice.com/assets/blog/bard-colleges-5e-guide-hero.webp</image:loc>
