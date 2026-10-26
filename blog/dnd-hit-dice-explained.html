@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D&amp;D Hit Dice Explained: 2014 vs. 2024 Rules</title>
+  <meta name="description" content="Learn what Hit Dice are in D&amp;D, how class dice work, how to spend them during a Short Rest, and what changed between the 2014 and 2024 rules.">
+  <link rel="canonical" href="https://dndcustomdice.com/blog/dnd-hit-dice-explained">
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt">
+  <link rel="preload" as="image" href="../assets/blog/dnd-hit-dice-short-rest.webp" imagesrcset="../assets/blog/dnd-hit-dice-short-rest-760.webp 760w, ../assets/blog/dnd-hit-dice-short-rest.webp 1400w" imagesizes="(max-width: 1080px) calc(100vw - 32px), (max-width: 1220px) 45vw, 520px" type="image/webp">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="D&amp;D Hit Dice Explained: 2014 vs. 2024 Rules">
+  <meta property="og:description" content="A practical guide to Hit Dice, Short Rest healing, class die sizes, and the key 2014-versus-2024 recovery difference.">
+  <meta property="og:url" content="https://dndcustomdice.com/blog/dnd-hit-dice-explained">
+  <meta property="og:image" content="https://dndcustomdice.com/assets/blog/dnd-hit-dice-short-rest.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="D&amp;D Hit Dice Explained: 2014 vs. 2024 Rules">
+  <meta name="twitter:description" content="Understand what Hit Dice do, how to spend them for healing, and how 2014 and 2024 rest rules differ.">
+  <meta name="twitter:image" content="https://dndcustomdice.com/assets/blog/dnd-hit-dice-short-rest.webp">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825-whatsapp-effect">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://dndcustomdice.com/blog/dnd-hit-dice-explained#article",
+        "headline": "D&D Hit Dice Explained: How to Roll, Spend, and Recover Hit Dice (2014 vs. 2024)",
+        "description": "An original rules explainer covering D&D Hit Dice, class die sizes, Short Rest healing, and recovery under the 2014 and 2024 rules.",
+        "image": ["https://dndcustomdice.com/assets/blog/dnd-hit-dice-short-rest.webp"],
+        "datePublished": "2026-10-26",
+        "dateModified": "2026-10-26",
+        "author": {"@type": "Organization", "name": "DND Custom Dice Editorial Team"},
+        "publisher": {"@type": "Organization", "name": "DND Custom Dice", "url": "https://dndcustomdice.com/"},
+        "mainEntityOfPage": "https://dndcustomdice.com/blog/dnd-hit-dice-explained",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dndcustomdice.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dndcustomdice.com/blog/"},
+          {"@type": "ListItem", "position": 3, "name": "D&D Hit Dice Explained", "item": "https://dndcustomdice.com/blog/dnd-hit-dice-explained"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "What are Hit Dice in D&D?", "acceptedAnswer": {"@type": "Answer", "text": "Hit Dice are a character resource tied to character level and class. During a Short Rest, a character can spend available Hit Dice, roll the relevant class die, and add the Constitution modifier to recover Hit Points. They are not the same thing as the physical dice in a retail dice set."}},
+          {"@type": "Question", "name": "How many Hit Dice does a character have?", "acceptedAnswer": {"@type": "Answer", "text": "A character normally has one Hit Die for each character level. A multiclass character's pool includes dice associated with levels in each class, so the dice can have different sizes."}},
+          {"@type": "Question", "name": "How do you use Hit Dice during a Short Rest?", "acceptedAnswer": {"@type": "Answer", "text": "At the end of a Short Rest, spend one or more available Hit Dice. Roll each die and add your Constitution modifier for that die. The total restores Hit Points, up to your Hit Point maximum. Check the minimum-healing rule for the rules version your table uses."}},
+          {"@type": "Question", "name": "How many Hit Dice do you regain after a Long Rest?", "acceptedAnswer": {"@type": "Answer", "text": "Under the 2014 rules, a Long Rest restores spent Hit Dice up to half your total, with a minimum of one. Under the 2024 rules, you regain all spent Hit Point Dice when you finish a Long Rest."}},
+          {"@type": "Question", "name": "Are Hit Dice the same as the dice in a D&D dice set?", "acceptedAnswer": {"@type": "Answer", "text": "No. A dice set is a collection of physical polyhedral dice. Hit Dice are a character's level-based resource. A player can use a physical die of the correct size to roll a Hit Die, but owning more physical dice does not increase the character's resource."}},
+          {"@type": "Question", "name": "Can a character use Hit Dice outside a Short Rest?", "acceptedAnswer": {"@type": "Answer", "text": "The standard healing procedure spends Hit Dice during a Short Rest. A feature or other specific rule may allow a different use, so follow the current wording of that rule."}}
+        ]
+      }
+    ]
+  }
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JB9554D4TW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JB9554D4TW');
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="DND Custom Dice home"><span class="brand-mark">D20</span><span>DND Custom Dice</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <div class="nav-links" id="nav-links">
+        <a class="nav-direct" href="/custom-dice-factory">Factory &amp; Custom</a>
+        <a class="nav-direct" href="/wholesale-dice-catalog">Catalog</a>
+        <a class="nav-direct" href="/wholesale-dice">Wholesale</a>
+        <a class="nav-direct is-current" href="/blog/" aria-current="page">Blog</a>
+        <a class="nav-direct" href="/dice-roller">Dice Roller</a>
+        <a class="nav-contact" href="https://wa.me/8613922851014">WhatsApp</a>
+        <a class="button" href="/request-a-quote">Request Quote</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article class="article-page">
+      <header class="article-hero">
+        <div class="article-hero-copy">
+          <div class="breadcrumbs"><a href="../">Home</a> / <a href="./">Blog</a> / D&amp;D Hit Dice Explained</div>
+          <div class="eyebrow">D&amp;D Rules &amp; Dice Guide</div>
+          <h1>D&amp;D Hit Dice Explained: How to Roll, Spend, and Recover Hit Dice (2014 vs. 2024)</h1>
+          <p class="lead">Learn what Hit Dice represent, which class die your character uses, how Short Rest healing works, and the important recovery change between the 2014 and 2024 D&amp;D rules.</p>
+          <div class="article-meta"><span>By DND Custom Dice Editorial Team</span><span>Published October 26, 2026</span><span>About 14 minutes</span></div>
+        </div>
+        <figure class="article-hero-media article-hero-media-compact">
+          <img src="../assets/blog/dnd-hit-dice-short-rest.webp" srcset="../assets/blog/dnd-hit-dice-short-rest-760.webp 760w, ../assets/blog/dnd-hit-dice-short-rest.webp 1400w" sizes="(max-width: 1080px) calc(100vw - 32px), (max-width: 1220px) 45vw, 520px" width="1400" height="933" fetchpriority="high" decoding="async" alt="Polyhedral tabletop role-playing dice beside a campaign journal during a quiet rest between encounters">
+          <figcaption class="media-caption">New AI-generated editorial image for this guide. The dice are illustrative and are not a rules diagram or a product photo.</figcaption>
+        </figure>
+      </header>
+      <div class="article-layout">
+        <aside class="article-toc" aria-label="Article contents">
+          <strong>In this guide</strong>
+          <a href="#quick-answer">Quick answer</a><a href="#what-are-hit-dice">What Hit Dice mean</a><a href="#class-die">Class Hit Die sizes</a><a href="#short-rest">Short Rest healing</a><a href="#worked-examples">Worked examples</a><a href="#2014-vs-2024">2014 vs. 2024</a><a href="#mistakes">Common mistakes</a><a href="#faq">FAQ</a><a href="#sources">Official references</a>
+        </aside>
+        <div class="article-body">
+          <div class="article-note"><strong>Quick answer:</strong> Hit Dice are a character resource used mainly to recover Hit Points during a Short Rest. A character normally has one Hit Die per character level; the die size comes from the class. The biggest general recovery change is that the 2014 rules restore up to half your spent Hit Dice after a Long Rest, while the 2024 rules restore all spent Hit Point Dice.</div>
+
+          <p>If you searched for “what are Hit Dice in D&amp;D,” you are probably looking at a character sheet, reading a class feature, or trying to recover after a fight. The term is easy to misread because it sounds like a piece of equipment. It is not a special die you must buy. It is a level-based resource that tells you which die to roll when a rule lets your character spend one.</p>
+          <p>This guide explains the process in table-ready language, with a 2014-versus-2024 comparison and worked healing examples. The rules summaries below are original explanations, not reproduced rule text. If a class feature, campaign option, or table ruling says something different, use that specific rule and the rules version your group has agreed to play.</p>
+
+          <h2 id="quick-answer">What are Hit Dice in D&amp;D? The short answer</h2>
+          <p><strong>Hit Dice</strong> (called <em>Hit Point Dice</em> in the 2024 rules glossary) are a character's pool of dice associated with their class levels. The pool has two main jobs:</p>
+          <ul><li><strong>Character durability:</strong> the class Hit Die is part of how a character's Hit Point maximum is determined as they gain levels.</li><li><strong>Rest-based healing:</strong> during a Short Rest, the character can spend available Hit Dice, roll them, add the Constitution modifier, and recover Hit Points.</li></ul>
+          <p>For example, a 3rd-level Fighter ordinarily has three d10 Hit Dice. Those are not three permanent Hit Points and they are not three extra physical dice in an inventory. They are three uses of a character resource. If the Fighter spends two on healing, only one remains available until the character recovers spent Hit Dice under the campaign's rest rules.</p>
+          <p>For a quick distinction: a <strong>d10</strong> is a physical die shape; a <strong>Hit Die</strong> is a rule-defined use of a die assigned to your character. One physical d10 can roll a Hit Die for a Fighter, a weapon's damage, or a percentile result depending on the roll. The character sheet and the rule being used determine what the roll means.</p>
+
+          <h2 id="what-are-hit-dice">Hit Dice vs. the dice in a standard D&amp;D set</h2>
+          <p>A standard polyhedral set is typically sold as seven dice: a d4, d6, d8, d10, percentile d10, d12, and d20. It is a convenient collection of physical dice for a tabletop game. Hit Dice, by contrast, are tracked on the character sheet and scale with character levels. The two ideas overlap because you roll a physical die to resolve a Hit Die, but they are not interchangeable terms.</p>
+          <table class="product-table"><thead><tr><th>Term</th><th>What it means</th><th>Example</th></tr></thead><tbody>
+            <tr><td>Physical d10</td><td>A ten-sided object used to generate a number.</td><td>Roll it for a Fighter's Hit Die or an attack's damage when instructed.</td></tr>
+            <tr><td>One Hit Die</td><td>One class-based resource on a character sheet.</td><td>A 3rd-level Fighter generally has three d10 Hit Dice.</td></tr>
+            <tr><td>Dice set</td><td>A group of physical dice, often seven shapes for tabletop play.</td><td>Buying another set adds physical dice, not character Hit Dice.</td></tr>
+          </tbody></table>
+          <p>If the shapes and labels are unfamiliar, see our guide to <a href="../types-of-dnd-dice">the types of D&amp;D dice</a> and the explanation of <a href="how-many-dice-in-a-dnd-set">how many dice are in a D&amp;D set</a>. If you need a quick digital roll, the <a href="../dice-roller">online D&amp;D dice roller</a> can generate common polyhedral results; remember that you still need to track how many Hit Dice your character has spent.</p>
+
+          <h2 id="class-die">Which die does each class use?</h2>
+          <p>Your class determines the type of Hit Die you use. In general, a character gains one Hit Die for each level in a class. If your character has levels in more than one class, the pool can contain different die sizes. The table below summarizes the familiar 2014 Player's Handbook class assignments; when using the 2024 rules or a class from another source, check that class's current “Hit Point Die” or Hit Die entry.</p>
+          <table class="product-table"><thead><tr><th>Hit Die</th><th>2014 Player's Handbook classes</th><th>At a glance</th></tr></thead><tbody>
+            <tr><td>d6</td><td>Sorcerer, Wizard</td><td>Smaller class die; each available Hit Die is rolled separately.</td></tr>
+            <tr><td>d8</td><td>Bard, Cleric, Druid, Monk, Rogue, Warlock</td><td>Common across several versatile and spellcasting classes.</td></tr>
+            <tr><td>d10</td><td>Fighter, Paladin, Ranger</td><td>Often associated with martial classes in the 2014 core roster.</td></tr>
+            <tr><td>d12</td><td>Barbarian</td><td>The largest Hit Die among the 2014 Player's Handbook classes.</td></tr>
+          </tbody></table>
+          <p>The die size does not mean a class automatically heals that many Hit Points on a Short Rest. You roll the die, then add your Constitution modifier. A d12 can roll low; a d6 can roll high. The die size affects the range of possible results, not a guaranteed amount.</p>
+          <p>At level 1, class rules generally set your initial Hit Points using the maximum value of the class die plus your Constitution modifier. When leveling up, the rules specify how to add Hit Points, often allowing a die roll or a fixed value. That level-up procedure is separate from spending Hit Dice to heal during a Short Rest. Do not mark a Hit Die spent merely because you used it to determine Hit Points when gaining a level.</p>
+          <h3>Multiclass characters</h3>
+          <p>A multiclass character can have more than one Hit Die size. A character with two Fighter levels and three Wizard levels, for example, would track two d10 Hit Dice and three d6 Hit Dice under the familiar class-by-class approach. During a Short Rest, the player chooses which available dice to spend. This lets the player decide whether to use the larger die now or preserve it for a later rest, subject to the exact multiclass rules and character options in use.</p>
+
+          <h2 id="short-rest">How to spend Hit Dice during a Short Rest</h2>
+          <p>Short Rest healing is a player-controlled way to recover some Hit Points without requiring a spell or a separate healing feature. The usual sequence is simple, but the 2014 and 2024 rules differ in a few details, so check the comparison section before resolving a close rules question.</p>
+          <ol>
+            <li><strong>Take a qualifying Short Rest.</strong> The rest is downtime, not a combat action. Both versions describe a one-hour rest, with some wording and eligibility differences explained below.</li>
+            <li><strong>Check your available pool.</strong> Count the Hit Dice you have not already spent. A character cannot spend more than are currently available.</li>
+            <li><strong>Choose a die and roll it.</strong> Use the die size belonging to the class level represented by that Hit Die. For a multiclass character, identify which class die is being spent.</li>
+            <li><strong>Add your Constitution modifier.</strong> Add the modifier to each die's result, applying the minimum specified by your rules version.</li>
+            <li><strong>Restore Hit Points and update the sheet.</strong> Add the healing to current Hit Points, without exceeding your Hit Point maximum, and mark the Hit Die as spent.</li>
+            <li><strong>Decide whether to spend another.</strong> Review the result and your remaining Hit Point deficit before using another die. This is a resource decision, not an automatic “spend the whole pool” step.</li>
+          </ol>
+          <p>The key distinction is between <strong>available Hit Dice</strong> and <strong>missing Hit Points</strong>. If your character is only missing 4 Hit Points, spending a high-value Hit Die could restore more than you can use. The excess healing is lost because current Hit Points cannot exceed the maximum. If you are likely to face another encounter before a Long Rest, conserving a die may matter more than topping off immediately.</p>
+
+          <h2 id="worked-examples">Worked examples: calculate Short Rest healing</h2>
+          <h3>Example 1: Fighter with a positive Constitution modifier</h3>
+          <p>A 5th-level Fighter has d10 Hit Dice and a Constitution modifier of +2. The character is missing 17 Hit Points and chooses to spend two Hit Dice. The player rolls a 6 and a 3. The arithmetic is 6 + 2 = 8, then 3 + 2 = 5, for 13 Hit Points recovered. The Fighter is still 4 Hit Points below maximum and has spent two d10 Hit Dice.</p>
+          <h3>Example 2: A low roll with a negative modifier</h3>
+          <p>A Wizard with a Constitution modifier of −1 rolls a d6 and gets a 1. Under the 2014 rule, the healing from that die cannot be less than 0, so the total is 0 Hit Points. Under the 2024 rule, the minimum is 1 Hit Point, so that die restores 1. This edge case matters because a negative modifier can otherwise reduce the result below zero; it does not mean the player can skip marking the die as spent.</p>
+          <h3>Example 3: Healing is capped by the Hit Point maximum</h3>
+          <p>A Bard is missing 3 Hit Points and rolls a d8 plus a +2 Constitution modifier, getting 7 total. The Bard recovers only 3 Hit Points because that fills the missing space. The other 4 points do not become temporary Hit Points, and they are not saved for later. If the player had another safe opportunity to rest soon, spending a Hit Die for only 3 points might be less attractive than using a smaller die, depending on what is available.</p>
+          <p>These examples show why “roll the class die plus Constitution” is only the beginning of the decision. You also need to apply the correct minimum, respect the Hit Point maximum, track the remaining pool, and consider how soon the party expects another Long Rest.</p>
+
+          <h2 id="2014-vs-2024">D&amp;D Hit Dice: 2014 vs. 2024 rules</h2>
+          <p>The basic idea remains recognizable: characters spend class-based dice during a Short Rest to recover Hit Points. The 2024 rules glossary calls them “Hit Point Dice,” although players commonly continue to say “Hit Dice.” The most impactful general difference for resource planning is what happens after a Long Rest.</p>
+          <table class="product-table"><thead><tr><th>Question</th><th>2014 rules</th><th>2024 rules</th></tr></thead><tbody>
+            <tr><td>Term used in core rules</td><td>Hit Dice</td><td>Hit Point Dice (often shortened to Hit Dice)</td></tr>
+            <tr><td>Short Rest length</td><td>At least 1 hour</td><td>1 hour</td></tr>
+            <tr><td>Short Rest healing</td><td>Spend available dice; roll and add Constitution modifier; healing from each die is at least 0</td><td>Spend available dice; roll and add Constitution modifier; healing from each die is at least 1 Hit Point</td></tr>
+            <tr><td>Starting a Short Rest</td><td>The 2014 Basic Rules do not state the 2024 “at least 1 Hit Point” start requirement</td><td>You must have at least 1 Hit Point to start</td></tr>
+            <tr><td>Dice restored by a Long Rest</td><td>Up to half your total Hit Dice, minimum one</td><td>All spent Hit Point Dice</td></tr>
+            <tr><td>Long Rest Hit Points</td><td>Regain all lost Hit Points, if the Long Rest is completed</td><td>Regain all lost Hit Points, if the Long Rest is completed</td></tr>
+          </tbody></table>
+          <p>Those differences are easy to mix up if a group is transitioning between books. A 2014 character who spends most of their Hit Dice may begin the next adventuring day with only some of them restored. Under the 2024 rules, the Long Rest restores all spent Hit Point Dice. This affects how players budget Short Rest healing across multiple encounters and days; it does not change the die size listed for the character's class by itself.</p>
+          <p>The rest procedures also include eligibility and interruption details. For example, the 2024 glossary says a character needs at least 1 Hit Point to start a Short Rest and lists events that interrupt it. The 2014 Basic Rules phrase rest duration and interruption differently. If a feature, adventure, or table uses a special rest variant, do not assume that this general comparison covers it. Use the rulebook or digital rules version your Dungeon Master selected.</p>
+
+          <h2 id="how-many">How many Hit Dice can you spend?</h2>
+          <p>You can spend only the Hit Dice you currently have available. A 5th-level character normally begins with five Hit Dice in total, while a multiclass character's dice are divided by class and die size. If the character has already spent three and has not recovered them, only two remain. The Long Rest recovery rule is then applied to the spent pool—not to the physical dice in a bag.</p>
+          <p>There is no universal rule that says you should always spend one die, always spend all of them, or save every die for emergencies. Consider four things:</p>
+          <ul><li><strong>How much healing is needed?</strong> Avoid spending dice when your character is nearly at maximum unless the situation requires it.</li><li><strong>How dangerous is the next encounter?</strong> A party entering a difficult scene may value immediate Hit Points more than conserving a die.</li><li><strong>When is the next Long Rest likely?</strong> Under the 2014 rules, only part of the spent pool returns after a Long Rest; under 2024, all spent dice return.</li><li><strong>What other recovery is available?</strong> Healing spells, class features, potions, and allies can change the value of spending a Hit Die now.</li></ul>
+          <p>For a group that is new to the game, a useful habit is to state the calculation out loud: “I spend one d8, roll a 5, add my +2 Constitution modifier, and recover 7 Hit Points; I have one fewer d8 Hit Die available.” It makes the resource, die result, modifier, and character-sheet update visible to everyone at the table.</p>
+
+          <h2 id="mistakes">Common Hit Dice mistakes</h2>
+          <h3>Confusing Hit Dice with Hit Points</h3><p>Hit Points measure how much damage a character can withstand. Hit Dice are a separate resource that can be spent for recovery and are also tied to class-level Hit Point progression. A character can be at full Hit Points while still having spent Hit Dice, or be missing Hit Points while still having all Hit Dice available.</p>
+          <h3>Assuming one physical set gives you more Hit Dice</h3><p>A bag with seven dice, a bag with several dozen dice, and an online roller do not change a character's level-based pool. Extra physical dice can make it quicker to roll multiple damage dice at once, but the number of Hit Dice on the character sheet is determined by character rules.</p>
+          <h3>Using the wrong die size</h3><p>Use the die attached to the class level you are spending. A multiclass character might have both d8 and d10 Hit Dice. Do not assume every character uses a d8 or that the most visually distinctive die in a set is the correct one.</p>
+          <h3>Adding Constitution only once when rolling multiple dice</h3><p>For Short Rest healing, add the Constitution modifier to each Hit Die roll, not just once to the combined sum. Then apply the minimum-healing rule for the relevant rules version and cap the total at the missing Hit Points.</p>
+          <h3>Using the 2024 Long Rest recovery rule at a 2014 table</h3><p>Because the two versions differ, write down which rules your group uses. Under the 2014 rule, a Long Rest restores up to half the character's total Hit Dice, with a minimum of one. Under the 2024 rule, it restores all spent Hit Point Dice. These are not interchangeable interpretations of the same sentence.</p>
+          <h3>Treating Hit Dice as monster stat-block dice</h3><p>Monster Hit Dice may appear in a stat block as part of how its Hit Points are calculated. That notation is not automatically a player-character resource for Short Rest healing. Follow the monster's rules and the specific adventure or creature text rather than transferring player-character assumptions to every creature.</p>
+
+          <h2 id="table-checklist">A quick table checklist</h2>
+          <ol><li>Confirm whether the group is using the 2014 or 2024 rules.</li><li>Check the class and die size for the Hit Die being spent.</li><li>Count only unspent Hit Dice on the character sheet.</li><li>Roll each die separately and add Constitution to each roll.</li><li>Apply the correct minimum healing and never exceed maximum Hit Points.</li><li>Mark each die spent, then apply the matching Long Rest recovery rule later.</li></ol>
+          <p>This sequence prevents most Hit Dice questions from turning into a debate. The official references below are the authority for the rules text; this checklist is a learning aid, not a substitute for your table's chosen book.</p>
+
+          <section class="article-faq" id="faq">
+            <div class="eyebrow">Quick Answers</div><h2>D&amp;D Hit Dice FAQ</h2>
+            <details open><summary>What are Hit Dice in D&amp;D?</summary><p>Hit Dice are a level-based character resource associated with class levels. You can spend available Hit Dice during a Short Rest to roll for Hit Point recovery. They are not the same as the physical dice in a dice set.</p></details>
+            <details><summary>How many Hit Dice does a character have?</summary><p>A character normally has one Hit Die per character level. A multiclass character tracks dice associated with each class level, so the pool may contain different die sizes.</p></details>
+            <details><summary>How do you use Hit Dice during a Short Rest?</summary><p>Spend available Hit Dice, roll each class die, add your Constitution modifier to each result, apply the correct minimum, recover Hit Points up to your maximum, and mark the dice spent.</p></details>
+            <details><summary>How many Hit Dice return after a Long Rest?</summary><p>The 2014 rules restore up to half the total Hit Dice spent, with a minimum of one. The 2024 rules restore all spent Hit Point Dice after a completed Long Rest.</p></details>
+            <details><summary>Are Hit Dice the same as the dice in a D&amp;D dice set?</summary><p>No. The set is physical equipment. Hit Dice are a character resource. More physical dice make rolling convenient but do not increase the resource on your character sheet.</p></details>
+            <details><summary>Can I spend Hit Dice outside a Short Rest?</summary><p>The standard healing procedure uses them during a Short Rest. A specific class feature or other rule may create another use, so check that rule's exact wording.</p></details>
+          </section>
+
+          <section id="sources"><div class="eyebrow">Official Rules References</div><h2>Sources and further reading</h2>
+            <ul>
+              <li><a href="https://www.dndbeyond.com/sources/dnd/basic-rules-2014/adventuring" target="_blank" rel="noopener noreferrer">D&amp;D Beyond, Basic Rules (2014): Adventuring</a>. See Resting for the 2014 Short Rest and Long Rest procedures, including Hit Dice recovery.</li>
+              <li><a href="https://www.dndbeyond.com/sources/dnd/basic-rules-2014/classes" target="_blank" rel="noopener noreferrer">D&amp;D Beyond, Basic Rules (2014): Classes</a>. Class entries list Hit Dice and explain their role in Hit Point progression.</li>
+              <li><a href="https://www.dndbeyond.com/sources/dnd/br-2024/rules-glossary" target="_blank" rel="noopener noreferrer">D&amp;D Beyond, Basic Rules (2024): Rules Glossary</a>. See “Hit Point Dice,” “Short Rest,” and “Long Rest” for current terminology and recovery rules.</li>
+              <li><a href="https://www.dndbeyond.com/sources/dnd/br-2024/character-classes" target="_blank" rel="noopener noreferrer">D&amp;D Beyond, Basic Rules (2024): Character Classes</a>. Check each class's current Hit Point Die entry when using the revised rules.</li>
+            </ul>
+            <p>These official rules references support the factual summaries in this article. The examples are original arithmetic illustrations. Dungeons &amp; Dragons is a trademark of its respective owner; this independent guide is not affiliated with or endorsed by Wizards of the Coast.</p>
+          </section>
+
+          <section><div class="eyebrow">Related Guides</div><h2>Keep learning about D&amp;D dice</h2>
+            <div class="grid three" style="margin-top: 24px;">
+              <a class="card" href="how-to-use-d20-dice-roller"><h3>How to Use a D20 Dice Roller</h3><p>Practice common d20 rolls, modifiers, ability checks, and attacks.</p></a>
+              <a class="card" href="how-many-dice-in-a-dnd-set"><h3>How Many Dice Are in a D&amp;D Set?</h3><p>Identify the seven common polyhedral dice and what each shape is for.</p></a>
+              <a class="card" href="../dice-roller"><h3>Online D&amp;D Dice Roller</h3><p>Roll common polyhedral dice for a session or a quick rules example.</p></a>
+            </div>
+          </section>
+          <div class="article-cta"><div><div class="eyebrow">For Game Stores, Brands &amp; Publishers</div><h2>Planning an RPG dice assortment?</h2><p>Explore the wholesale catalog for physical polyhedral dice options, then evaluate samples, set contents, packaging, and buyer requirements before planning an order.</p></div><div class="hero-actions"><a class="button" href="../wholesale-dice-catalog">Browse Wholesale Catalog</a><a class="button secondary" href="../free-wholesale-dice-sample-kit-catalog-request">Request Catalog &amp; Sample Kit</a></div></div>
+          <h2>Final takeaway</h2>
+          <p>Hit Dice are a class-based resource, not a count of the physical dice in your bag. During a Short Rest, spend available dice of the correct class size, add Constitution to each roll, and apply the healing minimum and Hit Point cap for the rules version your table uses. The practical 2014-versus-2024 difference to remember is Long Rest recovery: the 2014 Basic Rules restore up to half your total Hit Dice, minimum one, while the 2024 Basic Rules restore all spent Hit Point Dice. Keep that version clear on the character sheet and the rest of the process becomes straightforward.</p>
+        </div>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer"><div class="section compact footer-grid">
+    <div><a class="brand" href="/"><span class="brand-mark">D20</span><span>DND Custom Dice</span></a><p style="margin-top: 14px;">Wholesale 5e-compatible fantasy RPG dice, custom polyhedral dice, real product samples, and private label packaging for B2B buyers worldwide.</p><div class="contact-line"><a href="mailto:Info@dndcustomdice.com">Email: Info@dndcustomdice.com</a><a href="https://wa.me/8613922851014">WhatsApp: +86 13922851014</a></div></div>
+    <div><strong>Programs</strong><div class="footer-links"><a href="/free-wholesale-dice-sample-kit-catalog-request">Free Catalog &amp; Sample Kit Request</a><a href="/wholesale-dice">Wholesale Dice</a><a href="/wholesale-dice-catalog">Wholesale Catalog</a><a href="/types-of-dnd-dice">Types of DND Dice</a><a href="/dice-roller">Dice Roller</a><a href="/sample-kits">Sample Kits</a></div></div>
+    <div><strong>Themes</strong><div class="footer-links"><a href="/dragon-dice-wholesale">Dragon Dice</a><a href="/character-class-dice">Class Dice</a><a href="/elemental-dice-sets">Elemental Dice</a><a href="/wholesale-d20-dice">Wholesale D20 Dice</a></div></div>
+    <div><strong>Buyers</strong><div class="footer-links"><a href="/game-store-dice-supplier">Game Store Dice Supplier</a><a href="/custom-dice-packaging-options">Packaging Options</a><a href="/how-to-order-custom-rpg-dice">How to Order</a><a href="/rpg-dice-manufacturer-faq">Manufacturer FAQ</a><a href="/quality-manufacturing">Quality</a><a href="/request-a-quote">Request Quote</a></div></div>
+    <p class="disclaimer">DND-inspired and 5e-compatible are used descriptively for tabletop RPG compatibility. This website is not affiliated with, endorsed by, or sponsored by any official game publisher.</p>
+  </div></footer>
+  <script src="../assets/main.js?v=20260825-whatsapp-float"></script>
+</body>
+</html>

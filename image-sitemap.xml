@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
+    <loc>https://dndcustomdice.com/blog/dnd-hit-dice-explained</loc>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/dnd-hit-dice-short-rest.webp</image:loc>
+      <image:title>Polyhedral tabletop role-playing dice beside a campaign journal during a quiet rest between encounters</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://dndcustomdice.com/blog/readable-dnd-dice-game-store-buyer-checklist</loc>
     <image:image>
       <image:loc>https://dndcustomdice.com/assets/blog/readable-dnd-dice-buyer-checklist.webp</image:loc>
