@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
+    <loc>https://dndcustomdice.com/blog/oversized-d20-dice-game-store-buyer-guide</loc>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/oversized-d20-game-store-buyer-guide-hero.webp</image:loc>
+      <image:title>Oversized fantasy D20 dice displayed beside standard polyhedral dice in a game shop</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/warcraft-faction-oversized-d20-market-context.webp</image:loc>
+      <image:title>Red and blue faction-themed oversized fantasy D20 dice with an orc warrior and human paladin</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://dndcustomdice.com/assets/blog/warcraft-d20-scale-comparison-buyer-guide.webp</image:loc>
+      <image:title>Large blue and gold fantasy D20 beside a caliper and standard dice for an illustrative size comparison</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://dndcustomdice.com/blog/dnd-hit-dice-explained</loc>
     <image:image>
       <image:loc>https://dndcustomdice.com/assets/blog/dnd-hit-dice-short-rest.webp</image:loc>
